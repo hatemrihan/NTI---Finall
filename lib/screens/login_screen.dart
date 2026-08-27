@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
+import 'package:final_project/screens/signup_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
@@ -49,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 CustomTextField(
                   prefixIcon: Icon(Icons.key_outlined),
                   title: 'Password',
-                  hintText: 'Please Enter Your Password',
+                  hintText: 'Please enter your password',
                   obscureText: isVisiable,
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -89,25 +90,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 OrDivider(),
                 SizedBox(height: 30),
                 LoginSocialSection(),
-                SizedBox(height: 48,),
+                SizedBox(height: 48),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Don't have an account? ",
-                      style: AppStyles.style16SemiBold.copyWith(
+                      style: AppStyles.style14.copyWith(
                         color: AppColors.grayClr,
                       ),
                     ),
                     CustomTextButton(
                       text: 'Sign Up',
-                      onPressed: () {
-                        log('Sign Up pressed');
-                      },
-                      // onPressed: () => Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => SignUpScreen()),
-                      // ),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignupScreen()),
+                      ),
                       textClr: AppColors.primaryClr,
                     ),
                   ],
