@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
-import 'package:final_project/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
@@ -165,10 +164,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     CustomTextButton(
                       text: 'Login',
-                      onPressed: () => Navigator.pop(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      ),
+                      onPressed: () => Navigator.pop(context),
                       textClr: AppColors.primaryClr,
                     ),
                   ],
