@@ -1,9 +1,10 @@
 import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
 import 'package:final_project/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
+import 'package:final_project/widgets/onboarding_img_section.dart';
 import 'package:final_project/widgets/onboarding_page_indicator.dart';
+import 'package:final_project/widgets/onboarding_text_section.dart';
 import 'package:flutter/material.dart';
 
 class Onboarding3Screen extends StatelessWidget {
@@ -17,28 +18,8 @@ class Onboarding3Screen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Stack(
-              children: [
-                Image.asset(
-                  'assets/images/onBoarding3_img.png',
-                  width: double.infinity,
-                  height: 400,
-                  fit: BoxFit.cover,
-                ),
-                Positioned(
-                  top: 15,
-                  right: 15,
-                  child: CustomTextButton(
-                    text: "skip",
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                    ),
-                    textClr: AppColors.grayClr,
-                  ),
-                ),
-              ],
-            ),
+            OnboardingImgSection(imgPath: 'assets/images/onBoarding3_img.png'),
+
             Positioned(
               top: 370,
               left: 0,
@@ -57,24 +38,10 @@ class Onboarding3Screen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Join the NOMA Community',
-                      style: AppStyles.style28Bold.copyWith(
-                        color: AppColors.textClr,
-                        fontFamily: "Manrope",
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: 15),
-                    Text(
-                      'Unlock early access to exclusive drops, curated editorial content, and premium member benefits.',
-                      style: AppStyles.style18.copyWith(
-                        color: AppColors.grayClr,
-                        height: 1.5,
-                      ),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
+                    OnboardingTextSection(
+                      title: 'Join the NOMA Community',
+                      subTitle:
+                          'Unlock early access to exclusive drops, curated editorial content, and premium member benefits.',
                     ),
                     Spacer(),
                     OnboardingPageIndicator(currentPage: 2),
