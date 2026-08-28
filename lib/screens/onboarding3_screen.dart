@@ -1,14 +1,13 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
 import 'package:final_project/screens/login_screen.dart';
-import 'package:final_project/screens/onBoarding2_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
 import 'package:final_project/widgets/onboarding_page_indicator.dart';
 import 'package:flutter/material.dart';
 
-class Onboarding1Screen extends StatelessWidget {
-  const Onboarding1Screen({super.key});
+class Onboarding3Screen extends StatelessWidget {
+  const Onboarding3Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class Onboarding1Screen extends StatelessWidget {
             Stack(
               children: [
                 Image.asset(
-                  'assets/images/onBoarding1_img.png',
+                  'assets/images/onBoarding3_img.png',
                   width: double.infinity,
                   height: 400,
                   fit: BoxFit.cover,
@@ -59,7 +58,7 @@ class Onboarding1Screen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Discover Curated Accessories',
+                      'Join the NOMA Community',
                       style: AppStyles.style28Bold.copyWith(
                         color: AppColors.textClr,
                         fontFamily: "Manrope",
@@ -69,7 +68,7 @@ class Onboarding1Screen extends StatelessWidget {
                     ),
                     SizedBox(height: 15),
                     Text(
-                      'Every piece in our collection is handpicked for its quality, timelessness, and premium craftsmanship.',
+                      'Unlock early access to exclusive drops, curated editorial content, and premium member benefits.',
                       style: AppStyles.style18.copyWith(
                         color: AppColors.grayClr,
                         height: 1.5,
@@ -78,15 +77,13 @@ class Onboarding1Screen extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Spacer(),
-                    OnboardingPageIndicator(currentPage: 0),
+                    OnboardingPageIndicator(currentPage: 2),
                     SizedBox(height: 32),
                     CustomElevatedButton(
-                      text: 'Next',
+                      text: 'Get Started',
                       onPressed: () => Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => Onboarding2Screen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
                       ),
                     ),
                   ],

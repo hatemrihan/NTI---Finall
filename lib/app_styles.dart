@@ -11,6 +11,10 @@ class AppStyles {
     fontSize: 28,
     fontWeight: FontWeight.w800,
   );
+  static const TextStyle style28Bold = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+  );
   static const TextStyle style24Bold = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
@@ -37,4 +41,5 @@ class AppStyles {
   );
   static const TextStyle style12 = TextStyle(fontSize: 12);
   static const TextStyle style14 = TextStyle(fontSize: 14);
+  static const TextStyle style18 = TextStyle(fontSize: 15);
 }
