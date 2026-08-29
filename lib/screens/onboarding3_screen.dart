@@ -1,7 +1,6 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/custom_text_button.dart';
 import 'package:final_project/widgets/onboarding_img_section.dart';
 import 'package:final_project/widgets/onboarding_page_indicator.dart';
 import 'package:final_project/widgets/onboarding_text_section.dart';
