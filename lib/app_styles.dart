@@ -1,3 +1,4 @@
+import 'package:final_project/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppStyles {
@@ -19,7 +20,7 @@ class AppStyles {
     fontSize: 24,
     fontWeight: FontWeight.bold,
   );
-    static const TextStyle style14Bold = TextStyle(
+  static const TextStyle style14Bold = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.bold,
   );
@@ -42,4 +43,11 @@ class AppStyles {
   static const TextStyle style12 = TextStyle(fontSize: 12);
   static const TextStyle style14 = TextStyle(fontSize: 14);
   static const TextStyle style18 = TextStyle(fontSize: 15);
+
+  static const TextStyle appBarTitleStyle = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.bold,
+    color: AppColors.appBarComponentsColor,
+    letterSpacing: 1.2,
+  );
 }

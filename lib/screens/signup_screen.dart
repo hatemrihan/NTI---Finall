@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
+import 'package:final_project/screens/emailVerification_screen.dart';
 import 'package:final_project/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
@@ -144,13 +145,16 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 CustomElevatedButton(
                   text: 'Create Account',
-                  onPressed: () {
-                    log('Signup pressed');
-                  },
-                  // onPressed: () => Navigator.pushReplacement(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                  // ),
+                  // onPressed: () {
+                  //   log("Create Account");
+
+                  // },
+                  onPressed: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EmailverificationScreen(),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 50),
 
