@@ -1,6 +1,8 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
+import 'package:final_project/widgets/custom_categories_home.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
+import 'package:final_project/widgets/cutom_gridview_home.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -59,39 +61,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16),
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 106,
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 6),
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 40,
 
-                                  backgroundImage: NetworkImage(
-                                    'https://talabat639.runasp.net/images/products/Frappuccino.jpg',
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text("name",
-                                    style: AppStyles.style12SemiBold.copyWith(
-                                      color: AppColors.textClr,
-                                    )),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                CustomCategoriesHome(),
+
                 SizedBox(height: 20),
                 Text(
                   "Trending Now",
@@ -101,78 +73,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 12),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 10,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 0.62,
-                  ),
-                  itemBuilder: (context, index) {
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      color: AppColors.bottomBackgroundClr,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(16),
-                                topRight: Radius.circular(16),
-                              ),
-                              child: Image.network(
-                                "https://talabat639.runasp.net/images/products/Frappuccino.jpg",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Meridian",
-                                    style: AppStyles.style11SemiBold
-                                        .copyWith(color: AppColors.grayClr)), 
-                                Text("Chronograph Heritage",
-                                    style: AppStyles.style14SemiBold.copyWith(
-                                      color: AppColors.textClr,
-                                    )),
-
-                                Row(
-                                  children: [
-                                    Text("\$189.00",style: AppStyles.style14Bold,),
-
-                                    const Spacer(),
-
-                                    IconButton(
-                                      padding: EdgeInsets.zero,
-                                      constraints:  BoxConstraints(),
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.star_border_outlined,
-                                        color: AppColors.primaryClr,
-                                        size: 15,
-                                      ),
-                                    ),
-                                    
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                CutomGridviewHome(),
               ],
             ),
           ),
