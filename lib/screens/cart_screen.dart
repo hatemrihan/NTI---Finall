@@ -59,9 +59,9 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bottomBackgroundClr,
+      backgroundColor: AppColors.backgroundClr,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.backgroundClr,
         elevation: 0,
         leading: IconButton(
           onPressed: () {},
@@ -92,6 +92,7 @@ class _CartScreenState extends State<CartScreen> {
                 itemCount: mylist.length,
                 itemBuilder: (context, index) {
                   return Card(
+                    color: AppColors.whiteClr,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Row(
@@ -221,6 +222,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
               const SizedBox(height: 30),
               Card(
+                color: AppColors.whiteClr,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
