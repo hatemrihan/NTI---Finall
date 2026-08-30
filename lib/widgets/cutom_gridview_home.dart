@@ -1,16 +1,42 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
 import 'package:flutter/material.dart';
 
-class CutomGridviewHome extends StatelessWidget {
+class CutomGridviewHome extends StatefulWidget {
   const CutomGridviewHome({super.key});
+
+  @override
+  State<CutomGridviewHome> createState() => _CutomGridviewHomeState();
+}
+
+class _CutomGridviewHomeState extends State<CutomGridviewHome> {
+  List categories = [];
+  final dio = Dio();
+
+  Future<void> getcategories() async {
+    log(" get categories");
+    final Response response = await dio.get(
+      "https://accessories-eshop.runasp.net/api/products",
+    );
+    categories = response.data["items"];
+    log(categories.toString());
+  }
+
+  @override
+  initState() {
+    super.initState();
+    getcategories();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 10,
+      itemCount: categories.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 10,
@@ -27,14 +53,14 @@ class CutomGridviewHome extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                flex: 3,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16),
                   ),
                   child: Image.network(
-                    "https://talabat639.runasp.net/images/products/Frappuccino.jpg",
+                    width: double.infinity,
+                    categories[index]["coverPictureUrl"],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -45,13 +71,13 @@ class CutomGridviewHome extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Meridian",
+                      categories[index]["name"],
                       style: AppStyles.style11SemiBold.copyWith(
                         color: AppColors.grayClr,
                       ),
                     ),
                     Text(
-                      "Chronograph Heritage",
+                      categories[index]["description"],
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: AppStyles.style14SemiBold.copyWith(
@@ -61,12 +87,16 @@ class CutomGridviewHome extends StatelessWidget {
 
                     Row(
                       children: [
-                        Text("\$189.00", style: AppStyles.style14Bold),
+                        Text(
+                          "\$${categories[index]["price"].toString()}"
+                          , style: AppStyles.style14Bold),
 
                         const Spacer(),
                         IconButton(
                           color: AppColors.primaryClr,
-                          onPressed: (){}, icon: const Icon(Icons.add_circle_outlined))
+                          onPressed: () {},
+                          icon: const Icon(Icons.add_circle_outlined),
+                        ),
                       ],
                     ),
                   ],
