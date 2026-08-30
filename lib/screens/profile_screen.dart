@@ -15,17 +15,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   List<ProfileItemModle1> mylist1 = [
     ProfileItemModle1(
       title: 'My Orders',
-      icon: Icons.shopping_bag,
+      icon: Icons.shopping_bag_outlined,
       Ricon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
       title: 'Wishlist',
-      icon: Icons.favorite,
+      icon: Icons.favorite_border_rounded,
       Ricon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
       title: 'Shipping Addresses',
-      icon: Icons.location_on,
+      icon: Icons.location_on_outlined,
       Ricon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
@@ -37,12 +37,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   List<ProfileItemModle2> mylist2 = [
     ProfileItemModle2(
       title: 'Settings',
-      icon: Icons.settings,
+      icon: Icons.settings_outlined,
       Ricon: Icons.arrow_forward_ios,
+      onTap: () {},
     ),
     ProfileItemModle2(
       title: 'Help and Support',
-      icon: Icons.help,
+      icon: Icons.help_outline_rounded,
       Ricon: Icons.arrow_forward_ios,
     ),
   ];
@@ -65,11 +66,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Column(
                 children: [
-                  CircleAvatar(
-                    radius: 45.5,
-                    backgroundImage: const AssetImage(
-                      'assets/images/img_profile.png',
-                    ),
+                  Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 45.5,
+                        backgroundImage: const AssetImage(
+                          'assets/images/img_profile.png',
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          padding: EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryClr,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.photo_camera,
+                            color: AppColors.bottomBackgroundClr,
+                            size: 18,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
 
                   const SizedBox(height: 15),
@@ -90,6 +111,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title: mylist1[index].title,
                         icon: mylist1[index].icon,
                         Ricon: mylist1[index].Ricon,
+                        color: AppColors.primaryClr,
                       );
                     },
 
@@ -112,6 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title: mylist2[index].title,
                         icon: mylist2[index].icon,
                         Ricon: mylist2[index].Ricon,
+                        color: AppColors.primaryClr,
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {
@@ -123,7 +146,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(height: 30),
               Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: CustomProfileItems(
                     title: 'Log Out',
                     icon: Icons.logout,
