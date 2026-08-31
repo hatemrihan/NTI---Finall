@@ -34,6 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       rightIcon: Icons.arrow_forward_ios,
     ),
   ];
+
   List<ProfileItemModle2> mylist2 = [
     ProfileItemModle2(
       title: 'Settings',
@@ -47,6 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       rightIcon: Icons.arrow_forward_ios,
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +56,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: AppColors.backgroundClr,
         title: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: const Text('MY PROFILE', style: AppStyles.style20ExtraBold),
+          child: const Text(
+            'MY PROFILE',
+            style: AppStyles.style20ExtraBold,
+          ),
         ),
       ),
       backgroundColor: Colors.white,
@@ -92,10 +97,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 15),
-                  Text('Sarah Johnson ', style: AppStyles.style20ExtraBold),
-                  Text('sarah@email.com', style: AppStyles.style13),
+                  Text(
+                    'Sarah Johnson ',
+                    style: AppStyles.style20ExtraBold,
+                  ),
+                  Text(
+                    'sarah@email.com',
+                    style: AppStyles.style13,
+                  ),
                 ],
               ),
               SizedBox(height: 20),
@@ -114,8 +124,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: AppColors.primaryClr,
                       );
                     },
-
-                    separatorBuilder: (BuildContext context, int index) {
+                    separatorBuilder: (
+                      BuildContext context,
+                      int index,
+                    ) {
                       return const Divider();
                     },
                   ),
@@ -137,7 +149,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: AppColors.primaryClr,
                       );
                     },
-                    separatorBuilder: (BuildContext context, int index) {
+                    separatorBuilder: (
+                      BuildContext context,
+                      int index,
+                    ) {
                       return const Divider();
                     },
                   ),

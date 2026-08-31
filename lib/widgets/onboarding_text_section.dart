@@ -3,8 +3,15 @@ import 'package:final_project/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingTextSection extends StatelessWidget {
-  const OnboardingTextSection({super.key, required this.title, required this.subTitle});
-  final String title, subTitle;
+  const OnboardingTextSection({
+    super.key,
+    required this.title,
+    required this.subTitle,
+  });
+
+  final String title;
+  final String subTitle;
+
   @override
   Widget build(BuildContext context) {
     return Column(

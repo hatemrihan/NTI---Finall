@@ -11,6 +11,7 @@ class CustomProfileItems extends StatelessWidget {
     this.onTap,
     this.textColor,
   });
+
   final String title;
   final IconData icon;
   final Color? color;
@@ -27,9 +28,15 @@ class CustomProfileItems extends StatelessWidget {
           const SizedBox(width: 25),
           Icon(icon, size: 30, color: color),
           const SizedBox(width: 30),
-          Text(title, style: AppStyles.style17Bold.copyWith(color: textColor)),
+          Text(
+            title,
+            style: AppStyles.style17Bold.copyWith(color: textColor),
+          ),
           const Spacer(),
-          IconButton(onPressed: () {}, icon: Icon(rightIcon)),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(rightIcon),
+          ),
         ],
       ),
     );

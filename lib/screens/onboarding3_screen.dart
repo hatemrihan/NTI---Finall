@@ -17,7 +17,9 @@ class Onboarding3Screen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            OnboardingImgSection(imgPath: 'assets/images/onBoarding3_img.png'),
+            OnboardingImgSection(
+              imgPath: 'assets/images/onBoarding3_img.png',
+            ),
             Positioned(
               top: 370,
               left: 0,
@@ -48,7 +50,9 @@ class Onboarding3Screen extends StatelessWidget {
                       text: 'Get Started',
                       onPressed: () => Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
                       ),
                     ),
                   ],
