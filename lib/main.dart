@@ -1,5 +1,6 @@
 import 'package:final_project/screens/about_us_screen.dart';
-// import 'package:final_project/screens/onboarding1_screen.dart';
+import 'package:final_project/screens/cart_screen.dart';
+import 'package:final_project/screens/onboarding1_screen.dart';
 import 'package:final_project/screens/profile_screen.dart';
 import 'package:final_project/screens/search_screen.dart';
 import 'package:final_project/screens/settings_screen.dart';
@@ -18,7 +19,7 @@ class NEMOStore extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Manrope"),
       debugShowCheckedModeBanner: false,
-      home: SearchScreen(),
+      home: CartScreen(),
     );
   }
 }
