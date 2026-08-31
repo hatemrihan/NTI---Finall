@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
+import 'package:final_project/screens/emailVerification_screen.dart';
 import 'package:final_project/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
@@ -91,7 +92,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   hintText: 'Confirm your password',
                   obscureText: isVisiable,
                 ),
-                SizedBox(height: 16),
+                                SizedBox(height: 16),
 
                 Row(
                   children: [
@@ -140,19 +141,22 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 24),
+                                SizedBox(height: 24),
 
                 CustomElevatedButton(
                   text: 'Create Account',
-                  onPressed: () {
-                    log('Signup pressed');
-                  },
-                  // onPressed: () => Navigator.pushReplacement(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                  // ),
+                  // onPressed: () {
+                  //   log("Create Account");
+
+                  // },
+                  onPressed: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EmailverificationScreen(),
+                    ),
+                  ),
                 ),
-                SizedBox(height: 50),
+                                SizedBox(height: 50),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -165,10 +169,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     CustomTextButton(
                       text: 'Login',
-                      onPressed: () => Navigator.pop(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      ),
+                      onPressed: () => Navigator.pop(context),
                       textClr: AppColors.primaryClr,
                     ),
                   ],

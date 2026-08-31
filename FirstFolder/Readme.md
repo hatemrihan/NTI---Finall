@@ -1,1 +1,0 @@
-ahlan ya regala.

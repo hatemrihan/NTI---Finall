@@ -1,38 +1,25 @@
-
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomSearchTextField extends StatelessWidget {
+  const CustomSearchTextField({
     super.key,
-    required this.title,
     required this.hintText,
     this.suffixIcon,
-    this.obscureText,
     this.prefixIcon,
   });
-  final String title;
   final String hintText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
-  final bool? obscureText;
   @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 8,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: AppStyles.style14SemiBold.copyWith(
-            fontFamily: "Manrope",
-            color: AppColors.primaryClr,
-          ),
-        ),
+
         TextField(
-          obscureText: obscureText ?? false,
-          
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.bottomBackgroundClr,
