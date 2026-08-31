@@ -1,9 +1,9 @@
-import 'dart:developer';
+
 
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
+
 
 class CustomCategoriesHome extends StatefulWidget {
   CustomCategoriesHome({super.key});
