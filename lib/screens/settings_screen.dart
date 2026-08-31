@@ -4,9 +4,16 @@ import 'package:final_project/widgets/custom_container_row.dart';
 import 'package:final_project/widgets/custom_row.dart';
 import 'package:flutter/material.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => SettingsScreenState();
+}
+
+class SettingsScreenState extends State<SettingsScreen> {
+  bool value1 = true;
+  bool value2 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,8 +49,12 @@ class SettingsScreen extends StatelessWidget {
                     icon: Icons.notifications_none,
                     title: 'Notifications',
                     trailing: Switch(
-                      value: true,
-                      onChanged: (value) {},
+                      value: value1,
+                      onChanged: (newvalue1) {
+                        setState(() {
+                          value1 = newvalue1;
+                        });
+                      },
                     ),
                   ),
                   Divider(),
@@ -92,8 +103,12 @@ class SettingsScreen extends StatelessWidget {
                       icon: Icons.dark_mode_outlined,
                       title: 'Dark Theme',
                       trailing: Switch(
-                        value: false,
-                        onChanged: (value) {},
+                        value: value2,
+                        onChanged: (newvalue2) {
+                          setState(() {
+                          value2 = newvalue2;
+                        });
+                        },
                       ),
                     ),
                   ),
