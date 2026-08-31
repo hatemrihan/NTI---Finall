@@ -14,4 +14,7 @@ class AppColors {
   static const hintClr = Color(0xff7B827A);
   static const textClr = Color(0xff1E2521);
   static const redClr = Colors.red;
+  static const bronClr = Color(0xffB9785B);
+  static const bron2Clr = Color(0xffB9785B);
 }
+//#B9785B

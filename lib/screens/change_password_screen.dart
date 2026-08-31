@@ -2,8 +2,8 @@ import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
-import 'package:final_project/widgets/custonmAppBar_widget.dart';
-import 'package:final_project/widgets/passwordStrengthIndicatorBar.dart';
+import 'package:final_project/widgets/custom_appBar_widget.dart';
+import 'package:final_project/widgets/password_strengthIndicatorBar.dart';
 import 'package:flutter/material.dart';
 
 class ChangepasswordScreen extends StatelessWidget {
@@ -78,7 +78,7 @@ class ChangepasswordScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Password Strength:",
-                    style: AppStyles.style14.copyWith(color: AppColors.grayClr),
+                    style: AppStyles.style14Regular.copyWith(color: AppColors.grayClr),
                   ),
                   const Text(
                     "Medium",

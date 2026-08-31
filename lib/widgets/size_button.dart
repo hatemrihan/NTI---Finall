@@ -3,7 +3,14 @@ import 'package:final_project/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class SizeButton extends StatelessWidget {
-  const SizeButton({super.key, required this.size,this.width=30,this.height=20,required this.onPressed, required this.isSelected});
+  const SizeButton({
+    super.key,
+    required this.size,
+    this.width = 30,
+    this.height = 20,
+    required this.onPressed,
+    required this.isSelected,
+  });
   final String size;
   final double width;
   final double height;
@@ -14,18 +21,24 @@ class SizeButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: ElevatedButton(
-        onPressed: onPressed, 
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           minimumSize: Size(width, height),
           side: BorderSide(color: AppColors.borderSideClr),
-            backgroundColor: isSelected?AppColors.primaryClr:AppColors.cardFillClr,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16)
-            )
-            
+          backgroundColor: isSelected
+              ? AppColors.primaryClr
+              : AppColors.cardFillClr,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
-          child: Text(size, style: AppStyles.style16Bold.copyWith(color: isSelected?AppColors.whiteClr:AppColors.blackClr),)
+        ),
+        child: Text(
+          size,
+          style: AppStyles.style16Bold.copyWith(
+            color: isSelected ? AppColors.whiteClr : AppColors.blackClr,
           ),
+        ),
+      ),
     );
   }
 }

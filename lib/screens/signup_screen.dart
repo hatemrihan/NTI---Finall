@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
-import 'package:final_project/screens/emailVerification_screen.dart';
+import 'package:final_project/screens/email_verification_screen.dart';
 import 'package:final_project/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
@@ -52,14 +52,31 @@ class _SignupScreenState extends State<SignupScreen> {
                 SizedBox(height: 8),
                 Text(
                   'Join NOMA today for exclusive collections.',
-                  style: AppStyles.style14.copyWith(color: AppColors.grayClr),
+                  style: AppStyles.style14Regular.copyWith(
+                    color: AppColors.grayClr,
+                  ),
                 ),
                 SizedBox(height: 24),
-                CustomTextField(
-                  prefixIcon: Icon(Icons.person_2_outlined),
-                  title: 'Full Name',
-                  hintText: 'Enter your name',
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomTextField(
+                        prefixIcon: Icon(Icons.person_2_outlined),
+                        title: 'First Name',
+                        hintText: 'Your first name',
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: CustomTextField(
+                        prefixIcon: Icon(Icons.person_2_outlined),
+                        title: 'Last Name',
+                        hintText: 'Your last name',
+                      ),
+                    ),
+                  ],
                 ),
+
                 SizedBox(height: 16),
                 CustomTextField(
                   prefixIcon: Icon(Icons.mail_outline),
@@ -92,7 +109,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   hintText: 'Confirm your password',
                   obscureText: isVisiable,
                 ),
-                                SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 Row(
                   children: [
@@ -114,7 +131,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         children: [
                           TextSpan(
                             text: 'I agree to the ',
-                            style: AppStyles.style14.copyWith(
+                            style: AppStyles.style14Regular.copyWith(
                               color: AppColors.grayClr,
                             ),
                           ),
@@ -126,7 +143,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           TextSpan(
                             text: ' & ',
-                            style: AppStyles.style14.copyWith(
+                            style: AppStyles.style14Regular.copyWith(
                               color: AppColors.grayClr,
                             ),
                           ),
@@ -141,7 +158,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                                SizedBox(height: 24),
+                SizedBox(height: 24),
 
                 CustomElevatedButton(
                   text: 'Create Account',
@@ -156,14 +173,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ),
-                                SizedBox(height: 50),
+                SizedBox(height: 50),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Already have an account? ",
-                      style: AppStyles.style14.copyWith(
+                      style: AppStyles.style14Regular.copyWith(
                         color: AppColors.grayClr,
                       ),
                     ),

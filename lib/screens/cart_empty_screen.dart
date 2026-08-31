@@ -40,7 +40,7 @@ class CartEmptyScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                Text('Your Cart is Empty', style: AppStyles.style27ExtraBold),
+                Text('Your Cart is Empty', style: AppStyles.style28ExtraBold),
                 const SizedBox(height: 12),
                 Text(
                   'It looks like you haven\'t added any curated\naccessories to your bag yet.',
