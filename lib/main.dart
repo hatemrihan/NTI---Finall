@@ -1,6 +1,8 @@
+import 'package:final_project/screens/cart_screen.dart';
 import 'package:final_project/screens/delete_confirmation.dart';
 import 'package:final_project/screens/login_screen.dart';
 import 'package:final_project/screens/onboarding1_screen.dart';
+import 'package:final_project/screens/profile_screen.dart';
 import 'package:final_project/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
