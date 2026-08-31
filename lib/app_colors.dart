@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
+  static const cardFillClr = Color(0xffFFFCFD);
+  static const borderSideClr = Color(0xffE8DDCB);
   static const backgroundClr = Color(0xFFF7F2EA);
   static const bottomBackgroundClr = Color(0xFFFFFCF7);
   static const primaryClr = Color(0xFF294A3A);
