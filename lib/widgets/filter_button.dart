@@ -34,7 +34,7 @@ textcolor:  AppColors.blackClr),
              backgroundColor:filterbutton[index].buttoncolor ,
              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
            minimumSize: const Size(40, 40),
-             padding: const EdgeInsets.symmetric(horizontal: 15),
+             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               ),
          onPressed:(){},
            child:Row(
