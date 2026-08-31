@@ -14,4 +14,5 @@ class AppColors {
   static const redClr = Color(0xffDC2626);
   static const broClr = Color(0xffB9785B20);
   static const bro2Clr = Color(0xffB9785B);
+  static const bro3Clr = Color(0xffB9785B);
 }
