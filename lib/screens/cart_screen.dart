@@ -170,7 +170,10 @@ class _CartScreenState extends State<CartScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.arrow_back, size: 17, color: AppColors.hintClr),
-                  Text('Swipe left to delete item', style: AppStyles.style11),
+                  Text(
+                    'Swipe left to delete item',
+                    style: AppStyles.style11Bold,
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
