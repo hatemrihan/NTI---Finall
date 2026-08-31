@@ -92,7 +92,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   hintText: 'Confirm your password',
                   obscureText: isVisiable,
                 ),
-                SizedBox(height: 16),
+                                SizedBox(height: 16),
 
                 Row(
                   children: [
@@ -141,7 +141,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 24),
+                                SizedBox(height: 24),
 
                 CustomElevatedButton(
                   text: 'Create Account',
@@ -156,7 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 50),
+                                SizedBox(height: 50),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -169,10 +169,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     CustomTextButton(
                       text: 'Login',
-                      onPressed: () => Navigator.pop(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      ),
+                      onPressed: () => Navigator.pop(context),
                       textClr: AppColors.primaryClr,
                     ),
                   ],

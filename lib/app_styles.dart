@@ -32,6 +32,10 @@ class AppStyles {
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+  static const TextStyle style17Bold = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w700,
+  );
   static const TextStyle style14Medium = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
@@ -40,8 +44,15 @@ class AppStyles {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
+  static const TextStyle style12SemiBold = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
+    static const TextStyle style11SemiBold = TextStyle(fontSize: 11, fontWeight: FontWeight.w600);
+
   static const TextStyle style12 = TextStyle(fontSize: 12);
   static const TextStyle style14 = TextStyle(fontSize: 14);
+  static const TextStyle style13 = TextStyle(fontSize: 13);
   static const TextStyle style18 = TextStyle(fontSize: 15);
 
   static const TextStyle appBarTitleStyle = TextStyle(
