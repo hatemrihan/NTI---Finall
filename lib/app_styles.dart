@@ -1,3 +1,4 @@
+import 'package:final_project/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppStyles {
