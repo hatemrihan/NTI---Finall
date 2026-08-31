@@ -14,8 +14,7 @@ class _MyWidgetState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-       backgroundColor: AppColors.backgroundClr,
+      backgroundColor: AppColors.backgroundClr,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(24),
@@ -24,42 +23,18 @@ class _MyWidgetState extends State<SearchScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomSearchTextField(hintText: "search products",
-                prefixIcon: Icon(Icons.search),
-                suffixIcon: Icon(Icons.cancel_outlined),),
+                CustomSearchTextField(
+                  hintText: "search products",
+                  prefixIcon: Icon(Icons.search),
+                  suffixIcon: Icon(Icons.cancel_outlined),
+                ),
                 Filter(),
                 //gridview()
               ],
             ),
           ),
-          
-          ),
         ),
-         bottomNavigationBar: BottomNavigationBar(
-    type: BottomNavigationBarType.fixed,
-    items: const [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home_outlined),
-        label: 'Home',
       ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.grid_view_outlined),
-        label: 'Categories',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.shopping_bag_outlined),
-        label: 'Cart',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.favorite_border),
-        label: 'Wishlist',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.person_outline),
-        label: 'Profile',
-      ),
-    ],
-  ),
     );
   }
 }
