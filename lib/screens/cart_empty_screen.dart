@@ -29,7 +29,7 @@ class CartEmptyScreen extends StatelessWidget {
                       height: 100,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.grey.withOpacity(0.30),
+                        color: Colors.grey.withValues(alpha: 0.30),
                       ),
                       child: Icon(
                         Icons.shopping_bag_outlined,

@@ -130,7 +130,6 @@ class AppStyles {
     fontSize: 27,
     fontWeight: FontWeight.w800,
   );
-
   // Font Size : 28
   static const TextStyle style28Bold = TextStyle(
     fontSize: 28,
@@ -145,5 +144,9 @@ class AppStyles {
   static const TextStyle style48ExtraBold = TextStyle(
     fontSize: 48,
     fontWeight: FontWeight.w800,
+  );
+  static const TextStyle appBarTitleStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
   );
 }

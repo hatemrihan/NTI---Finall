@@ -17,7 +17,7 @@ class _CartScreenState extends State<CartScreen> {
   List mylist = [];
   bool isLoading = true;
 
-  Future<void> getproduct_cart() async {
+  Future<void> getProductCart() async {
     try {
       setState(() {
         isLoading = true;
@@ -52,7 +52,7 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   void initState() {
-    getproduct_cart();
+    getProductCart();
     super.initState();
   }
 
@@ -170,7 +170,10 @@ class _CartScreenState extends State<CartScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.arrow_back, size: 17, color: AppColors.hintClr),
-                  Text('Swipe left to delete item', style: AppStyles.style11Regular),
+                  Text(
+                    'Swipe left to delete item',
+                    style: AppStyles.style11Regular,
+                  ),
                 ],
               ),
               const SizedBox(height: 20),

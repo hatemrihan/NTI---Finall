@@ -32,7 +32,7 @@ class DeleteConfirmation extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: AppColors.bronClr.withOpacity(0.15),
+                        color: AppColors.bronClr.withValues(alpha: 0.15),
                         shape: BoxShape.circle,
                       ),
                       height: 70,
