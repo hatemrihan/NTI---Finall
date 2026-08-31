@@ -43,7 +43,11 @@ class AppStyles {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
-  static const TextStyle style11 = TextStyle(fontSize: 11);
+  static const TextStyle style12SemiBold = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
+    static const TextStyle style11SemiBold = TextStyle(fontSize: 11, fontWeight: FontWeight.w600);
 
   static const TextStyle style12 = TextStyle(fontSize: 12);
   static const TextStyle style14 = TextStyle(fontSize: 14);

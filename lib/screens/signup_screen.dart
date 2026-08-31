@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
-import 'package:final_project/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
@@ -91,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   hintText: 'Confirm your password',
                   obscureText: isVisiable,
                 ),
-                SizedBox(height: 16),
+                                SizedBox(height: 16),
 
                 Row(
                   children: [
@@ -140,7 +139,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 24),
+                                SizedBox(height: 24),
 
                 CustomElevatedButton(
                   text: 'Create Account',
@@ -152,7 +151,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   //   MaterialPageRoute(builder: (context) => HomeScreen()),
                   // ),
                 ),
-                SizedBox(height: 50),
+                                SizedBox(height: 50),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -165,10 +164,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     CustomTextButton(
                       text: 'Login',
-                      onPressed: () => Navigator.pop(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      ),
+                      onPressed: () => Navigator.pop(context),
                       textClr: AppColors.primaryClr,
                     ),
                   ],
