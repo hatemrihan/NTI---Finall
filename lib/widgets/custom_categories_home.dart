@@ -39,7 +39,7 @@ class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
                     const SizedBox(height: 8),
                     Text(
                       "name",
-                      style: AppStyles.style12SemiBold.copyWith(
+                      style: AppStyles.style12Medium.copyWith(
                         color: AppColors.textClr,
                       ),
                     ),

@@ -41,7 +41,7 @@ class ProductInfo extends StatelessWidget {
               child: Center(child: Text("SALE", style: AppStyles.style11Bold.copyWith(color: Colors.white),)),
               ),
               Spacer(),
-              Icon(Icons.star_border_rounded, color: AppColors.primaryClr, size: 20, fontWeight: FontWeight.w900,),
+              Icon(Icons.star_border_rounded, color: AppColors.primaryClr, size: 20,),
               Text("$rating", style: AppStyles.style16Bold.copyWith(color: Colors.black),),
               Text("($reviews reviews)", style: AppStyles.style16Bold.copyWith(color: Colors.black),),
           ],

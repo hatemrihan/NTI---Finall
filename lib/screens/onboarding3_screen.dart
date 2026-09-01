@@ -17,7 +17,7 @@ class Onboarding3Screen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            OnboardingImgSection(imgPath: 'assets/images/onBoarding3_img.png'),
+            onboarding.OnboardingImgSection(imgPath: 'assets/images/onBoarding3_img.png'),
 
             Positioned(
               top: 370,

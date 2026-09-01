@@ -200,7 +200,7 @@ class AboutUsScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     'NOMA Accessories • v1.4.0',
-                    style: AppStyles.style12Regular.copyWith(
+                    style: AppStyles.style12Medium.copyWith(
                       color: AppColors.grayClr,
                     ),
                   ),

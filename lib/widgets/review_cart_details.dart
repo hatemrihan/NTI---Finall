@@ -35,7 +35,7 @@ class ReviewCartDetails extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                Icon(Icons.star_border_rounded, color: AppColors.primaryClr, size: 20, fontWeight: FontWeight.w700),
+                Icon(Icons.star_border_rounded, color: AppColors.primaryClr, size: 20),
                 Text("$rating"),
               ],
             ),

@@ -24,11 +24,11 @@ class CustomAppbarWidget extends StatelessWidget
         onPressed: onBackPressed,
         icon: const Icon(
           Icons.arrow_back_ios_new,
-          color: AppColors.appBarComponentsColor,
+          color: AppColors.textClr,
           size: 20,
         ),
       ),
-      title: Text(title.toUpperCase(), style: AppStyles.appBarTitleStyle),
+      title: Text(title.toUpperCase(), style: AppStyles.style18ExtraBold),
     );
   }
 
