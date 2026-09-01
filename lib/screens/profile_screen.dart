@@ -16,35 +16,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ProfileItemModle1(
       title: 'My Orders',
       icon: Icons.shopping_bag_outlined,
-      Ricon: Icons.arrow_forward_ios,
+      rightIcon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
       title: 'Wishlist',
       icon: Icons.favorite_border_rounded,
-      Ricon: Icons.arrow_forward_ios,
+      rightIcon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
       title: 'Shipping Addresses',
       icon: Icons.location_on_outlined,
-      Ricon: Icons.arrow_forward_ios,
+      rightIcon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
       title: 'Payment Methods',
       icon: Icons.credit_card,
-      Ricon: Icons.arrow_forward_ios,
+      rightIcon: Icons.arrow_forward_ios,
     ),
   ];
   List<ProfileItemModle2> mylist2 = [
     ProfileItemModle2(
       title: 'Settings',
       icon: Icons.settings_outlined,
-      Ricon: Icons.arrow_forward_ios,
+      rightIcon: Icons.arrow_forward_ios,
       onTap: () {},
     ),
     ProfileItemModle2(
       title: 'Help and Support',
       icon: Icons.help_outline_rounded,
-      Ricon: Icons.arrow_forward_ios,
+      rightIcon: Icons.arrow_forward_ios,
     ),
   ];
   @override
@@ -111,7 +111,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       return CustomProfileItems(
                         title: mylist1[index].title,
                         icon: mylist1[index].icon,
-                        Ricon: mylist1[index].Ricon,
+                        rightIcon: mylist1[index].rightIcon,
                         color: AppColors.primaryClr,
                         onTap: () {},
                       );
@@ -136,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       return CustomProfileItems(
                         title: mylist2[index].title,
                         icon: mylist2[index].icon,
-                        Ricon: mylist2[index].Ricon,
+                        rightIcon: mylist2[index].rightIcon,
                         color: AppColors.primaryClr,
                         onTap: () {},
                       );

@@ -1,13 +1,13 @@
 import 'package:final_project/app_colors.dart';
-import 'package:final_project/screens/login_screen.dart';
+import 'package:final_project/screens/onBoarding2_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/onboarding_img_section.dart';
 import 'package:final_project/widgets/onboarding_page_indicator.dart';
 import 'package:final_project/widgets/onboarding_text_section.dart';
 import 'package:flutter/material.dart';
 
-class Onboarding3Screen extends StatelessWidget {
-  const Onboarding3Screen({super.key});
+class Onboarding1Screen extends StatelessWidget {
+  const Onboarding1Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class Onboarding3Screen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            OnboardingImgSection(imgPath: 'assets/images/onBoarding3_img.png'),
+            OnboardingImgSection(imgPath: 'assets/images/onBoarding1_img.png'),
             Positioned(
               top: 370,
               left: 0,
@@ -37,18 +37,20 @@ class Onboarding3Screen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     OnboardingTextSection(
-                      title: 'Join the NOMA Community',
+                      title: 'Discover Curated Accessories',
                       subTitle:
-                          'Unlock early access to exclusive drops, curated editorial content, and premium member benefits.',
+                          'Every piece in our collection is handpicked for its quality, timelessness, and premium craftsmanship.',
                     ),
                     Spacer(),
-                    OnboardingPageIndicator(currentPage: 2),
+                    OnboardingPageIndicator(currentPage: 0),
                     SizedBox(height: 32),
                     CustomElevatedButton(
-                      text: 'Get Started',
+                      text: 'Next',
                       onPressed: () => Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => Onboarding2Screen(),
+                        ),
                       ),
                     ),
                   ],

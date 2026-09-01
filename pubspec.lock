@@ -178,7 +178,19 @@ packages:
       sha256: "1741988757a65eb6b36abe716829688cf01910bbf91c34354ff7ec1c3de2b349"
       url: "https://pub.dev"
     source: hosted
+<<<<<<< Updated upstream
     version: "1.18.0"
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    version: "1.18.0"
+=======
+    version: "1.19.0"
+>>>>>>> 6857e620e462c2fa08c926c4d43ed6627d322aae
+=======
+    version: "1.18.0"
+>>>>>>> ee0943cd9b4a25fba3f84908cb0cd5a0b93ebd8e
+>>>>>>> Stashed changes
   mime:
     dependency: transitive
     description:

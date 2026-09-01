@@ -32,7 +32,7 @@ class DeleteConfirmation extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: AppColors.broClr.withOpacity(0.15),
+                        color: AppColors.bronClr.withValues(alpha: 0.15),
                         shape: BoxShape.circle,
                       ),
                       height: 70,
@@ -40,16 +40,17 @@ class DeleteConfirmation extends StatelessWidget {
                       child: const Icon(
                         Icons.warning_amber_rounded,
                         size: 30,
-                        color: AppColors.bro2Clr,
+                        color: AppColors.bron2Clr,
                       ),
                     ),
+                    SizedBox(height: 24),
                     Text('Delete Product?', style: AppStyles.style18ExtraBold),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12),
                     Text(
                       'Are you sure you want to permanently remove this product from your inventory? This action cannot be undone.',
                       maxLines: 3,
                       textAlign: TextAlign.center,
-                      style: AppStyles.style13,
+                      style: AppStyles.style13Regular,
                     ),
                     const SizedBox(height: 24),
                     Row(
@@ -66,7 +67,7 @@ class DeleteConfirmation extends StatelessWidget {
                             style: AppStyles.style14SemiBold,
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        SizedBox(width: 12),
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
