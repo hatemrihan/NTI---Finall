@@ -1,5 +1,5 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/screens/login_screen.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/features/auth/presentation/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 

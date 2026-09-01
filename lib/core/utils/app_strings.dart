@@ -1,7 +1,3 @@
-// app_strings.dart
-// app_strings.dart
-// app_strings.dart
-// app_strings.dart
 class AppStrings {
   static const String emailRequired = "Email is required";
   static const String emailMinLength =
@@ -20,7 +16,7 @@ class AppStrings {
       "Phone number can only contain numbers.";
   static const String usernameRequired = "Username is required.";
   static const String usernameMinLength =
-      "Username must be at least 6 characters long.";
+      "Username must be at least 3 characters long.";
   static const String usernameMustStartWithLetter =
       "Username must start with a letter.";
   static const String usernameMustContainAtLeast3Letters =

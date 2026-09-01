@@ -1,4 +1,5 @@
-import 'package:final_project/screens/onBoarding1_screen.dart';
+import 'package:final_project/features/home/presentation/screens/home_screen.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class NEMOStore extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Manrope"),
       debugShowCheckedModeBanner: false,
-      home: Onboarding1Screen(),
+      home: HomeScreen(),
     );
   }
 }

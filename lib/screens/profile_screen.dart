@@ -1,5 +1,5 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:final_project/widgets/custom_profile_item.dart';
 import 'package:final_project/widgets/custom_profile_item_modle.dart';
 import 'package:flutter/material.dart';
