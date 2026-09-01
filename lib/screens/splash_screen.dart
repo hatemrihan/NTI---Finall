@@ -9,38 +9,28 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundClr,
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'NOMA',
-              style: AppStyles.style48ExtraBold.copyWith(
-                fontFamily: "Manrope",
-                letterSpacing: 0.2,
-                color: AppColors.textClr,
-              ),
+      body: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Image.asset('assets/images/splash_screen.png',fit: BoxFit.cover,),
+          ),
+          Positioned(
+            top: 280,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Image.asset('assets/images/logo.png',width: 120, ),
             ),
-            SizedBox(height: 16),
-            Container(
-              width: 8,
-              height: 8,
-              decoration: BoxDecoration(
-                color: AppColors.primaryClr,
-                shape: BoxShape.circle,
-              ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'SMART ACCESSORIES STORE',
-              style: AppStyles.style14Medium.copyWith(
-                color: AppColors.grayClr,
-                height: 1.2,
-                letterSpacing: 1.5,
-              ),
-            ),
-          ],
-        ),
+          ),
+          const Positioned(
+            bottom: 30,
+            left: 0,
+            right: 0,
+            child: Text( 'Accessories For Touch You', textAlign: TextAlign.center, style: AppStyles.style16Bold, ),
+          ),
+        ],
       ),
     );
   }
