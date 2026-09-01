@@ -21,6 +21,9 @@ class _CutomGridviewHomeState extends State<CutomGridviewHome> {
       "https://accessories-eshop.runasp.net/api/products",
     );
     categories = response.data["items"];
+    setState(() {
+      
+    });
     log(categories.toString());
   }
 

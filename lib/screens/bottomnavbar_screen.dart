@@ -9,7 +9,8 @@ class BottomNavigationBarScreen extends StatefulWidget {
       _BottomNavigationBarScreenState();
 }
 
-class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
+class _BottomNavigationBarScreenState
+    extends State<BottomNavigationBarScreen> {
 
   int currentIndex = 0;
 
@@ -19,6 +20,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
     HomeScreen(),
     HomeScreen(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
