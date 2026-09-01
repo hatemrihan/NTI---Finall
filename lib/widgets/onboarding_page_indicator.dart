@@ -3,27 +3,24 @@ import 'package:flutter/material.dart';
 
 class OnboardingPageIndicator extends StatelessWidget {
   const OnboardingPageIndicator({super.key, required this.currentPage});
-
   final int currentPage;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(
-        3,
-        (index) => AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          width: index == currentPage ? 24 : 8,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(3, (index) {
+        final isActive = index == currentPage;
+        return Container(
+          margin: EdgeInsets.symmetric(horizontal: 4),
+          width: isActive ? 24 : 8,
           height: 8,
-          margin: EdgeInsets.only(right: index == 2 ? 0 : 8),
           decoration: BoxDecoration(
-            color: index == currentPage
-                ? AppColors.primaryClr
-                : const Color(0xFFA8B8A4),
-            borderRadius: BorderRadius.circular(8),
+            color: isActive ? AppColors.primaryClr : AppColors.grayClr.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(4),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
