@@ -2,9 +2,7 @@ import 'package:final_project/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SettingsContainer extends StatelessWidget {
-  const SettingsContainer({super.key, 
-    required this.children,
-  });
+  const SettingsContainer({super.key, required this.children});
 
   final List<Widget> children;
 
@@ -14,13 +12,9 @@ class SettingsContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.whiteClr,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color:  const Color.fromARGB(255, 232, 222, 208),
-        ),
+        border: Border.all(color: const Color.fromARGB(255, 232, 222, 208)),
       ),
-      child: Column(
-        children: children,
-      ),
+      child: Column(children: children),
     );
   }
 }

@@ -1,4 +1,6 @@
+import 'package:final_project/screens/contact_us_screen.dart';
 import 'package:final_project/screens/onBoarding1_screen.dart';
+import 'package:final_project/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +16,8 @@ class NEMOStore extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Manrope"),
       debugShowCheckedModeBanner: false,
-      home: Onboarding1Screen(),
+      // home: Onboarding1Screen(),
+      home: ContactUsScreen(),
     );
   }
 }

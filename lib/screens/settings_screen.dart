@@ -1,5 +1,6 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
+import 'package:final_project/screens/contact_us_screen.dart';
 import 'package:final_project/widgets/custom_container_row.dart';
 import 'package:final_project/widgets/custom_row.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  AppColors.backgroundClr,
+      backgroundColor: AppColors.backgroundClr,
 
       body: SafeArea(
         child: Padding(
@@ -25,7 +26,6 @@ class SettingsScreenState extends State<SettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Row(
                 children: [
                   IconButton(
@@ -33,16 +33,12 @@ class SettingsScreenState extends State<SettingsScreen> {
                     icon: const Icon(Icons.arrow_back_ios_new),
                   ),
 
-                  const Text(
-                    'SETTINGS',
-                    style: AppStyles.style20ExtraBold
-                  ),
+                  const Text('SETTINGS', style: AppStyles.style20ExtraBold),
                 ],
               ),
 
               const SizedBox(height: 12),
 
-          
               SettingsContainer(
                 children: [
                   SettingsRow(
@@ -60,9 +56,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                   Divider(),
 
                   InkWell(
-                    onTap: () {
-                      
-                    },
+                    onTap: () {},
                     child: SettingsRow(
                       icon: Icons.language,
                       title: 'Language',
@@ -76,11 +70,9 @@ class SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                   ),
-                   Divider(),
+                  Divider(),
                   InkWell(
-                    onTap: () {
-                      
-                    },
+                    onTap: () {},
                     child: SettingsRow(
                       icon: Icons.attach_money,
                       title: 'Currency',
@@ -94,11 +86,9 @@ class SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                   ),
-                   Divider(),
+                  Divider(),
                   InkWell(
-                    onTap: () {
-                      
-                    },
+                    onTap: () {},
                     child: SettingsRow(
                       icon: Icons.dark_mode_outlined,
                       title: 'Dark Theme',
@@ -106,8 +96,8 @@ class SettingsScreenState extends State<SettingsScreen> {
                         value: value2,
                         onChanged: (newvalue2) {
                           setState(() {
-                          value2 = newvalue2;
-                        });
+                            value2 = newvalue2;
+                          });
                         },
                       ),
                     ),
@@ -117,48 +107,39 @@ class SettingsScreenState extends State<SettingsScreen> {
 
               const SizedBox(height: 12),
 
-            
               SettingsContainer(
                 children: [
                   InkWell(
-                    onTap: () {
-                      
-                    },
+                    onTap: () {},
                     child: SettingsRow(
                       icon: Icons.shield_outlined,
                       title: 'Privacy Policy',
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 14,
-                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 14),
                     ),
                   ),
-                   Divider(),
+                  Divider(),
                   InkWell(
-                    onTap: () {
-                      
-                    },
+                    onTap: () {},
                     child: SettingsRow(
                       icon: Icons.info_outline,
                       title: 'About Us',
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 14,
-                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 14),
                     ),
                   ),
-                   Divider(),
+                  Divider(),
                   InkWell(
                     onTap: () {
-                      
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ContactUsScreen(),
+                        ),
+                      );
                     },
                     child: SettingsRow(
                       icon: Icons.mail_outline,
                       title: 'Contact Us',
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 14,
-                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 14),
                     ),
                   ),
                 ],
@@ -166,7 +147,6 @@ class SettingsScreenState extends State<SettingsScreen> {
 
               const SizedBox(height: 12),
 
-          
               InkWell(
                 onTap: () {},
                 child: Container(
@@ -192,9 +172,9 @@ class SettingsScreenState extends State<SettingsScreen> {
                       Text(
                         'Delete Account',
                         style: TextStyle(
-                          color:AppColors.redClr,
+                          color: AppColors.redClr,
                           fontSize: 14,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
