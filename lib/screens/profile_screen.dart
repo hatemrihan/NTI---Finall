@@ -57,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: const Text('MY PROFILE', style: AppStyles.style20ExtraBold),
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundClr,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -102,6 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: Card(
+                  color: AppColors.whiteClr,
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -112,6 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: mylist1[index].icon,
                         rightIcon: mylist1[index].rightIcon,
                         color: AppColors.primaryClr,
+                        onTap: () {},
                       );
                     },
 
@@ -125,6 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(),
                 child: Card(
+                  color: AppColors.whiteClr,
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -135,6 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: mylist2[index].icon,
                         rightIcon: mylist2[index].rightIcon,
                         color: AppColors.primaryClr,
+                        onTap: () {},
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {
@@ -145,12 +149,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               SizedBox(height: 30),
               Card(
+                color: AppColors.whiteClr,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CustomProfileItems(
                     title: 'Log Out',
                     icon: Icons.logout,
                     color: AppColors.redClr,
+                    onTap: () {},
                   ),
                 ),
               ),
