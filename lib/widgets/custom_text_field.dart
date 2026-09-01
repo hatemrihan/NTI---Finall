@@ -10,13 +10,15 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.suffixIcon,
     this.obscureText,
-    this.prefixIcon,
+    this.prefixIcon, this.maxLines =1, this.keyboardType,
   });
   final String title;
   final String hintText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final bool? obscureText;
+  final TextInputType? keyboardType;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,14 +34,15 @@ class CustomTextField extends StatelessWidget {
         ),
         TextField(
           obscureText: obscureText ?? false,
-          
+          keyboardType: keyboardType ,
+          maxLines: maxLines,
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.bottomBackgroundClr,
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             hintText: hintText,
-            hintStyle: AppStyles.style14Regular.copyWith(color: AppColors.grayClr),
+            hintStyle: AppStyles.style14.copyWith(color: AppColors.grayClr),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(width: 0.5),

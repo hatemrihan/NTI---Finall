@@ -1,3 +1,4 @@
+import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -7,15 +8,15 @@ class CustomProfileItems extends StatelessWidget {
     required this.title,
     required this.icon,
     this.color,
-    this.rightIcon,
+    this.Ricon,
     this.onTap,
-    this.textColor,
+    this.text_color,
   });
   final String title;
   final IconData icon;
   final Color? color;
-  final IconData? rightIcon;
-  final Color? textColor;
+  final IconData? Ricon;
+  final Color? text_color;
   final void Function()? onTap;
 
   @override
@@ -27,9 +28,9 @@ class CustomProfileItems extends StatelessWidget {
           const SizedBox(width: 25),
           Icon(icon, size: 30, color: color),
           const SizedBox(width: 30),
-          Text(title, style: AppStyles.style17Bold.copyWith(color: textColor)),
+          Text(title, style: AppStyles.style17Bold.copyWith(color: text_color)),
           const Spacer(),
-          IconButton(onPressed: () {}, icon: Icon(rightIcon)),
+          IconButton(onPressed: () {}, icon: Icon(Ricon)),
         ],
       ),
     );

@@ -22,9 +22,8 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "NOMA",
+                      "Noma",
                       style: AppStyles.style28ExtraBold.copyWith(
-                        fontFamily: "Manrope",
                         color: AppColors.textClr,
                         fontSize: 24,
                       ),
