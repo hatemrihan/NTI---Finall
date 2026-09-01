@@ -35,7 +35,7 @@ class LoginHeaderSection extends StatelessWidget {
         SizedBox(height: 6),
         Text(
           subTitle,
-          style: AppStyles.style14Regular.copyWith(color: AppColors.grayClr),
+          style: AppStyles.style14.copyWith(color: AppColors.grayClr),
         ),
       ],
     );

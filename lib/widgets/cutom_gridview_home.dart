@@ -74,7 +74,7 @@ class _CutomGridviewHomeState extends State<CutomGridviewHome> {
                   children: [
                     Text(
                       categories[index]["name"],
-                      style: AppStyles.style11SemiBold.copyWith(
+                      style: AppStyles.style11Bold.copyWith(
                         color: AppColors.grayClr,
                       ),
                     ),
@@ -109,5 +109,6 @@ class _CutomGridviewHomeState extends State<CutomGridviewHome> {
         );
       },
     );
+    ;
   }
 }

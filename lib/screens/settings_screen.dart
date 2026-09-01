@@ -1,5 +1,6 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
+import 'package:final_project/screens/Authentications/PrivacyPolicy.dart';
 import 'package:final_project/widgets/custom_container_row.dart';
 import 'package:final_project/widgets/custom_row.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class SettingsScreenState extends State<SettingsScreen> {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.pop(context),
                     icon: const Icon(Icons.arrow_back_ios_new),
                   ),
 
@@ -121,9 +122,12 @@ class SettingsScreenState extends State<SettingsScreen> {
               SettingsContainer(
                 children: [
                   InkWell(
-                    onTap: () {
-                      
-                    },
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PrivacyPolicyScreen(),
+                      ),
+                    ),
                     child: SettingsRow(
                       icon: Icons.shield_outlined,
                       title: 'Privacy Policy',

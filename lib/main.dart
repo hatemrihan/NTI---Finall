@@ -1,4 +1,5 @@
-import 'package:final_project/screens/bottomnavbar_screen.dart';
+
+import 'package:final_project/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class NEMOStore extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Manrope"),
       debugShowCheckedModeBanner: false,
-      home: BottomNavbarScreen(),
+      home:SplashScreen (),
     );
   }
 }

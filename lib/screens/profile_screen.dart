@@ -16,22 +16,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ProfileItemModle1(
       title: 'My Orders',
       icon: Icons.shopping_bag_outlined,
-      rightIcon: Icons.arrow_forward_ios,
+      Ricon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
       title: 'Wishlist',
       icon: Icons.favorite_border_rounded,
-      rightIcon: Icons.arrow_forward_ios,
+      Ricon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
       title: 'Shipping Addresses',
       icon: Icons.location_on_outlined,
-      rightIcon: Icons.arrow_forward_ios,
+      Ricon: Icons.arrow_forward_ios,
     ),
     ProfileItemModle1(
       title: 'Payment Methods',
       icon: Icons.credit_card,
-      rightIcon: Icons.arrow_forward_ios,
+      Ricon: Icons.arrow_forward_ios,
     ),
   ];
 
@@ -39,13 +39,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ProfileItemModle2(
       title: 'Settings',
       icon: Icons.settings_outlined,
-      rightIcon: Icons.arrow_forward_ios,
+      Ricon: Icons.arrow_forward_ios,
       onTap: () {},
     ),
     ProfileItemModle2(
       title: 'Help and Support',
       icon: Icons.help_outline_rounded,
-      rightIcon: Icons.arrow_forward_ios,
+      Ricon: Icons.arrow_forward_ios,
     ),
   ];
 
@@ -62,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundClr,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -112,6 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: Card(
+                  color: AppColors.whiteClr,
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -120,8 +121,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       return CustomProfileItems(
                         title: mylist1[index].title,
                         icon: mylist1[index].icon,
-                        rightIcon: mylist1[index].rightIcon,
+                        Ricon: mylist1[index].Ricon,
                         color: AppColors.primaryClr,
+                        onTap: () {},
                       );
                     },
                     separatorBuilder: (
@@ -137,6 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(),
                 child: Card(
+                  color: AppColors.whiteClr,
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -145,8 +148,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       return CustomProfileItems(
                         title: mylist2[index].title,
                         icon: mylist2[index].icon,
-                        rightIcon: mylist2[index].rightIcon,
+                        Ricon: mylist2[index].Ricon,
                         color: AppColors.primaryClr,
+                        onTap: () {},
                       );
                     },
                     separatorBuilder: (
@@ -160,12 +164,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               SizedBox(height: 30),
               Card(
+                color: AppColors.whiteClr,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CustomProfileItems(
                     title: 'Log Out',
                     icon: Icons.logout,
                     color: AppColors.redClr,
+                    onTap: () {}, Ricon: Icons.arrow_forward_ios,
                   ),
                 ),
               ),

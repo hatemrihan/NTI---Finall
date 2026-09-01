@@ -1,7 +1,9 @@
 import 'dart:developer';
+
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
-import 'package:final_project/screens/home_screen.dart';
+import 'package:final_project/screens/Authentications/CreateAccount.dart';
+import 'package:final_project/screens/Authentications/ForgotPassword.dart';
 import 'package:final_project/screens/signup_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
@@ -71,21 +73,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: CustomTextButton(
                     text: 'Forgot Password?',
                     textClr: AppColors.primaryClr,
-                    onPressed: () {
-                      log("Forget pass pressed");
-                    },
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ForgotPasswordScreen(),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 60),
                 CustomElevatedButton(
                   text: 'Login',
-                  // onPressed: () {
-                  //   log('Login pressed');
-                  // },
-                  onPressed: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  ),
+                  onPressed: () {
+                    log('Login pressed');
+                  },
+                  // onPressed: () => Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                  // ),
                 ),
                 SizedBox(height: 30),
                 OrDivider(),
@@ -97,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text(
                       "Don't have an account? ",
-                      style: AppStyles.style14Regular.copyWith(
+                      style: AppStyles.style14.copyWith(
                         color: AppColors.grayClr,
                       ),
                     ),
@@ -105,7 +110,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: 'Sign Up',
                       onPressed: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignupScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => const CreateAccountScreen(),
+                        ),
                       ),
                       textClr: AppColors.primaryClr,
                     ),

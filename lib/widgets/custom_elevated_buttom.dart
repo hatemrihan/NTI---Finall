@@ -4,7 +4,7 @@ import 'package:final_project/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({super.key, required this.text, this.onPressed});
+  const CustomElevatedButton( {super.key, required this.text, this.onPressed});
 
   final String text;
   final void Function()? onPressed;
