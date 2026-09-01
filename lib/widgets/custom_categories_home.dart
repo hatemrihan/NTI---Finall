@@ -1,15 +1,19 @@
+import 'dart:developer';
+
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class CustomCategoriesHome extends StatefulWidget {
-  const CustomCategoriesHome({super.key});
+  CustomCategoriesHome({super.key});
 
   @override
   State<CustomCategoriesHome> createState() => _CustomCategoriesHomeState();
 }
 
 class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,7 +39,7 @@ class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
                     const SizedBox(height: 8),
                     Text(
                       "name",
-                      style: AppStyles.style12SemiBold.copyWith(
+                      style: AppStyles.style12Medium.copyWith(
                         color: AppColors.textClr,
                       ),
                     ),
@@ -49,3 +53,5 @@ class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
     );
   }
 }
+
+

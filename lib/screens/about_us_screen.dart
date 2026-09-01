@@ -47,7 +47,7 @@ class AboutUsScreen extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(14),
                           child: Image.asset(
-                            'assets/images/onBoarding1_img.png',
+                            'assets/images/cart_item.png',
                             fit: BoxFit.cover,
                             height: 200,
                             width: double.infinity,
@@ -200,7 +200,7 @@ class AboutUsScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     'NOMA Accessories • v1.4.0',
-                    style: AppStyles.style12Regular.copyWith(
+                    style: AppStyles.style12Medium.copyWith(
                       color: AppColors.grayClr,
                     ),
                   ),
