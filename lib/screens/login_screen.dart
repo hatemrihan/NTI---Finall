@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
 import 'package:final_project/screens/signup_screen.dart';
@@ -70,9 +69,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: CustomTextButton(
                     text: 'Forgot Password?',
                     textClr: AppColors.primaryClr,
-                    onPressed: () {
-                      log("Forget pass pressed");
-                    },
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ForgotPasswordScreen(),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 60),
@@ -85,6 +87,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   //   context,
                   //   MaterialPageRoute(builder: (context) => HomeScreen()),
                   // ),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreateAccountScreen(),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 30),
                 OrDivider(),
@@ -104,7 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: 'Sign Up',
                       onPressed: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignupScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => const CreateAccountScreen(),
+                        ),
                       ),
                       textClr: AppColors.primaryClr,
                     ),
