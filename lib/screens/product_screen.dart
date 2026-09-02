@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
-import 'package:final_project/widgets/bottom_nav_bar.dart';
+import 'package:final_project/widgets/bottom_nav_bar1.dart';
 import 'package:final_project/widgets/color_button.dart';
 import 'package:final_project/widgets/counter_button.dart';
 import 'package:final_project/widgets/product_info.dart';
