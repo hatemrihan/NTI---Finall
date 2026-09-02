@@ -1,4 +1,10 @@
-import 'package:final_project/screens/onBoarding1_screen.dart';
+import 'package:final_project/screens/login_screen.dart';
+import 'package:final_project/screens/splash_screen.dart';
+// import 'package:final_project/screens/home_screen.dart';
+// import 'package:final_project/screens/cart_screen.dart';
+// import 'package:final_project/screens/search_screen.dart';
+// import 'package:final_project/screens/onBoarding1_screen.dart';
+// import 'package:final_project/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +20,7 @@ class NEMOStore extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Manrope"),
       debugShowCheckedModeBanner: false,
-      home: Onboarding1Screen(),
+      home: SplashScreen(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
-import 'package:final_project/widgets/custom_arrow_back.dart';
+import 'package:final_project/widgets/customArrowBack.dart';
+
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class ForgotPasswordScreen extends StatelessWidget {
       scrollable: false,
       children: [
         // ── Back button
-        const Customarrowback(),
+        const customArrowBack(),
         const SizedBox(height: 32),
 
         // ── Lock icon
