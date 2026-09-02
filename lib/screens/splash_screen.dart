@@ -23,7 +23,7 @@ class SplashScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Onboarding3Screen(),
+              builder: (context) => Onboarding3Screen(),
             ),
           );
         },
@@ -43,10 +43,10 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 30,
+              bottom: 34,
               left: 0,
               right: 0,
-              child: Text('Accessories For Touch You', style: AppStyles.style16Bold.copyWith( color: AppColors.whiteClr,), textAlign: TextAlign.center,)
+              child: Text('Accessories For Touch You', style: AppStyles.style20SemiBold.copyWith( color: AppColors.whiteClr,), textAlign: TextAlign.center,)
             ),
           ],
         ),

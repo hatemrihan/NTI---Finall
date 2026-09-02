@@ -15,6 +15,10 @@ class AppStyles {
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
+  static const TextStyle style20SemiBold = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
   static const TextStyle style20ExtraBold = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w900,
@@ -30,7 +34,9 @@ class AppStyles {
   static const TextStyle style14w300 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w300,
-    color: Color(0xff7B827A),
+    color: Color(
+      0xff7B827A,
+    ),
     decoration: TextDecoration.lineThrough,
   );
   static const TextStyle style22Bold = TextStyle(
@@ -57,7 +63,7 @@ class AppStyles {
     fontSize: 16,
     fontWeight: FontWeight.w800,
   );
-   static const TextStyle style17ExtraBold = TextStyle(
+  static const TextStyle style17ExtraBold = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w800,
   );
@@ -106,8 +112,16 @@ class AppStyles {
     fontSize: 27,
     fontWeight: FontWeight.w800,
   );
-  static const TextStyle style12 = TextStyle(fontSize: 12);
-  static const TextStyle style14 = TextStyle(fontSize: 14);
-  static const TextStyle style13 = TextStyle(fontSize: 13);
-  static const TextStyle style18 = TextStyle(fontSize: 15);
+  static const TextStyle style12 = TextStyle(
+    fontSize: 12,
+  );
+  static const TextStyle style14 = TextStyle(
+    fontSize: 14,
+  );
+  static const TextStyle style13 = TextStyle(
+    fontSize: 13,
+  );
+  static const TextStyle style18 = TextStyle(
+    fontSize: 15,
+  );
 }
