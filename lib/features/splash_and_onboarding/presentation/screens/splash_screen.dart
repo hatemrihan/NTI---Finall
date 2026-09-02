@@ -5,13 +5,9 @@ import 'package:final_project/features/splash_and_onboarding/presentation/screen
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
-    ),
-  );
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
 }
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -21,11 +17,9 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: AppColors.backgroundClr,
       body: InkWell(
         onTap: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (context) => const Onboarding1Screen(),
-            ),
+            MaterialPageRoute(builder: (context) => const Onboarding1Screen()),
           );
         },
         child: Stack(
@@ -33,21 +27,30 @@ class SplashScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: double.infinity,
-              child: Image.asset('assets/images/splash_screen.png',fit: BoxFit.cover,),
+              child: Image.asset(
+                'assets/images/splash_screen.png',
+                fit: BoxFit.cover,
+              ),
             ),
             Positioned(
               top: 290,
               left: 0,
               right: 0,
               child: Center(
-                child: Image.asset('assets/images/logo.png',width: 190,),
+                child: Image.asset('assets/images/logo.png', width: 190),
               ),
             ),
             Positioned(
               bottom: 30,
               left: 0,
               right: 0,
-              child: Text('Accessories For Touch You', style: AppStyles.style16Bold.copyWith( color: AppColors.whiteClr,), textAlign: TextAlign.center,)
+              child: Text(
+                'Accessories For Touch You',
+                style: AppStyles.style16Bold.copyWith(
+                  color: AppColors.whiteClr,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),

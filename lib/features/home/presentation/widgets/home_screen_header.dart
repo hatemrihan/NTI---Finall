@@ -1,10 +1,12 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/screens/cart_screen.dart';
 import 'package:final_project/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenHeader extends StatefulWidget {
-  const HomeScreenHeader({super.key});
+  const HomeScreenHeader({super.key, this.onTabChange});
+  final ValueChanged<int>? onTabChange;
 
   @override
   State<HomeScreenHeader> createState() => _HomeScreenHeaderState();
@@ -38,7 +40,9 @@ class _HomeScreenHeaderState extends State<HomeScreenHeader> {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  widget.onTabChange?.call(2);
+                },
                 icon: Icon(
                   Icons.shopping_cart_outlined,
                   color: AppColors.textClr,

@@ -89,7 +89,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                   ),
-                   Divider(),
+                  Divider(),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -104,9 +104,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                       title: 'Change Password',
                       trailing: const Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.arrow_forward_ios, size: 14),
-                        ],
+                        children: [Icon(Icons.arrow_forward_ios, size: 14)],
                       ),
                     ),
                   ),
@@ -154,7 +152,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  AboutUsScreen(),
+                          builder: (context) => AboutUsScreen(),
                         ),
                       );
                     },
@@ -167,7 +165,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                   Divider(),
                   InkWell(
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ContactUsScreen(),

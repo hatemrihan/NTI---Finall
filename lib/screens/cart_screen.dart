@@ -63,10 +63,7 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.backgroundClr,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-        ),
+
         title: Text('MY CART', style: AppStyles.style28ExtraBold),
       ),
       body: isLoading
