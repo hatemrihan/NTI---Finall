@@ -1,7 +1,5 @@
-import 'dart:developer';
-
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 

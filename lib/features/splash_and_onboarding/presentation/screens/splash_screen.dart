@@ -1,6 +1,6 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
-import 'package:final_project/screens/onboarding3_screen.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/screens/onboarding3_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,6 +1,6 @@
 // Custom widget: Password text field with lock icon and visibility toggle
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomPasswordField extends StatelessWidget {
