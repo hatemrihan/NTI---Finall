@@ -1,6 +1,5 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
-import 'package:final_project/widgets/bottom_nav_bar1.dart';
 import 'package:final_project/widgets/custom_container_row.dart';
 import 'package:final_project/widgets/cutom_gridview_home.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ appBar: AppBar(
   leading: IconButton(onPressed: () {
     // Navigator.pop(context);
     },
-   icon: Icon(Icons.arrow_back_rounded),style: IconButton.styleFrom(
+  icon: Icon(Icons.arrow_back_rounded),style: IconButton.styleFrom(
     backgroundColor: AppColors.bottomBackgroundClr,
     side: BorderSide(color: AppColors.grayClr),)),
 centerTitle: true,
@@ -44,20 +43,19 @@ centerTitle: true,
                       children: [
                         SizedBox(width: 8),
                         Text('Sort & Filter', style: AppStyles.style13Regular),
-                       SizedBox(width: 8),
-                       IconButton(onPressed: () {}, icon: Icon(Icons.filter_list)),
+                      SizedBox(width: 8),
+                      IconButton(onPressed: () {}, icon: Icon(Icons.filter_list)),
                       ],
                     ),
                   ])
                 ],),
-               SizedBox(height: 24),
+              SizedBox(height: 24),
                 CutomGridviewHome(),
                 ],
             ),
           ),
         ),
       ),
-       bottomNavigationBar:BottomNavBar(),
     );
   }
 }

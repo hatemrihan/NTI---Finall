@@ -19,11 +19,10 @@ class _BottomNavigationBarScreenState
   int currentIndex = 0;
 
   final List<Widget> pages = [
-    HomeScreen(),
-    CategoryProductsScreen(),
-    CartScreen(),
-    //WishListScreen(),
-    ProfileScreen(),
+    HomeScreen(),              // index 0
+    CategoryProductsScreen(),  // index 1
+    CartScreen(),              // index 2
+    ProfileScreen(),           // index 3
   ];
 
   @override

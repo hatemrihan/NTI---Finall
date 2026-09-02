@@ -1,5 +1,4 @@
 import 'package:final_project/app_colors.dart';
-import 'package:final_project/widgets/bottom_nav_bar1.dart';
 import 'package:final_project/widgets/custom_search_text_field.dart';
 import 'package:final_project/widgets/cutom_gridview_home.dart';
 import 'package:final_project/widgets/filter_button.dart';
@@ -39,8 +38,6 @@ class _MyWidgetState extends State<SearchScreen> {
           ),
         ),
       ),
-      bottomNavigationBar:BottomNavBar(),
-
     );
   }
 }
