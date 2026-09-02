@@ -1,6 +1,5 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
-import 'package:final_project/widgets/bottom_nav_bar.dart';
 import 'package:final_project/widgets/custom_categories_home.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
 import 'package:final_project/widgets/cutom_gridview_home.dart';
@@ -81,7 +80,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-       bottomNavigationBar:BottomNavBar(),
     );
   }
 }
