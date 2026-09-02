@@ -1,4 +1,4 @@
-import 'package:final_project/app_colors.dart';
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {

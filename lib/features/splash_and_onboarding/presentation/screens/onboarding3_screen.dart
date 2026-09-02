@@ -1,13 +1,13 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/screens/onBoarding2_screen.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/features/auth/presentation/screens/login_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/onboarding_img_section.dart';
-import 'package:final_project/widgets/onboarding_page_indicator.dart';
-import 'package:final_project/widgets/onboarding_text_section.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/widgets/onboarding_img_section.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/widgets/onboarding_page_indicator.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/widgets/onboarding_text_section.dart';
 import 'package:flutter/material.dart';
 
-class Onboarding1Screen extends StatelessWidget {
-  const Onboarding1Screen({super.key});
+class Onboarding3Screen extends StatelessWidget {
+  const Onboarding3Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,9 @@ class Onboarding1Screen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            OnboardingImgSection(imgPath: 'assets/images/onBoarding1_img.png'),
+            OnboardingImgSection(
+              imgPath: 'assets/images/onBoarding3_img.png',
+            ),
             Positioned(
               top: 370,
               left: 0,
@@ -37,19 +39,19 @@ class Onboarding1Screen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     OnboardingTextSection(
-                      title: 'Discover Curated Accessories',
+                      title: 'Join the NOMA Community',
                       subTitle:
-                          'Every piece in our collection is handpicked for its quality, timelessness, and premium craftsmanship.',
+                          'Unlock early access to exclusive drops, curated editorial content, and premium member benefits.',
                     ),
                     Spacer(),
-                    OnboardingPageIndicator(currentPage: 0),
+                    OnboardingPageIndicator(currentPage: 2),
                     SizedBox(height: 32),
                     CustomElevatedButton(
-                      text: 'Next',
+                      text: 'Get Started',
                       onPressed: () => Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Onboarding2Screen(),
+                          builder: (context) => LoginScreen(),
                         ),
                       ),
                     ),
@@ -63,3 +65,4 @@ class Onboarding1Screen extends StatelessWidget {
     );
   }
 }
+

@@ -1,4 +1,4 @@
-import 'package:final_project/screens/home_screen.dart';
+import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
