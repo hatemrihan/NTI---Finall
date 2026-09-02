@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Customarrowback extends StatelessWidget {
-  const Customarrowback({super.key});
+class customArrowBack extends StatelessWidget {
+  const customArrowBack({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:final_project/widgets/custom_category_dropdown.dart';
 import 'package:final_project/widgets/custom_image_upload_container.dart';
 import 'package:final_project/widgets/custom_text_field.dart';

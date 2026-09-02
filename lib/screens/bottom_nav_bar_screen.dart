@@ -1,6 +1,6 @@
 import 'package:final_project/screens/Category_Products_screen.dart';
 import 'package:final_project/screens/cart_screen.dart';
-import 'package:final_project/screens/home_screen.dart';
+import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:final_project/screens/profile_screen.dart';
 import 'package:final_project/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';

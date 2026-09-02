@@ -1,4 +1,4 @@
-import 'package:final_project/screens/bottom_nav_bar_screen.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class NEMOStore extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Manrope"),
       debugShowCheckedModeBanner: false,
-      home:BottomNavigationBarScreen(),
+      home: SplashScreen(),
     );
   }
 }

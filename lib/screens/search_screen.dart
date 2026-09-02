@@ -19,7 +19,6 @@ class _MyWidgetState extends State<SearchScreen> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(24),
-
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,9 +29,7 @@ class _MyWidgetState extends State<SearchScreen> {
                   suffixIcon: Icon(Icons.cancel_outlined),
                 ),
                 Filter(),
-
                 CutomGridviewHome(),
-
               ],
             ),
           ),

@@ -1,4 +1,4 @@
-import 'package:final_project/app_colors.dart';
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppStyles {
@@ -9,6 +9,10 @@ class AppStyles {
   );
   static const TextStyle style14Regular = TextStyle(
     fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+  static const TextStyle style12Regular = TextStyle(
+    fontSize: 12,
     fontWeight: FontWeight.w400,
   );
   static const TextStyle style20ExtraBold = TextStyle(

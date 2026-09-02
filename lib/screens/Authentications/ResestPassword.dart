@@ -1,5 +1,5 @@
-import 'package:final_project/screens/home_screen.dart';
-import 'package:final_project/widgets/customArrowBack.dart';
+import 'package:final_project/features/home/presentation/screens/home_screen.dart';
+import 'package:final_project/widgets/custom_arrow_back.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +27,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       scrollable: false,
       children: [
         // ── Back button
-        const Customarrowback(),
+        const customArrowBack(),
         const SizedBox(height: 16),
 
         // Custom file: auth_header.dart

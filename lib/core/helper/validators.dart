@@ -1,5 +1,4 @@
-
-import 'package:final_project/app_strings.dart';
+import 'package:final_project/core/utils/app_strings.dart';
 
 class Validator {
   static String? validateEmail(String email) {
@@ -77,7 +76,7 @@ class Validator {
       return AppStrings.usernameRequired;
     } else if (!RegExp(r'^[a-zA-Z]').hasMatch(userName)) {
       return AppStrings.usernameMustStartWithLetter;
-    } else if (userName.length < 6) {
+    } else if (userName.length < 3) {
       return AppStrings.usernameMinLength;
     } else if (!regex.hasMatch(userName)) {
       return AppStrings.usernameInvalidFormat;
