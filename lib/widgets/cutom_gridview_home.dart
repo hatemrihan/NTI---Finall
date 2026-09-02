@@ -109,6 +109,5 @@ class _CutomGridviewHomeState extends State<CutomGridviewHome> {
         );
       },
     );
-    ;
   }
 }
