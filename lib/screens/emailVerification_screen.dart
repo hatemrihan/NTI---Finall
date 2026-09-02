@@ -61,7 +61,7 @@ class _EmailverificationScreenState extends State<EmailverificationScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         scrolledUnderElevation: 0,
-        leading: const Customarrowback(),
+        leading: const customArrowBack(),
       ),
       body: SafeArea(
         child: Padding(

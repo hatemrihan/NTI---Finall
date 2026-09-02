@@ -1,7 +1,16 @@
 import 'package:final_project/app_colors.dart';
 import 'package:final_project/app_styles.dart';
+import 'package:final_project/screens/onboarding3_screen.dart';
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
+    ),
+  );
+}
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -9,28 +18,38 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundClr,
-      body: Stack(
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Image.asset('assets/images/splash_screen.png',fit: BoxFit.cover,),
-          ),
-          Positioned(
-            top: 280,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Image.asset('assets/images/logo.png',width: 120, ),
+      body: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Onboarding3Screen(),
             ),
-          ),
-          const Positioned(
-            bottom: 30,
-            left: 0,
-            right: 0,
-            child: Text( 'Accessories For Touch You', textAlign: TextAlign.center, style: AppStyles.style16Bold, ),
-          ),
-        ],
+          );
+        },
+        child: Stack(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset('assets/images/splash_screen.png',fit: BoxFit.cover,),
+            ),
+            Positioned(
+              top: 290,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Image.asset('assets/images/logo.png',width: 190,),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              left: 0,
+              right: 0,
+              child: Text('Accessories For Touch You', style: AppStyles.style16Bold.copyWith( color: AppColors.whiteClr,), textAlign: TextAlign.center,)
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -19,7 +19,9 @@ class PrivacyPolicy extends StatelessWidget {
       backgroundColor: AppColors.backgroundClr,
       appBar: AppBar(
       backgroundColor: AppColors.backgroundClr,
-        leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios)),
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, icon: Icon(Icons.arrow_back_ios)),
         title: Text("Privacy Policy", style: AppStyles.style20ExtraBold,),
       ),
       body: SingleChildScrollView(
@@ -31,7 +33,7 @@ class PrivacyPolicy extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Last Updated: October 2026", style: AppStyles.style13Bold.copyWith(color: AppColors.grayClr),),
-                Text("At NOMA, your trust is our ultimate accessory. This policy describes how we collect, safeguard, and gracefully handle your personal information to ensure a secure, curated retail experience.Last Updated: October 2026",
+                Text("At LAMSA, your trust is our ultimate accessory. This policy describes how we collect, safeguard, and gracefully handle your personal information to ensure a secure, curated retail experience.Last Updated: October 2026",
                 style: AppStyles.style14Regular.copyWith(color: AppColors.hintClr),
                 maxLines: 3,),
                 Divider(),
@@ -41,7 +43,7 @@ class PrivacyPolicy extends StatelessWidget {
                 maxLines: 7,
                 ),
                 Text("2. How We Use Your Data", style: AppStyles.style16Bold,),
-                Text("NOMA utilizes your collected data to personalize your browsing experience and fulfill your accessory orders efficiently. We use it to communicate updates regarding your delivery status, notify you of upcoming curio drops, process transaction receipts safely, and enhance overall interface responsive styling.",
+                Text("LAMSA utilizes your collected data to personalize your browsing experience and fulfill your accessory orders efficiently. We use it to communicate updates regarding your delivery status, notify you of upcoming curio drops, process transaction receipts safely, and enhance overall interface responsive styling.",
                 style: AppStyles.style14Regular.copyWith(color: AppColors.hintClr),
                 maxLines: 7,
                 ),
@@ -56,7 +58,7 @@ class PrivacyPolicy extends StatelessWidget {
                 maxLines: 7,
                 ),
                 Text("5. Contact Us", style: AppStyles.style16Bold,),
-                Text("Should you have queries about these protection standards or wish to request direct access to your data history, please reach out to our privacy curators at support@noma-accessories.com.",
+                Text("Should you have queries about these protection standards or wish to request direct access to your data history, please reach out to our privacy curators at support@lamsa-accessories.com.",
                 style: AppStyles.style14Regular.copyWith(color: AppColors.hintClr),
                 maxLines: 7,
                 ),

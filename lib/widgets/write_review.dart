@@ -31,7 +31,7 @@ class _WriteReviewState extends State<WriteReview> {
                     height: 900,
                     decoration: BoxDecoration(color: AppColors.cardFillClr, borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
