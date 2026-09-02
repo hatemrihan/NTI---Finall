@@ -91,12 +91,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   //   context,
                   //   MaterialPageRoute(builder: (context) => HomeScreen()),
                   // ),
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CreateAccountScreen(),
-                    ),
-                  ),
                 ),
                 SizedBox(height: 30),
                 OrDivider(),

@@ -67,6 +67,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 Text(
                   "Trending Now",
+                  
                   style: AppStyles.style16SemiBold.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.textClr,
