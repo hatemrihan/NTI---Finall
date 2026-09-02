@@ -1,6 +1,6 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
-import 'package:final_project/widgets/bottom_nav_bar.dart';
+// import 'package:final_project/widgets/bottom_nav_bar.dart';
 import 'package:final_project/widgets/custom_container_row.dart';
 import 'package:final_project/widgets/cutom_gridview_home.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class CategoryProductsScreenState extends State<CategoryProductsScreen> {
 appBar: AppBar(
   backgroundColor: AppColors.backgroundClr,
   leading: IconButton(onPressed: () {
-    // Navigator.pop(context);
+    Navigator.pop(context);
     },
    icon: Icon(Icons.arrow_back_rounded),style: IconButton.styleFrom(
     backgroundColor: AppColors.bottomBackgroundClr,
@@ -57,7 +57,7 @@ centerTitle: true,
           ),
         ),
       ),
-       bottomNavigationBar:BottomNavBar(),
+      //  bottomNavigationBar:BottomNavBar(),
     );
   }
 }

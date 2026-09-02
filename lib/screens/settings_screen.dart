@@ -1,6 +1,9 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/screens/about_us_screen.dart';
+import 'package:final_project/screens/change_password_screen.dart';
 import 'package:final_project/screens/contact_us_screen.dart';
+import 'package:final_project/screens/privacy_policy_screen.dart';
 import 'package:final_project/widgets/custom_container_row.dart';
 import 'package:final_project/widgets/custom_row.dart';
 import 'package:flutter/material.dart';
@@ -86,6 +89,27 @@ class SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                   ),
+                   Divider(),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ChangepasswordScreen(),
+                        ),
+                      );
+                    },
+                    child: SettingsRow(
+                      icon: Icons.lock_outline,
+                      title: 'Change Password',
+                      trailing: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.arrow_forward_ios, size: 14),
+                        ],
+                      ),
+                    ),
+                  ),
                   Divider(),
                   InkWell(
                     onTap: () {},
@@ -110,7 +134,14 @@ class SettingsScreenState extends State<SettingsScreen> {
               SettingsContainer(
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PrivacyPolicy(),
+                        ),
+                      );
+                    },
                     child: SettingsRow(
                       icon: Icons.shield_outlined,
                       title: 'Privacy Policy',
@@ -119,7 +150,14 @@ class SettingsScreenState extends State<SettingsScreen> {
                   ),
                   Divider(),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>  AboutUsScreen(),
+                        ),
+                      );
+                    },
                     child: SettingsRow(
                       icon: Icons.info_outline,
                       title: 'About Us',
