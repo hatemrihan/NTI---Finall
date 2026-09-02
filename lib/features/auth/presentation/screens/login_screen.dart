@@ -5,6 +5,7 @@ import 'package:final_project/core/utils/app_styles.dart';
 import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:final_project/screens/Authentications/ForgotPassword.dart';
 import 'package:final_project/features/auth/presentation/screens/signup_screen.dart';
+import 'package:final_project/screens/bottom_nav_bar_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
@@ -130,7 +131,7 @@ curl https://accessories-eshop.runasp.net/api/auth/login \
                     // },
                     onPressed: () => Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
                     ),
                   ),
                   SizedBox(height: 30),

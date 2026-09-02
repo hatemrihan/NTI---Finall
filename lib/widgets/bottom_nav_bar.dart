@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
     super.key,
-    this.currentIndex = 0,
+    required this.currentIndex,
     this.onTap,
   });
 
@@ -37,11 +37,11 @@ class BottomNavBar extends StatelessWidget {
           activeIcon: Icon(Icons.shopping_bag),
           label: "Cart",
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.favorite_border),
-          activeIcon: Icon(Icons.favorite),
-          label: "WishList",
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.favorite_border),
+        //   activeIcon: Icon(Icons.favorite),
+        //   label: "WishList",
+        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person_outline),
           activeIcon: Icon(Icons.person),

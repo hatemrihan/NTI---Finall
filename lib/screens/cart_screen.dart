@@ -17,7 +17,7 @@ class _CartScreenState extends State<CartScreen> {
   List mylist = [];
   bool isLoading = true;
 
-  Future<void> getproduct_cart() async {
+  Future<void> getProductCart() async {
     try {
       setState(() {
         isLoading = true;
@@ -52,7 +52,7 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   void initState() {
-    getproduct_cart();
+    getProductCart();
     super.initState();
   }
 
@@ -67,7 +67,7 @@ class _CartScreenState extends State<CartScreen> {
           onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         ),
-        title: Text('MY CART', style: AppStyles.style27ExtraBold),
+        title: Text('MY CART', style: AppStyles.style28ExtraBold),
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -172,7 +172,7 @@ class _CartScreenState extends State<CartScreen> {
                   Icon(Icons.arrow_back, size: 17, color: AppColors.hintClr),
                   Text(
                     'Swipe left to delete item',
-                    style: AppStyles.style11Bold,
+                    style: AppStyles.style11Regular,
                   ),
                 ],
               ),
@@ -186,7 +186,7 @@ class _CartScreenState extends State<CartScreen> {
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Enter promo code...',
-                        hintStyle: AppStyles.style14.copyWith(
+                        hintStyle: AppStyles.style14Regular.copyWith(
                           color: AppColors.grayClr,
                         ),
                         enabledBorder: OutlineInputBorder(
