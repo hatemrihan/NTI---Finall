@@ -1,5 +1,5 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class WriteReview extends StatefulWidget {
@@ -31,7 +31,7 @@ class _WriteReviewState extends State<WriteReview> {
                     height: 900,
                     decoration: BoxDecoration(color: AppColors.cardFillClr, borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

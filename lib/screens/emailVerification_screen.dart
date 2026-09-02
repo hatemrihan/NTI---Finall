@@ -1,6 +1,6 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
-import 'package:final_project/widgets/customArrowBack.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/widgets/custom_arrow_back.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:flutter/material.dart';
 
@@ -61,7 +61,7 @@ class _EmailverificationScreenState extends State<EmailverificationScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         scrolledUnderElevation: 0,
-        leading: const Customarrowback(),
+        leading: const customArrowBack(),
       ),
       body: SafeArea(
         child: Padding(
@@ -80,7 +80,7 @@ class _EmailverificationScreenState extends State<EmailverificationScreen> {
                 ),
               ),
 
-              const SizedBox(height: 12),
+              const SizedBox(height: 32),
 
               // Subtitle with Masked Email
               RichText(

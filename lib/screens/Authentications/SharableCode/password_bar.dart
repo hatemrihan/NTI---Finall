@@ -1,6 +1,6 @@
 // Custom widget: 4-segment bar that shows how strong the password is
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class PasswordBar extends StatelessWidget {
@@ -40,7 +40,11 @@ class PasswordBar extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           label,
+<<<<<<< HEAD
           style: AppStyles.style12.copyWith(
+=======
+          style: AppStyles.style13Regular.copyWith(
+>>>>>>> 466190acce2425262b2cfb630a0e8885b732cd48
             fontFamily: "Manrope",
             color: color,
           ),
