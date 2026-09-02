@@ -1,5 +1,6 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/screens/Category_Products_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomCategoriesHome extends StatefulWidget {
@@ -25,11 +26,21 @@ class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
                 padding: const EdgeInsets.symmetric(horizontal: 6),
                 child: Column(
                   children: [
-                    CircleAvatar(
-                      radius: 40,
-
-                      backgroundImage: NetworkImage(
-                        'https://talabat639.runasp.net/images/products/Frappuccino.jpg',
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CategoryProductsScreen(),
+                          ),
+                        );
+                      },
+                      child: CircleAvatar(
+                        radius: 40,
+                      
+                        backgroundImage: NetworkImage(
+                          'https://talabat639.runasp.net/images/products/Frappuccino.jpg',
+                        ),
                       ),
                     ),
                     const SizedBox(height: 8),

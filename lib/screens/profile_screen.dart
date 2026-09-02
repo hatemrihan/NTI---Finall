@@ -1,5 +1,6 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/screens/settings_screen.dart';
 import 'package:final_project/widgets/custom_profile_item.dart';
 import 'package:final_project/widgets/custom_profile_item_modle.dart';
 import 'package:flutter/material.dart';
@@ -35,12 +36,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ),
   ];
 
+  @override
+  Widget build(BuildContext context) {
+    
   List<ProfileItemModle2> mylist2 = [
     ProfileItemModle2(
       title: 'Settings',
       icon: Icons.settings_outlined,
       rightIcon: Icons.arrow_forward_ios,
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const SettingsScreen(),
+          ),
+        );
+      },
     ),
     ProfileItemModle2(
       title: 'Help and Support',
@@ -49,8 +60,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ),
   ];
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.backgroundClr,
@@ -150,7 +159,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: mylist2[index].icon,
                         rightIcon: mylist2[index].rightIcon,
                         color: AppColors.primaryClr,
-                        onTap: () {}, Ricon: Icons.arrow_forward_ios,
+                       onTap: () {
+                      (mylist2[index].onTap ?? () {})();},
+                        Ricon: Icons.arrow_forward_ios,
                       );
                     },
                     separatorBuilder: (

@@ -43,7 +43,9 @@ class _ProductDetailsState extends State<ProductDetails> {
         ),
         icon: Icon(Icons.arrow_back_rounded)),
         actions: [
-          IconButton(onPressed: (){},
+          IconButton(onPressed: (){
+            Navigator.pop(context);
+          },
           style: IconButton.styleFrom(
           backgroundColor: AppColors.cardFillClr,
           side: BorderSide(color: AppColors.borderSideClr)

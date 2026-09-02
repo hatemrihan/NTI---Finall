@@ -19,7 +19,7 @@ class CategoryProductsScreenState extends State<CategoryProductsScreen> {
 appBar: AppBar(
   backgroundColor: AppColors.backgroundClr,
   leading: IconButton(onPressed: () {
-    // Navigator.pop(context);
+    Navigator.pop(context);
     },
    icon: Icon(Icons.arrow_back_rounded),style: IconButton.styleFrom(
     backgroundColor: AppColors.bottomBackgroundClr,
