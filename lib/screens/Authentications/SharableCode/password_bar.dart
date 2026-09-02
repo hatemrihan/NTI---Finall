@@ -40,11 +40,8 @@ class PasswordBar extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           label,
-<<<<<<< HEAD
-          style: AppStyles.style12.copyWith(
-=======
+
           style: AppStyles.style13Regular.copyWith(
->>>>>>> 466190acce2425262b2cfb630a0e8885b732cd48
             fontFamily: "Manrope",
             color: color,
           ),

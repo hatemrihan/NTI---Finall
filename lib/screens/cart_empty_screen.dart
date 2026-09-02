@@ -1,5 +1,6 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class CartEmptyScreen extends StatelessWidget {
@@ -29,7 +30,7 @@ class CartEmptyScreen extends StatelessWidget {
                       height: 100,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.grey.withOpacity(0.30),
+                        color: Colors.grey.withValues(alpha: 0.30),
                       ),
                       child: Icon(
                         Icons.shopping_bag_outlined,
@@ -40,7 +41,7 @@ class CartEmptyScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                Text('Your Cart is Empty', style: AppStyles.style27ExtraBold),
+                Text('Your Cart is Empty', style: AppStyles.style28ExtraBold),
                 const SizedBox(height: 12),
                 Text(
                   'It looks like you haven\'t added any curated\naccessories to your bag yet.',
@@ -49,7 +50,14 @@ class CartEmptyScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryClr,
                     minimumSize: const Size(200, 50),

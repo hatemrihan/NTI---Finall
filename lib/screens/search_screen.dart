@@ -39,7 +39,7 @@ class _MyWidgetState extends State<SearchScreen> {
           ),
         ),
       ),
-      bottomNavigationBar:BottomNavBar(),
+      // bottomNavigationBar:BottomNavBar(),
 
     );
   }

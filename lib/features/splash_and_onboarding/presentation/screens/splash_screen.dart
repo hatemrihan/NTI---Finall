@@ -1,5 +1,6 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/screens/onBoarding1_screen.dart';
 import 'package:final_project/features/splash_and_onboarding/presentation/screens/onboarding3_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class SplashScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Onboarding3Screen(),
+              builder: (context) => const Onboarding1Screen(),
             ),
           );
         },

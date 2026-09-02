@@ -1,13 +1,7 @@
 import 'dart:async';
-<<<<<<< HEAD
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
-import 'package:final_project/widgets/customArrowBack.dart';
-=======
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
 import 'package:final_project/widgets/custom_arrow_back.dart';
->>>>>>> 466190acce2425262b2cfb630a0e8885b732cd48
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

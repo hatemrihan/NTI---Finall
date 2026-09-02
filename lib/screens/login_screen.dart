@@ -1,15 +1,24 @@
 import 'dart:developer';
 
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
 import 'package:final_project/screens/Authentications/CreateAccount.dart';
 import 'package:final_project/screens/Authentications/ForgotPassword.dart';
 import 'package:final_project/screens/signup_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
-import 'package:final_project/widgets/login_header_section.dart';
-import 'package:final_project/widgets/login_social_section.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/features/auth/presentation/widgets/login_header_section.dart';
+import 'package:final_project/features/auth/presentation/widgets/login_social_section.dart';
+import 'package:final_project/features/home/presentation/screens/home_screen.dart';
+import 'package:final_project/screens/Authentications/CreateAccount.dart';
+import 'package:final_project/screens/Authentications/ForgotPassword.dart';
+import 'package:final_project/screens/bottom_nav_bar_screen.dart';
+// import 'package:final_project/screens/home_screen.dart';
+// import 'package:final_project/screens/signup_screen.dart';
+import 'package:final_project/widgets/custom_elevated_buttom.dart';
+import 'package:final_project/widgets/custom_text_button.dart';
+import 'package:final_project/widgets/custom_text_field.dart';
 import 'package:final_project/widgets/or_divider.dart';
 import 'package:flutter/material.dart';
 
@@ -84,15 +93,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 60),
                 CustomElevatedButton(
                   text: 'Login',
-                  onPressed: () {
-                    log('Login pressed');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CreateAccountScreen(),
-                      ),
-                    );
-                  },
+                  onPressed: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BottomNavigationBarScreen(),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 30),
                 OrDivider(),
@@ -104,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text(
                       "Don't have an account? ",
-                      style: AppStyles.style14.copyWith(
+                      style: AppStyles.style14Regular.copyWith(
                         color: AppColors.grayClr,
                       ),
                     ),
