@@ -11,9 +11,9 @@ class PasswordBar extends StatelessWidget {
     required this.color,
   });
 
-  final int filledCount;   // how many of 4 segments are filled (0-4)
-  final String label;      // e.g. "Strong password" or "Excellent password"
-  final Color color;       // color for filled segments and label text
+  final int filledCount; // how many of 4 segments are filled (0-4)
+  final String label; // e.g. "Strong password" or "Excellent password"
+  final Color color; // color for filled segments and label text
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class PasswordBar extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           label,
-          style: AppStyles.style12Regular.copyWith(
+          style: AppStyles.style12.copyWith(
             fontFamily: "Manrope",
             color: color,
           ),
