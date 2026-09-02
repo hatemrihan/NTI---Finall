@@ -86,13 +86,11 @@ class _CutomGridviewHomeState extends State<CutomGridviewHome> {
                         color: AppColors.textClr,
                       ),
                     ),
-
                     Row(
                       children: [
                         Text(
                           "\$${categories[index]["price"].toString()}"
                           , style: AppStyles.style14Bold),
-
                         const Spacer(),
                         IconButton(
                           color: AppColors.primaryClr,
