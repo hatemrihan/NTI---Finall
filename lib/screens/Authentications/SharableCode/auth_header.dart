@@ -1,6 +1,6 @@
 // Custom widget: Shared title + subtitle header for authentication screens
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class AuthHeader extends StatelessWidget {

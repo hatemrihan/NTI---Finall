@@ -1,9 +1,9 @@
-import 'package:final_project/app_colors.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/widgets/onboarding_img_section.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/widgets/onboarding_page_indicator.dart';
+import 'package:final_project/features/splash_and_onboarding/presentation/widgets/onboarding_text_section.dart';
 import 'package:final_project/screens/onBoarding2_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/onboarding_img_section.dart';
-import 'package:final_project/widgets/onboarding_page_indicator.dart';
-import 'package:final_project/widgets/onboarding_text_section.dart';
 import 'package:flutter/material.dart';
 
 class Onboarding1Screen extends StatelessWidget {

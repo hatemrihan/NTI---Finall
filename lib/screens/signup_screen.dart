@@ -1,7 +1,6 @@
 import 'dart:developer';
-
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:final_project/screens/email_verification_screen.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_button.dart';

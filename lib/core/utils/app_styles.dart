@@ -1,3 +1,4 @@
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppStyles {
@@ -8,6 +9,22 @@ class AppStyles {
     fontSize: 11,
     fontWeight: FontWeight.w400,
   );
+  static const TextStyle style14Regular = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+  static const TextStyle style12Regular = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+  static const TextStyle style20ExtraBold = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w900,
+  );
+  static const TextStyle style13SemiBold = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w500,
+  );
   static const TextStyle style11Bold = TextStyle(
     fontSize: 11,
     fontWeight: FontWeight.bold,
@@ -17,11 +34,11 @@ class AppStyles {
     fontWeight: FontWeight.w600,
   );
 
-  // Font Size : 12
-  static const TextStyle style12Regular = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-  );
+  // // Font Size : 12
+  // static const TextStyle style12Regular = TextStyle(
+  //   fontSize: 12,
+  //   fontWeight: FontWeight.w400,
+  // );
   static const TextStyle style12Medium = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w500,
@@ -41,16 +58,29 @@ class AppStyles {
     fontSize: 13,
     fontWeight: FontWeight.bold,
   );
-  static const TextStyle style13SemiBold = TextStyle(
-    fontSize: 13,
-    fontWeight: FontWeight.w600,
+  // static const TextStyle style13SemiBold = TextStyle(
+  //   fontSize: 13,
+  //   fontWeight: FontWeight.w600,
+  // );
+  static const TextStyle style28ExtraBold = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.w800,
   );
-  static const TextStyle style13 = TextStyle(fontSize: 13);
-
-  // Font Size : 14
-  static const TextStyle style14Regular = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
+  static const TextStyle style16ExtraBold = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w800,
+  );
+  static const TextStyle style17ExtraBold = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w800,
+  );
+  static const TextStyle style28Bold = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle style24Bold = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
   );
   static const TextStyle style14Bold = TextStyle(
     fontSize: 14,
@@ -77,10 +107,10 @@ class AppStyles {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
-  static const TextStyle style16ExtraBold = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w800,
-  );
+  // static const TextStyle style16ExtraBold = TextStyle(
+  //   fontSize: 16,
+  //   fontWeight: FontWeight.w800,
+  // );
   static const TextStyle style16SemiBold = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
@@ -103,11 +133,11 @@ class AppStyles {
   );
   static const TextStyle style18 = TextStyle(fontSize: 15);
 
-  // Font Size : 20
-  static const TextStyle style20ExtraBold = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w900,
-  );
+  // // Font Size : 20
+  // static const TextStyle style20ExtraBold = TextStyle(
+  //   fontSize: 20,
+  //   fontWeight: FontWeight.w900,
+  // );
 
   // Font Size : 22
   static const TextStyle style22Bold = TextStyle(
@@ -115,11 +145,11 @@ class AppStyles {
     fontWeight: FontWeight.bold,
   );
 
-  // Font Size : 24
-  static const TextStyle style24Bold = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-  );
+  // // Font Size : 24
+  // static const TextStyle style24Bold = TextStyle(
+  //   fontSize: 24,
+  //   fontWeight: FontWeight.bold,
+  // );
   static const TextStyle style24ExtraBold = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w900,
@@ -130,15 +160,15 @@ class AppStyles {
     fontSize: 27,
     fontWeight: FontWeight.w800,
   );
-  // Font Size : 28
-  static const TextStyle style28Bold = TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.bold,
-  );
-  static const TextStyle style28ExtraBold = TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.w800,
-  );
+  // // Font Size : 28
+  // static const TextStyle style28Bold = TextStyle(
+  //   fontSize: 28,
+  //   fontWeight: FontWeight.bold,
+  // );
+  // static const TextStyle style28ExtraBold = TextStyle(
+  //   fontSize: 28,
+  //   fontWeight: FontWeight.w800,
+  // );
 
   // Font Size : 48
   static const TextStyle style48ExtraBold = TextStyle(

@@ -1,5 +1,5 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:final_project/widgets/custom_arrow_back.dart';
 import 'package:final_project/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/widgets/custom_text_field.dart';
@@ -45,7 +45,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       scrollable: true,
       children: [
         // ── Back button
-        const Customarrowback(),
+        const customArrowBack(),
         const SizedBox(height: 16),
 
         // Custom file: auth_header.dart

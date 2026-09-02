@@ -1,5 +1,5 @@
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:final_project/widgets/custom_profile_item.dart';
 import 'package:final_project/widgets/custom_profile_item_modle.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       rightIcon: Icons.arrow_forward_ios,
     ),
   ];
+
   List<ProfileItemModle2> mylist2 = [
     ProfileItemModle2(
       title: 'Settings',
@@ -47,6 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       rightIcon: Icons.arrow_forward_ios,
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +56,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: AppColors.backgroundClr,
         title: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: const Text('MY PROFILE', style: AppStyles.style20ExtraBold),
+          child: const Text(
+            'MY PROFILE',
+            style: AppStyles.style20ExtraBold,
+          ),
         ),
       ),
       backgroundColor: AppColors.backgroundClr,
@@ -92,10 +97,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 15),
-                  Text('Sarah Johnson ', style: AppStyles.style20ExtraBold),
-                  Text('sarah@email.com', style: AppStyles.style13),
+                  Text(
+                    'Sarah Johnson ',
+                    style: AppStyles.style20ExtraBold,
+                  ),
+                  Text(
+                    'sarah@email.com',
+                    style: AppStyles.style12,
+                  ),
                 ],
               ),
               SizedBox(height: 20),
@@ -113,11 +123,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: mylist1[index].icon,
                         rightIcon: mylist1[index].rightIcon,
                         color: AppColors.primaryClr,
-                        onTap: () {},
+                        onTap: () {}, Ricon: Icons.arrow_forward_ios,
                       );
                     },
-
-                    separatorBuilder: (BuildContext context, int index) {
+                    separatorBuilder: (
+                      BuildContext context,
+                      int index,
+                    ) {
                       return const Divider();
                     },
                   ),
@@ -138,10 +150,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: mylist2[index].icon,
                         rightIcon: mylist2[index].rightIcon,
                         color: AppColors.primaryClr,
-                        onTap: () {},
+                        onTap: () {}, Ricon: Icons.arrow_forward_ios,
                       );
                     },
-                    separatorBuilder: (BuildContext context, int index) {
+                    separatorBuilder: (
+                      BuildContext context,
+                      int index,
+                    ) {
                       return const Divider();
                     },
                   ),
@@ -156,7 +171,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: 'Log Out',
                     icon: Icons.logout,
                     color: AppColors.redClr,
-                    onTap: () {},
+                    onTap: () {}, Ricon: Icons.arrow_forward_ios,
                   ),
                 ),
               ),

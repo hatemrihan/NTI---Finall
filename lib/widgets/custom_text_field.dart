@@ -1,6 +1,5 @@
-
-import 'package:final_project/app_colors.dart';
-import 'package:final_project/app_styles.dart';
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -10,7 +9,11 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.suffixIcon,
     this.obscureText,
-    this.prefixIcon, this.maxLines =1, this.keyboardType,
+    this.prefixIcon,
+    this.maxLines = 1,
+    this.keyboardType,
+    this.controller,
+    this.validator,
   });
   final String title;
   final String hintText;
@@ -19,6 +22,9 @@ class CustomTextField extends StatelessWidget {
   final bool? obscureText;
   final TextInputType? keyboardType;
   final int? maxLines;
+  final TextEditingController? controller;
+  final String? Function(String? value)? validator;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,9 +38,12 @@ class CustomTextField extends StatelessWidget {
             color: AppColors.primaryClr,
           ),
         ),
-        TextField(
+        TextFormField(
+          controller: controller,
+          validator: validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           obscureText: obscureText ?? false,
-          keyboardType: keyboardType ,
+          keyboardType: keyboardType,
           maxLines: maxLines,
           decoration: InputDecoration(
             filled: true,
@@ -42,7 +51,9 @@ class CustomTextField extends StatelessWidget {
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             hintText: hintText,
-            hintStyle: AppStyles.style14Regular.copyWith(color: AppColors.grayClr),
+            hintStyle: AppStyles.style14Regular.copyWith(
+              color: AppColors.grayClr,
+            ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(width: 0.5),
