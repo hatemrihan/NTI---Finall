@@ -28,7 +28,7 @@ class _WriteReviewState extends State<WriteReview> {
               return StatefulBuilder(
                 builder: (context, setState) {
                   return Container(
-                    height: 900,
+                    height: 1000,
                     decoration: BoxDecoration(color: AppColors.cardFillClr, borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
                     child: Padding(
                       padding: EdgeInsets.all(16),
@@ -64,34 +64,48 @@ class _WriteReviewState extends State<WriteReview> {
                           Text("Review Title", style: AppStyles.style13SemiBold),
                           SizedBox(
                             width: double.infinity,
-                            child: Card(
-                              color: Color(0xffF6F2EA),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(color: AppColors.borderSideClr)),
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(16, 9, 16, 16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Highly Recommended!", style: AppStyles.style13Regular.copyWith(color: AppColors.blackClr)),
-                                  ],
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextField(
+                                  decoration: InputDecoration(
+                                    fillColor: Color(0xffF6F2EA),
+                                    hintText:  "Highly Recommended!",
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                      borderSide: BorderSide(color: AppColors.borderSideClr)
+                                      ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                      borderSide: BorderSide(color: AppColors.borderSideClr, width: 3)
+                                      ),
+                                  ),
+                                  
                                 ),
-                              ),
+                              ],
                             ),
                           ),
-                          SizedBox(height: 16),
+                          SizedBox(height: 18),
                           Text("Review Description", style: AppStyles.style13SemiBold),
-                          Card(
-                            color: Color(0xffF6F2EA),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(color: AppColors.borderSideClr)),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 9, 16, 16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("The design is gorgeous. Everything sits neatly on the wrist, leather is soft as described. Packaging is exquisite. Would recommend to anyone looking for a clean everyday chronograph.", style: AppStyles.style14Regular.copyWith(color: AppColors.blackClr), maxLines: 8),
-                                ],
-                              ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextField(
+                              decoration: InputDecoration(
+                                focusColor: Colors.amber,
+                                hintText: "The design is gorgeous. Everything sits neatly on the wrist, leather is soft as described. Packaging is exquisite. Would recommend to anyone looking for a clean everyday chronograph.",
+                                hintMaxLines: 5,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  borderSide: BorderSide(color: AppColors.borderSideClr)
+                                  ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  borderSide: BorderSide(color: AppColors.borderSideClr, width: 3)
+                                  ),
+                              ), 
                             ),
+                            ],
                           ),
                           SizedBox(height: 20),
                           Container(
