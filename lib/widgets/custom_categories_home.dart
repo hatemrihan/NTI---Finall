@@ -1,10 +1,10 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_styles.dart';
-import 'package:final_project/screens/Category_Products_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomCategoriesHome extends StatefulWidget {
-  const CustomCategoriesHome({super.key});
+  const CustomCategoriesHome({super.key, this.onTabChange});
+  final ValueChanged<int>? onTabChange;
 
   @override
   State<CustomCategoriesHome> createState() => _CustomCategoriesHomeState();
@@ -28,16 +28,11 @@ class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CategoryProductsScreen(),
-                          ),
-                        );
+                        widget.onTabChange?.call(1);
                       },
                       child: CircleAvatar(
                         radius: 40,
-                      
+
                         backgroundImage: NetworkImage(
                           'https://talabat639.runasp.net/images/products/Frappuccino.jpg',
                         ),

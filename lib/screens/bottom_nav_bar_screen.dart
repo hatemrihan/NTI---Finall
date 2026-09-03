@@ -13,21 +13,23 @@ class BottomNavigationBarScreen extends StatefulWidget {
       _BottomNavigationBarScreenState();
 }
 
-class _BottomNavigationBarScreenState
-    extends State<BottomNavigationBarScreen> {
-
+class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   int currentIndex = 0;
-
-  final List<Widget> pages = [
-    HomeScreen(),
-    CategoryProductsScreen(),
-    CartScreen(),
-    //WishListScreen(),
-    ProfileScreen(),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      HomeScreen(
+        onTabChange: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+      ),
+      const CategoryProductsScreen(),
+      const CartScreen(),
+      const ProfileScreen(),
+    ];
     return Scaffold(
       body: pages[currentIndex],
 

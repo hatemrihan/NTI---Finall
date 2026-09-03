@@ -1,4 +1,3 @@
-import 'package:final_project/features/splash_and_onboarding/presentation/screens/onBoarding1_screen.dart';
 import 'package:final_project/features/splash_and_onboarding/presentation/screens/splash_screen.dart';
 import 'package:final_project/screens/Authentications/manage_product_screen.dart';
 import 'package:flutter/material.dart';

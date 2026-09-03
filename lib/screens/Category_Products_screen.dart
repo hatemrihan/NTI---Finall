@@ -11,21 +11,16 @@ class CategoryProductsScreen extends StatefulWidget {
   @override
   State<CategoryProductsScreen> createState() => CategoryProductsScreenState();
 }
+
 class CategoryProductsScreenState extends State<CategoryProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundClr,
-appBar: AppBar(
-  backgroundColor: AppColors.backgroundClr,
-  leading: IconButton(onPressed: () {
-    Navigator.pop(context);
-    },
-   icon: Icon(Icons.arrow_back_rounded),style: IconButton.styleFrom(
-    backgroundColor: AppColors.bottomBackgroundClr,
-    side: BorderSide(color: AppColors.grayClr),)),
-centerTitle: true,
-  title: Text('Category Products', style: AppStyles.style18ExtraBold),
+      appBar: AppBar(
+        backgroundColor: AppColors.backgroundClr,
+        centerTitle: true,
+        title: Text('Category Products', style: AppStyles.style18ExtraBold),
       ),
       body: SafeArea(
         child: Padding(
@@ -34,25 +29,38 @@ centerTitle: true,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(children: [
-                  Text('Showing 24 products', style: AppStyles.style13Regular.copyWith(
-                    color: AppColors.grayClr,
-                  )),
-                  Spacer(),
-                  SettingsContainer(children:[
-                    Row(
+                Row(
+                  children: [
+                    Text(
+                      'Showing 24 products',
+                      style: AppStyles.style13Regular.copyWith(
+                        color: AppColors.grayClr,
+                      ),
+                    ),
+                    Spacer(),
+                    SettingsContainer(
                       children: [
-                        SizedBox(width: 8),
-                        Text('Sort & Filter', style: AppStyles.style13Regular),
-                       SizedBox(width: 8),
-                       IconButton(onPressed: () {}, icon: Icon(Icons.filter_list)),
+                        Row(
+                          children: [
+                            SizedBox(width: 8),
+                            Text(
+                              'Sort & Filter',
+                              style: AppStyles.style13Regular,
+                            ),
+                            SizedBox(width: 8),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.filter_list),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                  ])
-                ],),
-               SizedBox(height: 24),
+                  ],
+                ),
+                SizedBox(height: 24),
                 CutomGridviewHome(),
-                ],
+              ],
             ),
           ),
         ),

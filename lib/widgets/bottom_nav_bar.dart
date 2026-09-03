@@ -2,14 +2,13 @@ import 'package:final_project/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({
-    super.key,
-    required this.currentIndex,
-    this.onTap,
-  });
+  BottomNavBar({super.key, required this.currentIndex, this.onTap});
 
   final int currentIndex;
   final Function(int)? onTap;
+  final List<Widget> screens =[
+
+  ];
 
   @override
   Widget build(BuildContext context) {
