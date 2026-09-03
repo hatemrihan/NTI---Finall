@@ -57,7 +57,6 @@ class ProductInfo extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer(),
             Icon(
               Icons.star_border_rounded,
               color: AppColors.primaryClr,
