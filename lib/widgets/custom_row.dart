@@ -15,7 +15,7 @@ class SettingsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 42,
+      height: 60,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
@@ -29,7 +29,7 @@ class SettingsRow extends StatelessWidget {
 
             Text(
               title,
-              style: AppStyles.style14SemiBold
+              style: AppStyles.style16SemiBold
             ),
 
             const Spacer(),

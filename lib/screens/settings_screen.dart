@@ -186,7 +186,7 @@ class SettingsScreenState extends State<SettingsScreen> {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  height: 44,
+                  height: 60,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     color: AppColors.whiteClr,
@@ -209,7 +209,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                         'Delete Account',
                         style: TextStyle(
                           color: AppColors.redClr,
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
