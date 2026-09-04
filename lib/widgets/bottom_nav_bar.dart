@@ -1,4 +1,4 @@
-import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -33,8 +33,8 @@ class BottomNavBar extends StatelessWidget {
           label: "Categories",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_bag_outlined),
-          activeIcon: Icon(Icons.shopping_bag),
+          icon: Icon(Icons.shopping_cart_outlined),
+          activeIcon: Icon(Icons.shopping_cart),
           label: "Cart",
         ),
         // BottomNavigationBarItem(

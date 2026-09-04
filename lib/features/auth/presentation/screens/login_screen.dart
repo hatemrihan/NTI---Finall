@@ -1,18 +1,17 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/core/utils/app_styles.dart';
-import 'package:final_project/features/home/presentation/screens/home_screen.dart';
-import 'package:final_project/screens/Authentications/ForgotPassword.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/auth/presentation/screens/signup_screen.dart';
-import 'package:final_project/screens/bottom_nav_bar_screen.dart';
-import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/custom_text_button.dart';
-import 'package:final_project/widgets/custom_text_field.dart';
+import 'package:final_project/core/widgets/custom_text_button.dart';
+import 'package:final_project/core/widgets/custom_text_field.dart';
 import 'package:final_project/features/auth/presentation/widgets/login_header_section.dart';
 import 'package:final_project/features/auth/presentation/widgets/login_social_section.dart';
-import 'package:final_project/widgets/or_divider.dart';
-import 'package:final_project/core/helper/validators.dart';
+import 'package:final_project/features/auth/presentation/widgets/or_divider.dart';
+import 'package:final_project/core/utils/validators.dart';
+import 'package:final_project/features/auth/presentation/screens/forgot%20_password_screen.dart';
+import 'package:final_project/screens/bottom_nav_bar_screen.dart';
+import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -27,16 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> myKey = GlobalKey();
   final TextEditingController emailCtl = TextEditingController();
   final TextEditingController passwordCtl = TextEditingController();
-
-  /*
-curl https://accessories-eshop.runasp.net/api/auth/login \
-  --request POST \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "email": "",
-  "password": ""
-}'
- */
 
   Future<void> login() async {
     final Dio dio = Dio();
@@ -68,10 +57,8 @@ curl https://accessories-eshop.runasp.net/api/auth/login \
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 70),
-
                   LoginHeaderSection(
-                    logo: "NOMA",
+                    logo: "assets/images/logo.png",
                     title: "Welcome Back",
                     subTitle: "Enter your details to access your account",
                   ),
@@ -89,7 +76,7 @@ curl https://accessories-eshop.runasp.net/api/auth/login \
                   SizedBox(height: 16),
 
                   CustomTextField(
-                    prefixIcon: Icon(Icons.key_outlined),
+                    prefixIcon: Icon(Icons.lock_outline),
                     controller: passwordCtl,
                     title: 'Password',
                     hintText: 'Please enter your password',
@@ -123,7 +110,7 @@ curl https://accessories-eshop.runasp.net/api/auth/login \
                       ),
                     ),
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 12),
                   CustomElevatedButton(
                     text: 'Login',
                     // onPressed: () {
@@ -134,11 +121,11 @@ curl https://accessories-eshop.runasp.net/api/auth/login \
                       MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 32),
                   OrDivider(),
-                  SizedBox(height: 30),
+                  SizedBox(height: 32),
                   LoginSocialSection(),
-                  SizedBox(height: 48),
+                  SizedBox(height: 25),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

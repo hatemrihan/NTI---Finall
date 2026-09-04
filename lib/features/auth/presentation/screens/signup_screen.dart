@@ -1,14 +1,14 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/core/utils/app_styles.dart';
-import 'package:final_project/screens/email_verification_screen.dart';
-// import 'package:final_project/screens/emailVerification_screen.dart';
-import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/custom_text_button.dart';
-import 'package:final_project/widgets/custom_text_field.dart';
-import 'package:final_project/core/helper/validators.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/auth/presentation/screens/verify_email_screen.dart';
+import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
+import 'package:final_project/core/widgets/custom_text_button.dart';
+import 'package:final_project/core/widgets/custom_text_field.dart';
+import 'package:final_project/core/utils/validators.dart';
+import 'package:final_project/features/auth/presentation/widgets/custom_password_field.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -25,8 +25,12 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController emailCtl = TextEditingController();
   final TextEditingController passwordCtl = TextEditingController();
   final TextEditingController confirmPasswordCtl = TextEditingController();
-  bool isVisiable = true;
+  bool isVisiablePassword = true;
+  bool isVisiableConfirmPassword = true;
+
   bool isChecked = false;
+
+
 
   Future<void> signUp() async {
     final Dio dio = Dio();
@@ -81,7 +85,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Join NOMA today for exclusive collections.',
+                    'Join LAMSA today for exclusive collections.',
                     style: AppStyles.style14Regular.copyWith(
                       color: AppColors.grayClr,
                     ),
@@ -126,38 +130,49 @@ class _SignupScreenState extends State<SignupScreen> {
                     },
                   ),
                   SizedBox(height: 16),
-                  CustomTextField(
-                    prefixIcon: Icon(Icons.key_outlined),
+                  CustomPasswordField(
                     controller: passwordCtl,
                     title: 'Password',
                     hintText: 'Please enter your password',
                     validator: (password) {
                       return Validator.validatePassword(password!);
                     },
-                    obscureText: isVisiable,
+                    obscureText: isVisiablePassword,
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
-                          isVisiable = !isVisiable;
+                          isVisiablePassword = !isVisiablePassword;
                         });
                       },
                       icon: Icon(
-                        isVisiable ? Icons.visibility_off : Icons.visibility,
+                        isVisiablePassword ? Icons.visibility_off : Icons.visibility,
                         color: AppColors.grayClr,
                       ),
                     ),
                   ),
                   SizedBox(height: 16),
 
-                  CustomTextField(
-                    prefixIcon: Icon(Icons.key_outlined),
+                  CustomPasswordField(
                     controller: confirmPasswordCtl,
                     title: 'Confirm Password',
                     hintText: 'Confirm your password',
-                    obscureText: isVisiable,
+                    obscureText: isVisiableConfirmPassword,
                     validator: (confirmPassword) {
-                      return Validator.validatePassword(confirmPassword!);
+                      return Validator.validateConfirmPassword(passwordCtl.text, confirmPassword!);
                     },
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isVisiableConfirmPassword = !isVisiableConfirmPassword;
+                        });
+                      },
+                      icon: Icon(
+                        isVisiableConfirmPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: AppColors.grayClr,
+                      ),
+                    ),
                   ),
                   SizedBox(height: 16),
 
@@ -170,6 +185,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         activeColor: AppColors.primaryClr,
                         value: isChecked,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
                         onChanged: (newVal) {
                           log(newVal.toString());
                           isChecked = newVal!;
@@ -216,12 +234,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     //   log("Create Account");
 
                     // },
-                    onPressed: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EmailverificationScreen(),
-                      ),
-                    ),
+                    onPressed: isChecked
+                        ? () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VerifyEmailScreen(),
+                            ),
+                          )
+                        : null,
                   ),
                   SizedBox(height: 50),
 

@@ -1,8 +1,8 @@
-import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/widgets/custom_container_row.dart';
-import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/custom_text_field.dart';
+import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
+import 'package:final_project/core/widgets/custom_text_field.dart';
 import 'package:final_project/widgets/custom_appBar_widget.dart';
 import 'package:flutter/material.dart';
 

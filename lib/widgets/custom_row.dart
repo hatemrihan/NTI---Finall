@@ -1,4 +1,4 @@
-import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class SettingsRow extends StatelessWidget {
