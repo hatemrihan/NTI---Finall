@@ -1,205 +1,129 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/features/product/presentation/widgets/custom_container_row.dart';
+import 'package:final_project/features/settings/presentation/widgets/custom_appBar_widget.dart';
+import 'package:final_project/features/settings/presentation/widgets/team_member_widget.dart';
+import 'package:final_project/features/settings/presentation/widgets/value_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class AboutUsScreen extends StatelessWidget {
-  AboutUsScreen({super.key});
+  const AboutUsScreen({super.key});
 
-  final List<Map<String, String>> teamMembers = [
-    {'image': '', 'name': 'Team Member 1', 'role': 'Role 1'},
-    {'image': '', 'name': 'Team Member 2', 'role': 'Role 2'},
-    {'image': '', 'name': 'Team Member 3', 'role': 'Role 3'},
-    {'image': '', 'name': 'Team Member 4', 'role': 'Role 4'},
-    {'image': '', 'name': 'Team Member 5', 'role': 'Role 5'},
-    {'image': '', 'name': 'Team Member 6', 'role': 'Role 6'},
-    {'image': '', 'name': 'Team Member 7', 'role': 'Role 7'},
-    {'image': '', 'name': 'Team Member 8', 'role': 'Role 8'},
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundClr,
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundClr,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        centerTitle: true,
-        title: const Text('ABOUT US', style: AppStyles.style18ExtraBold),
+      appBar: CustomAppbarWidget(
+        
+        title: 'ABOUT US',
+        onBackPressed: () => Navigator.pop(context),
       ),
-
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 12),
+
                 Center(
-                  child: SizedBox(
-                    width: 900,
-                    child: SettingsContainer(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(14),
-                          child: Image.asset(
-                            'assets/images/cart_item.png',
-                            fit: BoxFit.cover,
-                            height: 200,
-                            width: double.infinity,
-                          ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.asset(
+                      'assets/images/cart_item.png',
+                      fit: BoxFit.cover,
+                      height: 150,
+                      width: double.infinity,
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 24),
+
+                /// Title & Description
+                Text(
+                  'Curated Accessories',
+                  style: AppStyles.style22Bold.copyWith(
+                    color: AppColors.textClr,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Founded in 2026, LAMSA was built on the appreciation for honest materials, refined geometry, and everyday utility. We believe the objects we carry define our daily space.',
+                  style: AppStyles.style14Regular.copyWith(
+                    color: AppColors.grayClr,
+                    height: 1.6,
+                  ),
+                ),
+
+                const SizedBox(height: 28),
+
+                /// Our Values Card
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: AppColors.whiteClr,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 232, 222, 208),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'OUR VALUES',
+                        style: AppStyles.style16ExtraBold.copyWith(
+                          color: AppColors.textClr,
+                          letterSpacing: 0.5,
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 20),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Curated Accessories.',
-                      style: AppStyles.style20ExtraBold,
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Founded in 2024, NOMA was built on the appreciation for honest materials, refined geometry, and everyday utility. We believe the objects we carry define our daily space.',
-                      style: AppStyles.style14Regular,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-
-                SettingsContainer(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Our Values', style: AppStyles.style20ExtraBold),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text('• ', style: AppStyles.style14Regular),
-                              Text('Quality:', style: AppStyles.style14Bold),
-                              Expanded(
-                                child: Text(
-                                  ' Handcrafted items created to endure across seasons.',
-                                  style: AppStyles.style13Regular.copyWith(
-                                    color: AppColors.grayClr,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              //  Text('• ', style: AppStyles.style14),
-                              Expanded(
-                                child: Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: '• Sustainability: ',
-                                        style: AppStyles.style14Bold,
-                                      ),
-                                      TextSpan(
-                                        text:
-                                            'Sourced with respect for local communities and ecosystems.',
-                                        style: AppStyles.style13Regular
-                                            .copyWith(color: AppColors.grayClr),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              // Text('• ', style: AppStyles.style14),
-                              Expanded(
-                                child: Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: '• Community: ',
-                                        style: AppStyles.style14Bold,
-                                      ),
-                                      TextSpan(
-                                        text:
-                                            'Supporting artisans preserving timeless techniques.',
-                                        style: AppStyles.style13Regular
-                                            .copyWith(color: AppColors.grayClr),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 30),
-
-                Text("Meet the Team", style: AppStyles.style20ExtraBold),
-
-                SizedBox(height: 10),
-                Center(
-                  child: SizedBox(
-                    height: 150,
-                    child: ListView.separated(
-                      itemCount: 8,
-                      padding: EdgeInsets.all(8),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 40,
-                              backgroundImage: AssetImage(
-                                'assets/images/img_profile.png',
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              'Team Member',
-                              style: AppStyles.style16ExtraBold,
-                            ),
-                            Text(
-                              'Role',
-                              style: AppStyles.style14Regular.copyWith(
-                                color: AppColors.grayClr,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                          ],
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return SizedBox(width: 10);
-                      },
-                    ),
+                      const SizedBox(height: 16),
+                      ValueTextWidget(
+                        title: 'Quality:',
+                        description: 'Handcrafted items created to endure across seasons.',
+                      ),
+                      const SizedBox(height: 12),
+                      ValueTextWidget(
+                        title: 'Sustainability:',
+                        description: 'Sourced with respect for local communities and ecosystems.',
+                      ),
+                      const SizedBox(height: 12),
+                      ValueTextWidget(
+                        title: 'Community:',
+                        description: 'Supporting artisans preserving timeless techniques.',
+                      ),
+                    ],
                   ),
                 ),
 
-                SizedBox(height: 70),
+                const SizedBox(height: 32),
+
+                /// Meet the Team
+                Text(
+                  'MEET THE TEAM',
+                  style: AppStyles.style16ExtraBold.copyWith(
+                    color: AppColors.textClr,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TeamMemberWidget(name: 'rezk <3', role: 'role'),
+                    TeamMemberWidget(name: 'rezk <3', role: 'role'),
+                    TeamMemberWidget(name: 'rezk <3', role: 'role'),
+                  ],
+                ),
+
+                const SizedBox(height: 30),
+
+                /// Footer
                 Center(
                   child: Text(
-                    'NOMA Accessories • v1.4.0',
+                    'LAMSA Accessories • v1.4.0',
                     style: AppStyles.style12Medium.copyWith(
                       color: AppColors.grayClr,
                     ),

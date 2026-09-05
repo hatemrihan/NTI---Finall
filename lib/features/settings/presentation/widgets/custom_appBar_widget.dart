@@ -19,15 +19,16 @@ class CustomAppbarWidget extends StatelessWidget
       backgroundColor: AppColors.backgroundClr,
       elevation: 0,
       scrolledUnderElevation: 0,
-      centerTitle: false,
+      centerTitle: true,
       leading: IconButton(
         onPressed: onBackPressed,
         icon: const Icon(
           Icons.arrow_back_ios_new,
-          color: AppColors.blackClr,
-          size: 35,
+          size: 25,
+          color: AppColors.textClr,
         ),
       ),
+
       title: Text(title.toUpperCase(), style: AppStyles.style20ExtraBold),
     );
   }

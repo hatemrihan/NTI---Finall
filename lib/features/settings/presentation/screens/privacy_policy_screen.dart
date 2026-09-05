@@ -40,7 +40,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           },
           icon: Icon(
             Icons.arrow_back_ios_new,
-            size: 28,
+            size: 25,
             color: AppColors.textClr,
           ),
         ),

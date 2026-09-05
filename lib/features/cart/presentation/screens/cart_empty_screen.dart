@@ -8,7 +8,7 @@ class CartEmptyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 246, 245, 242),
+      backgroundColor: AppColors.backgroundClr,
       body: SafeArea(
         child: Center(
           child: Padding(

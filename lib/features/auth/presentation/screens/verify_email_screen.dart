@@ -2,10 +2,9 @@ import 'dart:async';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
+import 'package:final_project/features/navigation/presentation/screens/bottom_nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:final_project/features/auth/presentation/screens/forgot%20_password_screen.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
   const VerifyEmailScreen({super.key, this.email = "lamsa***@gmail.com"});
@@ -197,7 +196,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ForgotPasswordScreen(),
+                        builder: (context) => const BottomNavigationBarScreen(),
                       ),
                     ),
                   ),
