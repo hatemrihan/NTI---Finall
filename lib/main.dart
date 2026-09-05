@@ -1,4 +1,4 @@
-import 'package:final_project/screens/Authentications/manage_product_screen.dart';
+import 'package:final_project/features/splash/presentation/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class LAMSA extends StatelessWidget {
       title: 'LAMSA',
       theme: ThemeData(fontFamily: "Manrope"),
       debugShowCheckedModeBanner: false,
-      home: ManageProductScreen(),
+      home: const SplashScreen(),
     );
   }
 }

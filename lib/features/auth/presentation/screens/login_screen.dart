@@ -11,7 +11,7 @@ import 'package:final_project/features/auth/presentation/widgets/login_social_se
 import 'package:final_project/features/auth/presentation/widgets/or_divider.dart';
 import 'package:final_project/core/utils/validators.dart';
 import 'package:final_project/features/auth/presentation/screens/forgot%20_password_screen.dart';
-import 'package:final_project/screens/bottom_nav_bar_screen.dart';
+import 'package:final_project/features/navigation/presentation/screens/bottom_nav_bar_screen.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

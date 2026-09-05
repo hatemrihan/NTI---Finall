@@ -1,9 +1,9 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/widgets/custom_container_row.dart';
+import 'package:final_project/features/product/presentation/widgets/custom_container_row.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/core/widgets/custom_text_field.dart';
-import 'package:final_project/widgets/custom_appBar_widget.dart';
+import 'package:final_project/features/settings/presentation/widgets/custom_appBar_widget.dart';
 import 'package:flutter/material.dart';
 
 class ContactUsScreen extends StatelessWidget {
@@ -13,17 +13,17 @@ class ContactUsScreen extends StatelessWidget {
     {
       'icon': Icons.email_outlined,
       'label': 'Email',
-      'value': 'hello@noma-curated.com',
+      'value': 'lamsagroup@gmail.com',
     },
     {
       'icon': Icons.phone_outlined,
       'label': 'Phone',
-      'value': '+1 (800) 555-NOMA',
+      'value': '+0 (123) 456-7890',
     },
     {
       'icon': Icons.location_on_outlined,
       'label': 'Studio',
-      'value': '742 Minimalist Way, Suite 10, CA',
+      'value': 'Creativa NTI, Mansoura, Egypt',
     },
   ];
 
@@ -32,7 +32,7 @@ class ContactUsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundClr,
       appBar: CustomAppbarWidget(
-        title: 'Contact Us',
+        title: 'CONTACT US',
         onBackPressed: () => Navigator.pop(context),
       ),
       body: SafeArea(

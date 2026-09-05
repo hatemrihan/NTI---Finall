@@ -25,7 +25,7 @@ class CustomAppbarWidget extends StatelessWidget
         icon: const Icon(
           Icons.arrow_back_ios_new,
           color: AppColors.blackClr,
-          size: 20,
+          size: 35,
         ),
       ),
       title: Text(title.toUpperCase(), style: AppStyles.style20ExtraBold),

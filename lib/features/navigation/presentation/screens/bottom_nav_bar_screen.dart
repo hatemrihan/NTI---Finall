@@ -1,8 +1,8 @@
-import 'package:final_project/screens/category_products_screen.dart';
+import 'package:final_project/features/product/presentation/screens/category_products_screen.dart';
 import 'package:final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:final_project/features/profile/presentation/screens/profile_screen.dart';
-import 'package:final_project/widgets/bottom_nav_bar.dart';
+import 'package:final_project/features/navigation/presentation/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
@@ -26,6 +26,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
           });
         },
       ),
+      
       const CategoryProductsScreen(),
       const CartScreen(),
       const ProfileScreen(),

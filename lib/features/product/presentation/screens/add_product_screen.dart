@@ -1,7 +1,7 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/widgets/custom_category_dropdown.dart';
-import 'package:final_project/widgets/custom_image_upload_container.dart';
+import 'package:final_project/features/product/presentation/widgets/custom_category_dropdown.dart';
+import 'package:final_project/features/product/presentation/widgets/custom_image_upload_container.dart';
 import 'package:final_project/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 

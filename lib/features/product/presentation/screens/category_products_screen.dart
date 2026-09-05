@@ -1,8 +1,8 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/presentation/widgets/cutom_gridview_home.dart';
+import 'package:final_project/features/product/presentation/widgets/custom_container_row.dart';
 // import 'package:final_project/widgets/bottom_nav_bar.dart';
-import 'package:final_project/widgets/custom_container_row.dart';
-import 'package:final_project/widgets/cutom_gridview_home.dart';
 import 'package:flutter/material.dart';
 
 class CategoryProductsScreen extends StatefulWidget {

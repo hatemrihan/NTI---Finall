@@ -2,7 +2,7 @@ import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/core/widgets/custom_text_field.dart';
 import 'package:final_project/features/auth/presentation/widgets/custom_password_field.dart';
-import 'package:final_project/widgets/custom_appBar_widget.dart';
+import 'package:final_project/features/settings/presentation/widgets/custom_appBar_widget.dart';
 import 'package:final_project/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/widgets/custom_container_row.dart';
+import 'package:final_project/features/product/presentation/widgets/custom_container_row.dart';
 import 'package:flutter/material.dart';
 
 class AboutUsScreen extends StatelessWidget {
@@ -23,13 +23,13 @@ class AboutUsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.backgroundClr,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         centerTitle: true,
-        title: const Text('About Us', style: AppStyles.style18ExtraBold),
+        title: const Text('ABOUT US', style: AppStyles.style18ExtraBold),
       ),
 
       body: SafeArea(

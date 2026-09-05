@@ -26,9 +26,11 @@ class ProductInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Image.asset(image),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(image),
+          ),
         ),
         SizedBox(height: 20),
         Text(

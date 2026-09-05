@@ -1,11 +1,11 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/screens/privacy_policy_screen.dart';
-import 'package:final_project/screens/about_us_screen.dart';
+import 'package:final_project/features/settings/presentation/screens/privacy_policy_screen.dart';
+import 'package:final_project/features/settings/presentation/screens/about_us_screen.dart';
 import 'package:final_project/features/auth/presentation/screens/change_password_screen.dart';
-import 'package:final_project/screens/contact_us_screen.dart';
-import 'package:final_project/widgets/custom_container_row.dart';
-import 'package:final_project/widgets/custom_row.dart';
+import 'package:final_project/features/settings/presentation/screens/contact_us_screen.dart';
+import 'package:final_project/features/product/presentation/widgets/custom_container_row.dart';
+import 'package:final_project/features/product/presentation/widgets/custom_row.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {

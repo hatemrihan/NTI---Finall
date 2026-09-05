@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/screens/product_screen.dart';
+import 'package:final_project/features/product/presentation/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class CutomGridviewHome extends StatefulWidget {

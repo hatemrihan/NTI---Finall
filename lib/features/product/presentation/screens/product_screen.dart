@@ -2,13 +2,12 @@ import 'dart:developer';
 
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/widgets/bottom_nav_bar.dart';
-import 'package:final_project/widgets/color_button.dart';
-import 'package:final_project/widgets/counter_button.dart';
-import 'package:final_project/widgets/product_info.dart';
-import 'package:final_project/widgets/review_cart_details.dart';
-import 'package:final_project/widgets/size_button.dart';
-import 'package:final_project/widgets/write_review.dart';
+import 'package:final_project/features/product/presentation/widgets/color_button.dart';
+import 'package:final_project/features/product/presentation/widgets/counter_button.dart';
+import 'package:final_project/features/product/presentation/widgets/product_info.dart';
+import 'package:final_project/features/cart/presentation/widgets/review_cart_details.dart';
+import 'package:final_project/features/product/presentation/widgets/size_button.dart';
+import 'package:final_project/features/product/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -41,7 +40,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             backgroundColor: AppColors.cardFillClr,
             side: BorderSide(color: AppColors.borderSideClr),
           ),
-          icon: Icon(Icons.arrow_back_rounded),
+          icon: Icon(Icons.arrow_back_ios_new),
         ),
         actions: [
           IconButton(
@@ -70,7 +69,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

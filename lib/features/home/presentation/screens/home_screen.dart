@@ -1,9 +1,9 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 // import 'package:final_project/widgets/bottom_nav_bar.dart';
-import 'package:final_project/widgets/custom_categories_home.dart';
+import 'package:final_project/features/home/presentation/widgets/custom_categories_home.dart';
 
-import 'package:final_project/widgets/cutom_gridview_home.dart';
+import 'package:final_project/features/home/presentation/widgets/cutom_gridview_home.dart';
 import 'package:final_project/features/home/presentation/widgets/home_screen_header.dart';
 import 'package:flutter/material.dart';
 

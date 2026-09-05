@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-class ProfileItemModle1 {
+class ProfileItemModel1 {
   final String title;
   final IconData icon;
   final IconData rightIcon;
 
-  ProfileItemModle1({
+  ProfileItemModel1({
     required this.title,
     required this.icon,
     required this.rightIcon,
   });
 }
 
-class ProfileItemModle2 {
+class ProfileItemModel2 {
   final String title;
   final IconData icon;
   final IconData rightIcon;
   final void Function()? onTap;
 
-  ProfileItemModle2({
+  ProfileItemModel2({
     required this.title,
     required this.icon,
     required this.rightIcon,

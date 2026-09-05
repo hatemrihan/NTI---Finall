@@ -10,7 +10,6 @@ class CustomProfileItems extends StatelessWidget {
     this.rightIcon,
     this.onTap,
     this.textColor,
-    required IconData Ricon,
   });
 
   final String title;
