@@ -1,10 +1,12 @@
 import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/features/auth/presentation/auth_cubit/auth_cubit.dart';
 import 'package:final_project/features/auth/presentation/screens/login_screen.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/features/onboarding/presentation/widgets/onboarding_img_section.dart';
 import 'package:final_project/features/onboarding/presentation/widgets/onboarding_page_indicator.dart';
 import 'package:final_project/features/onboarding/presentation/widgets/onboarding_text_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Onboarding3Screen extends StatelessWidget {
   const Onboarding3Screen({super.key});
@@ -17,9 +19,7 @@ class Onboarding3Screen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            OnboardingImgSection(
-              imgPath: 'assets/images/onBoarding3_img.png',
-            ),
+            OnboardingImgSection(imgPath: 'assets/images/onBoarding3_img.png'),
             Positioned(
               top: 370,
               left: 0,
@@ -51,7 +51,10 @@ class Onboarding3Screen extends StatelessWidget {
                       onPressed: () => Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => BlocProvider(
+                            create: (context) => AuthCubit(),
+                            child: LoginScreen(),
+                          ),
                         ),
                       ),
                     ),
@@ -65,4 +68,3 @@ class Onboarding3Screen extends StatelessWidget {
     );
   }
 }
-

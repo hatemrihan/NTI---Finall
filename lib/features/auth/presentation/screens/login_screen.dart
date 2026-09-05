@@ -1,7 +1,8 @@
-import 'dart:developer';
-import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:final_project/features/auth/presentation/auth_cubit/auth_cubit.dart';
+import 'package:final_project/features/auth/presentation/auth_cubit/auth_states.dart';
 import 'package:final_project/features/auth/presentation/screens/signup_screen.dart';
 import 'package:final_project/core/widgets/custom_text_button.dart';
 import 'package:final_project/core/widgets/custom_text_field.dart';
@@ -13,6 +14,7 @@ import 'package:final_project/features/auth/presentation/screens/forgot%20_passw
 import 'package:final_project/screens/bottom_nav_bar_screen.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,22 +28,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> myKey = GlobalKey();
   final TextEditingController emailCtl = TextEditingController();
   final TextEditingController passwordCtl = TextEditingController();
+  final AuthRemoteDataSource authRemoteDataSource = AuthRemoteDataSource();
 
-  Future<void> login() async {
-    final Dio dio = Dio();
-    try {
-      await dio.post(
-        'https://accessories-eshop.runasp.net/api/auth/login',
-        data: {
-          {"email": emailCtl.text, "password": passwordCtl.text},
-        },
-      );
-      setState(() {});
-    } on DioException catch (e) {
-      log('Error : ${e.response!.data['errors']}');
-      log('Status Code : ${e.response!.data['statusCode']}');
-      log('Message : ${e.response!.data['message']}');
-    }
+  @override
+  void dispose() {
+    super.dispose();
+    emailCtl.dispose();
+    passwordCtl.dispose();
   }
 
   @override
@@ -105,21 +98,46 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ForgotPasswordScreen(),
+                          builder: (context) => ForgotPasswordScreen(),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(height: 12),
-                  CustomElevatedButton(
-                    text: 'Login',
-                    // onPressed: () {
-                    //   log('Login pressed');
-                    // },
-                    onPressed: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
-                    ),
+                  BlocConsumer<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      if (state is LoginLoadingState) {
+                        return Center(child: CircularProgressIndicator());
+                      } else {
+                        return CustomElevatedButton(
+                          text: 'Login',
+                          onPressed: () async {
+                            if (myKey.currentState!.validate()) {
+                              await context.read<AuthCubit>().login(
+                                email: emailCtl.text,
+                                password: passwordCtl.text,
+                              );
+                            }
+                          },
+                        );
+                      }
+                    },
+                    listener: (context, state) {
+                      if (state is LoginSuccessState) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BottomNavigationBarScreen(),
+                          ),
+                        );
+                      } else if (state is LoginFailureState) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Login failed. Please try again.'),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   SizedBox(height: 32),
                   OrDivider(),
@@ -140,7 +158,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SignupScreen(),
+                            builder: (context) => BlocProvider(
+                              create: (context) => AuthCubit(),
+                              child: SignupScreen(),
+                            ),
                           ),
                         ),
                         textClr: AppColors.primaryClr,

@@ -1,8 +1,9 @@
 import 'dart:developer';
-
-import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:final_project/features/auth/presentation/auth_cubit/auth_cubit.dart';
+import 'package:final_project/features/auth/presentation/auth_cubit/auth_states.dart';
 import 'package:final_project/features/auth/presentation/screens/verify_email_screen.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/core/widgets/custom_text_button.dart';
@@ -10,6 +11,7 @@ import 'package:final_project/core/widgets/custom_text_field.dart';
 import 'package:final_project/core/utils/validators.dart';
 import 'package:final_project/features/auth/presentation/widgets/custom_password_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -25,31 +27,19 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController emailCtl = TextEditingController();
   final TextEditingController passwordCtl = TextEditingController();
   final TextEditingController confirmPasswordCtl = TextEditingController();
+  final AuthRemoteDataSource authRemoteDataSource = AuthRemoteDataSource();
   bool isVisiablePassword = true;
   bool isVisiableConfirmPassword = true;
 
   bool isChecked = false;
-
-
-
-  Future<void> signUp() async {
-    final Dio dio = Dio();
-    try {
-      await dio.post(
-        'https://accessories-eshop.runasp.net/api/auth/register',
-        data: {
-          "email": emailCtl.text,
-          "password": passwordCtl.text,
-          "firstName": firstNameCtl.text,
-          "lastName": lastNameCtl.text,
-        },
-      );
-      setState(() {});
-    } on DioException catch (e) {
-      log('Status Code : ${e.response!.data['statusCode']}');
-      log('Message : ${e.response!.data['message']}');
-      log('Error : ${e.response!.data['errors']}');
-    }
+  @override
+  void dispose() {
+    super.dispose();
+    emailCtl.dispose();
+    passwordCtl.dispose();
+    confirmPasswordCtl.dispose();
+    firstNameCtl.dispose();
+    lastNameCtl.dispose();
   }
 
   @override
@@ -145,7 +135,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         });
                       },
                       icon: Icon(
-                        isVisiablePassword ? Icons.visibility_off : Icons.visibility,
+                        isVisiablePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: AppColors.grayClr,
                       ),
                     ),
@@ -158,12 +150,16 @@ class _SignupScreenState extends State<SignupScreen> {
                     hintText: 'Confirm your password',
                     obscureText: isVisiableConfirmPassword,
                     validator: (confirmPassword) {
-                      return Validator.validateConfirmPassword(passwordCtl.text, confirmPassword!);
+                      return Validator.validateConfirmPassword(
+                        passwordCtl.text,
+                        confirmPassword!,
+                      );
                     },
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
-                          isVisiableConfirmPassword = !isVisiableConfirmPassword;
+                          isVisiableConfirmPassword =
+                              !isVisiableConfirmPassword;
                         });
                       },
                       icon: Icon(
@@ -227,24 +223,46 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                   SizedBox(height: 24),
-
-                  CustomElevatedButton(
-                    text: 'Create Account',
-                    // onPressed: () {
-                    //   log("Create Account");
-
-                    // },
-                    onPressed: isChecked
-                        ? () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => VerifyEmailScreen(),
-                            ),
-                          )
-                        : null,
+                  BlocConsumer<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      if (state is SignUpLoadingState) {
+                        return Center(child: CircularProgressIndicator());
+                      } else {
+                        return CustomElevatedButton(
+                          text: 'Create Account',
+                          onPressed: isChecked
+                              ? () async {
+                                  if (myKey.currentState!.validate()) {
+                                    await context.read<AuthCubit>().signup(
+                                      email: emailCtl.text,
+                                      password: passwordCtl.text,
+                                      firstName: firstNameCtl.text,
+                                      lastName: lastNameCtl.text,
+                                    );
+                                  }
+                                }
+                              : null,
+                        );
+                      }
+                    },
+                    listener: (context, state) {
+                      if (state is SignUpSuccessState) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VerifyEmailScreen(),
+                          ),
+                        );
+                      } else if (state is SignUpFailureState) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Sign up failed. Please try again.'),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   SizedBox(height: 50),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
