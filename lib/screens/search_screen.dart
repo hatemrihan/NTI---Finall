@@ -1,4 +1,4 @@
-import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/widgets/bottom_nav_bar.dart';
 import 'package:final_project/widgets/custom_search_text_field.dart';
 import 'package:final_project/widgets/cutom_gridview_home.dart';

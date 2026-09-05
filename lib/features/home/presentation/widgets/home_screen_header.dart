@@ -1,7 +1,6 @@
-import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/core/utils/app_styles.dart';
-import 'package:final_project/screens/cart_screen.dart';
-import 'package:final_project/widgets/search_text_field.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/core/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenHeader extends StatefulWidget {
@@ -24,7 +23,7 @@ class _HomeScreenHeaderState extends State<HomeScreenHeader> {
           Row(
             children: [
               Text(
-                "NOMA",
+                "LAMSA",
                 style: AppStyles.style24ExtraBold.copyWith(
                   fontFamily: "Manrope",
                   color: AppColors.textClr,

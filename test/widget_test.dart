@@ -12,7 +12,7 @@ import 'package:final_project/main.dart';
 void main() {
   testWidgets('App smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const NEMOStore());
+    await tester.pumpWidget(const LAMSA());
 
     // Verify that Welcome Back text is rendered.
     expect(find.text('Welcome Back'), findsOneWidget);

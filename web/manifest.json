@@ -1,6 +1,6 @@
 {
-    "name": "final_project",
-    "short_name": "final_project",
+    "name": "LAMSA",
+    "short_name": "LAMSA",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
