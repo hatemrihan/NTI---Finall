@@ -1,6 +1,6 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/features/product/presentation/widgets/custom_container_row.dart';
+import 'package:final_project/features/home/presentation/widgets/custom_container_row.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/core/widgets/custom_text_field.dart';
 import 'package:final_project/features/settings/presentation/widgets/custom_appBar_widget.dart';
