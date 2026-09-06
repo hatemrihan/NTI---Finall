@@ -1,4 +1,4 @@
-import 'package:final_project/features/product/presentation/screens/category_products_screen.dart';
+import 'package:final_project/features/home/presentation/screens/category_products_screen.dart';
 import 'package:final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:final_project/features/profile/presentation/screens/profile_screen.dart';

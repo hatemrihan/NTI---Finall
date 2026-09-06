@@ -2,12 +2,12 @@ import 'dart:developer';
 
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/features/product/presentation/widgets/color_button.dart';
-import 'package:final_project/features/product/presentation/widgets/counter_button.dart';
-import 'package:final_project/features/product/presentation/widgets/product_info.dart';
+import 'package:final_project/features/home/presentation/widgets/color_button.dart';
+import 'package:final_project/features/home/presentation/widgets/counter_button.dart';
+import 'package:final_project/features/home/presentation/widgets/product_info.dart';
 import 'package:final_project/features/cart/presentation/widgets/review_cart_details.dart';
-import 'package:final_project/features/product/presentation/widgets/size_button.dart';
-import 'package:final_project/features/product/presentation/widgets/write_review.dart';
+import 'package:final_project/features/home/presentation/widgets/size_button.dart';
+import 'package:final_project/features/home/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 
 void main() {
