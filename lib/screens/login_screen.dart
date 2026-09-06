@@ -1,25 +1,25 @@
 import 'dart:developer';
 
 import 'package:final_project/screens/Authentications/CreateAccount.dart';
-import 'package:final_project/screens/Authentications/ForgotPassword.dart';
-import 'package:final_project/screens/signup_screen.dart';
-import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/custom_text_button.dart';
-import 'package:final_project/widgets/custom_text_field.dart';
-import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/features/auth/presentation/screens/forgot _password_screen.dart';
+import 'package:final_project/features/auth/presentation/screens/signup_screen.dart';
+import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
+import 'package:final_project/core/widgets/custom_text_button.dart';
+import 'package:final_project/core/widgets/custom_text_field.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/auth/presentation/widgets/login_header_section.dart';
 import 'package:final_project/features/auth/presentation/widgets/login_social_section.dart';
 import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:final_project/screens/Authentications/CreateAccount.dart';
-import 'package:final_project/screens/Authentications/ForgotPassword.dart';
-import 'package:final_project/screens/bottom_nav_bar_screen.dart';
+import 'package:final_project/features/auth/presentation/screens/forgot _password_screen.dart';
+import 'package:final_project/features/navigation/presentation/screens/bottom_nav_bar_screen.dart';
 // import 'package:final_project/screens/home_screen.dart';
 // import 'package:final_project/screens/signup_screen.dart';
-import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/custom_text_button.dart';
-import 'package:final_project/widgets/custom_text_field.dart';
-import 'package:final_project/widgets/or_divider.dart';
+import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
+import 'package:final_project/core/widgets/custom_text_button.dart';
+import 'package:final_project/core/widgets/custom_text_field.dart';
+import 'package:final_project/features/auth/presentation/widgets/or_divider.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {

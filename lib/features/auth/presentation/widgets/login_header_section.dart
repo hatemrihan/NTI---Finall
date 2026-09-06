@@ -1,5 +1,5 @@
-import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/core/utils/app_styles.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class LoginHeaderSection extends StatelessWidget {
@@ -17,14 +17,11 @@ class LoginHeaderSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
+        Image.asset(
           logo,
-          style: AppStyles.style28ExtraBold.copyWith(
-            fontFamily: "Manrope",
-            color: AppColors.textClr,
-          ),
+          width: 200,
+          height: 190,
         ),
-        SizedBox(height: 16),
         Text(
           title,
           style: AppStyles.style24Bold.copyWith(
@@ -32,7 +29,7 @@ class LoginHeaderSection extends StatelessWidget {
             color: AppColors.textClr,
           ),
         ),
-        SizedBox(height: 6),
+        SizedBox(height: 8),
         Text(
           subTitle,
           style: AppStyles.style14Regular.copyWith(color: AppColors.grayClr),

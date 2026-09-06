@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛍️ NOMA — Smart Accessories Store
+# 🛍️ LAMSA — Smart Accessories Store
 
 <br>
 
@@ -214,7 +214,7 @@ NOMA uses a calm, earthy-toned design language that feels premium and inviting:
 ```
 NTI---Finall/
 ├── 📁 lib/
-│   ├── 📄 main.dart                        # App entry point (NEMOStore)
+│   ├── 📄 main.dart                        # App entry point (LAMSA)
 │   ├── 📄 app_colors.dart                  # Color constants & design tokens
 │   ├── 📄 app_styles.dart                  # TextStyle presets (11px–48px)
 │   ├── 📄 app_strings.dart                 # Validation messages & strings

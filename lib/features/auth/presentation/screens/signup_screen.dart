@@ -1,15 +1,17 @@
 import 'dart:developer';
-
-import 'package:dio/dio.dart';
-import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/core/utils/app_styles.dart';
-import 'package:final_project/screens/email_verification_screen.dart';
-// import 'package:final_project/screens/emailVerification_screen.dart';
-import 'package:final_project/widgets/custom_elevated_buttom.dart';
-import 'package:final_project/widgets/custom_text_button.dart';
-import 'package:final_project/widgets/custom_text_field.dart';
-import 'package:final_project/core/helper/validators.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:final_project/features/auth/presentation/auth_cubit/auth_cubit.dart';
+import 'package:final_project/features/auth/presentation/auth_cubit/auth_states.dart';
+import 'package:final_project/features/auth/presentation/screens/verify_email_screen.dart';
+import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
+import 'package:final_project/core/widgets/custom_text_button.dart';
+import 'package:final_project/core/widgets/custom_text_field.dart';
+import 'package:final_project/core/utils/validators.dart';
+import 'package:final_project/features/auth/presentation/widgets/custom_password_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -25,27 +27,19 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController emailCtl = TextEditingController();
   final TextEditingController passwordCtl = TextEditingController();
   final TextEditingController confirmPasswordCtl = TextEditingController();
-  bool isVisiable = true;
-  bool isChecked = false;
+  final AuthRemoteDataSource authRemoteDataSource = AuthRemoteDataSource();
+  bool isVisiablePassword = true;
+  bool isVisiableConfirmPassword = true;
 
-  Future<void> signUp() async {
-    final Dio dio = Dio();
-    try {
-      await dio.post(
-        'https://accessories-eshop.runasp.net/api/auth/register',
-        data: {
-          "email": emailCtl.text,
-          "password": passwordCtl.text,
-          "firstName": firstNameCtl.text,
-          "lastName": lastNameCtl.text,
-        },
-      );
-      setState(() {});
-    } on DioException catch (e) {
-      log('Status Code : ${e.response!.data['statusCode']}');
-      log('Message : ${e.response!.data['message']}');
-      log('Error : ${e.response!.data['errors']}');
-    }
+  bool isChecked = false;
+  @override
+  void dispose() {
+    super.dispose();
+    emailCtl.dispose();
+    passwordCtl.dispose();
+    confirmPasswordCtl.dispose();
+    firstNameCtl.dispose();
+    lastNameCtl.dispose();
   }
 
   @override
@@ -81,7 +75,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Join NOMA today for exclusive collections.',
+                    'Join LAMSA today for exclusive collections.',
                     style: AppStyles.style14Regular.copyWith(
                       color: AppColors.grayClr,
                     ),
@@ -126,38 +120,55 @@ class _SignupScreenState extends State<SignupScreen> {
                     },
                   ),
                   SizedBox(height: 16),
-                  CustomTextField(
-                    prefixIcon: Icon(Icons.key_outlined),
+                  CustomPasswordField(
                     controller: passwordCtl,
                     title: 'Password',
                     hintText: 'Please enter your password',
                     validator: (password) {
                       return Validator.validatePassword(password!);
                     },
-                    obscureText: isVisiable,
+                    obscureText: isVisiablePassword,
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
-                          isVisiable = !isVisiable;
+                          isVisiablePassword = !isVisiablePassword;
                         });
                       },
                       icon: Icon(
-                        isVisiable ? Icons.visibility_off : Icons.visibility,
+                        isVisiablePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: AppColors.grayClr,
                       ),
                     ),
                   ),
                   SizedBox(height: 16),
 
-                  CustomTextField(
-                    prefixIcon: Icon(Icons.key_outlined),
+                  CustomPasswordField(
                     controller: confirmPasswordCtl,
                     title: 'Confirm Password',
                     hintText: 'Confirm your password',
-                    obscureText: isVisiable,
+                    obscureText: isVisiableConfirmPassword,
                     validator: (confirmPassword) {
-                      return Validator.validatePassword(confirmPassword!);
+                      return Validator.validateConfirmPassword(
+                        passwordCtl.text,
+                        confirmPassword!,
+                      );
                     },
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isVisiableConfirmPassword =
+                              !isVisiableConfirmPassword;
+                        });
+                      },
+                      icon: Icon(
+                        isVisiableConfirmPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: AppColors.grayClr,
+                      ),
+                    ),
                   ),
                   SizedBox(height: 16),
 
@@ -170,6 +181,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         activeColor: AppColors.primaryClr,
                         value: isChecked,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
                         onChanged: (newVal) {
                           log(newVal.toString());
                           isChecked = newVal!;
@@ -209,22 +223,46 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                   SizedBox(height: 24),
-
-                  CustomElevatedButton(
-                    text: 'Create Account',
-                    // onPressed: () {
-                    //   log("Create Account");
-
-                    // },
-                    onPressed: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EmailverificationScreen(),
-                      ),
-                    ),
+                  BlocConsumer<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      if (state is SignUpLoadingState) {
+                        return Center(child: CircularProgressIndicator());
+                      } else {
+                        return CustomElevatedButton(
+                          text: 'Create Account',
+                          onPressed: isChecked
+                              ? () async {
+                                  if (myKey.currentState!.validate()) {
+                                    await context.read<AuthCubit>().signup(
+                                      email: emailCtl.text,
+                                      password: passwordCtl.text,
+                                      firstName: firstNameCtl.text,
+                                      lastName: lastNameCtl.text,
+                                    );
+                                  }
+                                }
+                              : null,
+                        );
+                      }
+                    },
+                    listener: (context, state) {
+                      if (state is SignUpSuccessState) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VerifyEmailScreen(),
+                          ),
+                        );
+                      } else if (state is SignUpFailureState) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Sign up failed. Please try again.'),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   SizedBox(height: 50),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

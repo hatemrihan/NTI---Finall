@@ -1,12 +1,10 @@
-// Custom widget: Shared scaffold layout for all authentication screens
-import 'package:final_project/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AuthScaffold extends StatelessWidget {
   const AuthScaffold({
     super.key,
     required this.children,
-    this.scrollable = true,
+    this.scrollable = false,
   });
 
   final List<Widget> children;
@@ -14,18 +12,10 @@ class AuthScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: children,
-    );
-
+    final content = Column(children: children);
     return Scaffold(
-      backgroundColor: AppColors.backgroundClr,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: scrollable ? SingleChildScrollView(child: content) : content,
-        ),
+        child: scrollable ? SingleChildScrollView(child: content) : content,
       ),
     );
   }
