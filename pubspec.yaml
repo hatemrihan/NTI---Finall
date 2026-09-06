@@ -36,10 +36,12 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.3.0
   dio: ^5.11.0
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -87,6 +89,15 @@ flutter:
           weight: 700
         - asset: assets/fonts/Manrope-ExtraBold.ttf
           weight: 800
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  web:
+    generate: true
+  image_path: assets/images/logo.png
+  adaptive_icon_background: "#FFFFFF"
+  remove_alpha_ios: true
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

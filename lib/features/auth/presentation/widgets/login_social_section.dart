@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:final_project/widgets/custom_social_button.dart';
+import 'package:final_project/features/auth/presentation/widgets/custom_social_button.dart';
 
 class LoginSocialSection extends StatelessWidget {
   const LoginSocialSection({super.key});

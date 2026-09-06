@@ -1,13 +1,15 @@
-import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/core/utils/app_styles.dart';
-import 'package:final_project/widgets/custom_categories_home.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/theme/app_styles.dart';
+// import 'package:final_project/widgets/bottom_nav_bar.dart';
+import 'package:final_project/features/home/presentation/widgets/custom_categories_home.dart';
 
-import 'package:final_project/widgets/cutom_gridview_home.dart';
+import 'package:final_project/features/home/presentation/widgets/cutom_gridview_home.dart';
 import 'package:final_project/features/home/presentation/widgets/home_screen_header.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, this.onTabChange});
+  final ValueChanged<int>? onTabChange;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HomeScreenHeader(),
+                HomeScreenHeader(onTabChange: onTabChange),
                 SizedBox(height: 24),
                 Text(
                   "Categories",
@@ -31,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
 
-                CustomCategoriesHome(),
+                CustomCategoriesHome(onTabChange: onTabChange),
 
                 SizedBox(height: 20),
                 Text(
@@ -48,6 +50,8 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+
+      // bottomNavigationBar:BottomNavBar(),
     );
   }
 }

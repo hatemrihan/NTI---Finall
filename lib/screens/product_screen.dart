@@ -1,12 +1,13 @@
 import 'dart:developer';
-import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/theme/app_colors.dart';
+
 import 'package:final_project/core/utils/app_styles.dart';
-import 'package:final_project/widgets/color_button.dart';
-import 'package:final_project/widgets/counter_button.dart';
-import 'package:final_project/widgets/product_info.dart';
-import 'package:final_project/widgets/review_cart_details.dart';
-import 'package:final_project/widgets/size_button.dart';
-import 'package:final_project/widgets/write_review.dart';
+import 'package:final_project/features/cart/presentation/widgets/review_cart_details.dart';
+import 'package:final_project/features/product/presentation/widgets/color_button.dart';
+import 'package:final_project/features/product/presentation/widgets/counter_button.dart';
+import 'package:final_project/features/product/presentation/widgets/product_info.dart';
+import 'package:final_project/features/product/presentation/widgets/size_button.dart';
+import 'package:final_project/features/product/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {

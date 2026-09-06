@@ -1,19 +1,20 @@
-import 'package:final_project/features/splash_and_onboarding/presentation/screens/splash_screen.dart';
+import 'package:final_project/features/splash/presentation/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const NEMOStore());
+  runApp(const LAMSA());
 }
 
-class NEMOStore extends StatelessWidget {
-  const NEMOStore({super.key});
+class LAMSA extends StatelessWidget {
+  const LAMSA({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'LAMSA',
       theme: ThemeData(fontFamily: "Manrope"),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
