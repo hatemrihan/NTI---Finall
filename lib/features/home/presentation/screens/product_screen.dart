@@ -10,12 +10,6 @@ import 'package:final_project/features/home/presentation/widgets/size_button.dar
 import 'package:final_project/features/home/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-    MaterialApp(debugShowCheckedModeBanner: false, home: ProductDetails()),
-  );
-}
-
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key});
 
