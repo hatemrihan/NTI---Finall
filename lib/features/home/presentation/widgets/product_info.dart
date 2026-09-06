@@ -29,7 +29,9 @@ class ProductInfo extends StatelessWidget {
         Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(image),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(image)),
           ),
         ),
         SizedBox(height: 20),
@@ -67,11 +69,11 @@ class ProductInfo extends StatelessWidget {
             ),
             Text(
               "$rating",
-              style: AppStyles.style16Bold.copyWith(color: Colors.black),
+              style: AppStyles.style14Bold.copyWith(color: Colors.black),
             ),
             Text(
               "($reviews reviews)",
-              style: AppStyles.style16Bold.copyWith(color: Colors.black),
+              style: AppStyles.style14Bold.copyWith(color: Colors.black),
             ),
           ],
         ),
