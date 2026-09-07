@@ -1,94 +1,105 @@
-import 'dart:developer';
-
-import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
+import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomCategoriesHome extends StatefulWidget {
+class CustomCategoriesHome extends StatelessWidget {
   const CustomCategoriesHome({super.key, this.onTabChange});
   final ValueChanged<int>? onTabChange;
 
   @override
-  State<CustomCategoriesHome> createState() => _CustomCategoriesHomeState();
-}
-
-class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
-  List categories = [];
-  final dio = Dio();
-
-  Future<void> getcategories() async {
-    final Response response = await dio.get(
-      "https://accessories-eshop.runasp.net/api/categories",
-      options: Options(
-        headers: {
-          "Authorization":
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjgyYWJjNS1hYWJjLTQ2MTEtMzVhYy0wOGRmMGMzZjg1NmQiLCJqdGkiOiJiM2E4NzRkNi0xODk3LTRiNmQtOWVlNy0yN2E1YjM1Mzk5NWQiLCJlbWFpbCI6Im1vc3RhZmFzYWFkaGFmZXo3QGdtYWlsLmNvbSIsIm5hbWUiOiJzdHJpbmcgc3RyaW5nIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg4OTQ5MjgzLCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.an0qG510_S2a07twkgygxDy3Mnw-fokLTM8deKEWTao",
-        },
-      ),
-    );
-    categories = response.data["categories"];
-    setState(() {});
-    log(categories.toString());
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getcategories();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 105,
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6),
-                child: Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        widget.onTabChange?.call(1);
-                      },
-                      child: CircleAvatar(
-                        radius: 40,
-                        child: ClipOval(
-                          child: Image.network(
-                            categories[index]["coverPictureUrl"] ?? "",
-                            width: 80,
-                            height: 80,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(
-                                Icons.image_not_supported_outlined,
-                                size: 35,
-                              );
-                            },
+    return BlocBuilder<ProductsCubit, ProductsState>(
+      buildWhen: (previous, current) =>
+          current is GetCategoriesLoadingState ||
+          current is GetCategoriesSuccessState ||
+          current is GetCategoriesFailureState ||
+          current is ProductsInitialState,
+      builder: (context, state) {
+        final cubit = context.read<ProductsCubit>();
+
+        if (cubit.isCategoriesLoading ||
+            (state is ProductsInitialState && cubit.categories.isEmpty) ||
+            (state is GetCategoriesLoadingState)) {
+          return const SizedBox(
+            height: 105,
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (state is GetCategoriesFailureState && cubit.categories.isEmpty) {
+          return SizedBox(
+            height: 105,
+            child: Center(
+              child: Text(
+                state.error ?? "Failed to load categories",
+                style: AppStyles.style12Medium.copyWith(color: Colors.red),
+              ),
+            ),
+          );
+        }
+
+        if (cubit.categories.isEmpty) {
+          return const SizedBox(
+            height: 105,
+            child: Center(child: Text("No categories available")),
+          );
+        }
+
+        return Column(
+          children: [
+            SizedBox(
+              height: 105,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: cubit.categories.length,
+                itemBuilder: (context, index) {
+                  final category = cubit.categories[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            onTabChange?.call(1);
+                          },
+                          child: CircleAvatar(
+                            radius: 40,
+                            child: ClipOval(
+                              child: Image.network(
+                                category["coverPictureUrl"] ?? "",
+                                width: 80,
+                                height: 80,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(
+                                    Icons.image_not_supported_outlined,
+                                    size: 35,
+                                  );
+                                },
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        const SizedBox(height: 8),
+                        Text(
+                          category["name"] ?? "",
+                          style: AppStyles.style12Medium.copyWith(
+                            color: AppColors.textClr,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      categories[index]["name"],
-                      style: AppStyles.style12Medium.copyWith(
-                        color: AppColors.textClr,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
-      ],
+                  );
+                },
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
