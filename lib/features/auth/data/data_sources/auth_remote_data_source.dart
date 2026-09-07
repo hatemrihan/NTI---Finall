@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:final_project/core/Token/token.dart';
 
 class AuthRemoteDataSource {
   final Dio dio = Dio();
@@ -10,6 +11,7 @@ class AuthRemoteDataSource {
         'https://accessories-eshop.runasp.net/api/auth/login',
         data: {"email": email, "password": password},
       );
+      token = response.data['token'];
       log("response : $response");
     } on DioException catch (e) {
       throw Exception(e.response?.data.toString());

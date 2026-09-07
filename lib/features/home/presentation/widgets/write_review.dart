@@ -1,12 +1,13 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:final_project/core/Token/token.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class WriteReview extends StatefulWidget {
-  const WriteReview({super.key, required this.productId, required this.onReviewAdded});
+  const WriteReview({super.key, required this.productId, required this.onReviewAdded,});
    final String productId;
    final Function() onReviewAdded;
 
@@ -29,7 +30,7 @@ class _WriteReviewState extends State<WriteReview> {
       },
       options: Options(
         headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGI2ZTkyNi02NzY3LTRmOTctMzVhZi0wOGRmMGMzZjg1NmQiLCJqdGkiOiI0MDEyNTNiMS03OGNhLTRiZjUtOWQzNS01OTQxMzhlNmVhZmUiLCJlbWFpbCI6ImFiZGVscmFobWFuM2lzbWFlbEBnbWFpbC5jb20iLCJuYW1lIjoiQWJkZWxyYWhtYW4gSXNtYWVpbCIsInJvbGVzIjoiIiwicGljdHVyZSI6IiIsImV4cCI6MTc4OTAwNjcwNywiaXNzIjoiZXNob3AubmV0IiwiYXVkIjoiZXNob3AubmV0In0.pKL-2VcG9RRzWJOYGxvIyx6fgE1dnisKnvNv4D6Qzf4',
+          'Authorization': 'Bearer $token}',
           'Content-Type': 'application/json',
         },
       ),

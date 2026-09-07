@@ -138,7 +138,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                 //* Reviews Section
                 ReviewsSection(reviews: reviews,),
                 SizedBox(height: 12),
-                WriteReview(productId: widget.product.id, onReviewAdded: (){
+                WriteReview(productId: widget.product.id,
+                onReviewAdded: (){
                   getReviews();
                 },),
                 SizedBox(height: 20),
