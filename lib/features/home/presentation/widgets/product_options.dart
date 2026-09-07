@@ -16,6 +16,7 @@ class _ProductOptionsState extends State<ProductOptions> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('Select Color', style: AppStyles.style13Bold),
         SizedBox(height: 8),
