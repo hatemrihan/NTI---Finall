@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/presentation/screens/product_model.dart';
 import 'package:final_project/features/home/presentation/widgets/color_button.dart';
 import 'package:final_project/features/home/presentation/widgets/counter_button.dart';
 import 'package:final_project/features/home/presentation/widgets/product_info.dart';
@@ -11,7 +12,8 @@ import 'package:final_project/features/home/presentation/widgets/write_review.da
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {
-  const ProductDetails({super.key});
+  const ProductDetails({super.key,required this.product});
+  final ProductModel product;
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -68,11 +70,11 @@ class _ProductDetailsState extends State<ProductDetails> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ProductInfo(
-                  image: "assets/images/hour.png",
-                  brand: "MERIDIAN",
-                  description: "Classic leather Chronograph",
-                  price: 245.00,
-                  oldPrice: 320.00,
+                  image: widget.product.coverPictureUrl,
+                  brand: widget.product.name,
+                  description: widget.product.description,
+                  price: widget.product.price,
+                  oldPrice: widget.product.price + 900,
                   rating: 4.8,
                   reviews: 124,
                 ),
@@ -139,7 +141,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          log("add to cart pressed");
+                          log("add to cart pressed ${widget.product.name}");
                         },
                         child: Container(
                           height: 52,
@@ -192,7 +194,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ],
                         ),
                         Text(
-                          "A high-precision design meticulously built. Featuring premium full-grain Italian calfskin strap, Japanese quartz movement, sapphire crystal scratch-resistant casing, and functional dual subdials. Water resistant up to 5 ATM.",
+                          widget.product.description,
                           style: AppStyles.style13Regular.copyWith(
                             color: AppColors.hintClr,
                           ),
