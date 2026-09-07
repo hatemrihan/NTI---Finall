@@ -20,19 +20,24 @@ class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
   Future<void> getcategories() async {
     final Response response = await dio.get(
       "https://accessories-eshop.runasp.net/api/categories",
-      options: Options(headers: {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjgyYWJjNS1hYWJjLTQ2MTEtMzVhYy0wOGRmMGMzZjg1NmQiLCJqdGkiOiJiM2E4NzRkNi0xODk3LTRiNmQtOWVlNy0yN2E1YjM1Mzk5NWQiLCJlbWFpbCI6Im1vc3RhZmFzYWFkaGFmZXo3QGdtYWlsLmNvbSIsIm5hbWUiOiJzdHJpbmcgc3RyaW5nIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg4OTQ5MjgzLCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.an0qG510_S2a07twkgygxDy3Mnw-fokLTM8deKEWTao"}),
+      options: Options(
+        headers: {
+          "Authorization":
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjgyYWJjNS1hYWJjLTQ2MTEtMzVhYy0wOGRmMGMzZjg1NmQiLCJqdGkiOiJiM2E4NzRkNi0xODk3LTRiNmQtOWVlNy0yN2E1YjM1Mzk5NWQiLCJlbWFpbCI6Im1vc3RhZmFzYWFkaGFmZXo3QGdtYWlsLmNvbSIsIm5hbWUiOiJzdHJpbmcgc3RyaW5nIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg4OTQ5MjgzLCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.an0qG510_S2a07twkgygxDy3Mnw-fokLTM8deKEWTao",
+        },
+      ),
     );
     categories = response.data["categories"];
-    setState(() {
-      
-    });
+    setState(() {});
     log(categories.toString());
   }
+
   @override
   void initState() {
     super.initState();
     getcategories();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -54,9 +59,19 @@ class _CustomCategoriesHomeState extends State<CustomCategoriesHome> {
                       },
                       child: CircleAvatar(
                         radius: 40,
-
-                        backgroundImage: NetworkImage(
-                          categories[index]["coverPictureUrl"],
+                        child: ClipOval(
+                          child: Image.network(
+                            categories[index]["coverPictureUrl"] ?? "",
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(
+                                Icons.image_not_supported_outlined,
+                                size: 35,
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),
