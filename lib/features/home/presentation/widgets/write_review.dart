@@ -1,15 +1,54 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class WriteReview extends StatefulWidget {
-  const WriteReview({super.key});
+  const WriteReview({super.key, required this.productId, required this.onReviewAdded});
+   final String productId;
+   final Function() onReviewAdded;
 
   @override
   State<WriteReview> createState() => _WriteReviewState();
 }
 
 class _WriteReviewState extends State<WriteReview> {
+    final TextEditingController commentCTR = TextEditingController();
+    Future<bool> addReview({
+  required int rating,
+  required String comment,
+}) async {
+  try {
+    final response = await Dio().post(
+      'https://accessories-eshop.runasp.net/api/reviews/${widget.productId}',
+      data: {
+        'rating': rating,
+        'comment': comment,
+      },
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGI2ZTkyNi02NzY3LTRmOTctMzVhZi0wOGRmMGMzZjg1NmQiLCJqdGkiOiI0MDEyNTNiMS03OGNhLTRiZjUtOWQzNS01OTQxMzhlNmVhZmUiLCJlbWFpbCI6ImFiZGVscmFobWFuM2lzbWFlbEBnbWFpbC5jb20iLCJuYW1lIjoiQWJkZWxyYWhtYW4gSXNtYWVpbCIsInJvbGVzIjoiIiwicGljdHVyZSI6IiIsImV4cCI6MTc4OTAwNjcwNywiaXNzIjoiZXNob3AubmV0IiwiYXVkIjoiZXNob3AubmV0In0.pKL-2VcG9RRzWJOYGxvIyx6fgE1dnisKnvNv4D6Qzf4',
+          'Content-Type': 'application/json',
+        },
+      ),
+    );
+  
+    log('STATUS: ${response.statusCode}');
+    log('DATA: ${response.data}');
+    return true;
+  } on DioException catch (e) {
+    log('STATUS: ${e.response?.statusCode}');
+    log('DATA: ${e.response?.data}');
+    return false;
+  }
+}
+  @override
+  void dispose() {
+    commentCTR.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,6 +67,7 @@ class _WriteReviewState extends State<WriteReview> {
               return StatefulBuilder(
                 builder: (context, setState) {
                   return Container(
+                    width: double.infinity,
                     height: 1000,
                     decoration: BoxDecoration(color: AppColors.cardFillClr, borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
                     child: Padding(
@@ -127,6 +167,7 @@ class _WriteReviewState extends State<WriteReview> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               TextField(
+                                controller: commentCTR,
                                 decoration: InputDecoration(
                                   focusColor: Colors.amber,
                                   hintText: "The design is gorgeous. Everything sits neatly on the wrist, leather is soft as described. Packaging is exquisite. Would recommend to anyone looking for a clean everyday chronograph.",
@@ -150,7 +191,16 @@ class _WriteReviewState extends State<WriteReview> {
                             decoration: BoxDecoration(color: AppColors.primaryClr, borderRadius: BorderRadius.circular(45)),
                             child: InkWell(
                               borderRadius: BorderRadius.circular(45),
-                              onTap: () {},
+                              onTap: () async {
+                                  final result =  await addReview(
+                                    rating: selectedStars.toInt(),
+                                    comment: commentCTR.text,
+                                  );
+                                  if (result && context.mounted) {
+                                    Navigator.pop(context);
+                                    widget.onReviewAdded();
+                                  }
+                                },
                               child: Center(
                                 child: Text("Submit Review", style: AppStyles.style16Bold.copyWith(color: AppColors.whiteClr)),
                               ),

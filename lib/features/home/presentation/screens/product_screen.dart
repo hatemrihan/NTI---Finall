@@ -1,6 +1,8 @@
 import 'dart:developer';
+import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/data/models/reviews_model.dart';
 import 'package:final_project/features/home/presentation/screens/product_model.dart';
 import 'package:final_project/features/home/presentation/widgets/counter_button.dart';
 import 'package:final_project/features/home/presentation/widgets/description_section.dart';
@@ -20,6 +22,40 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   String? selectedSize;
+  double averageRating = 0;
+  int reviewsCount = 0;
+    @override
+    void initState() {
+      super.initState();
+      getReviews();
+    }
+    List<ReviewModel> reviews = [];
+    final dio = Dio();
+
+  Future<void> getReviews() async {
+    log('get reviews');
+
+    final Response response = await dio.get(
+      'https://accessories-eshop.runasp.net/api/reviews/${widget.product.id}',
+      options: Options(
+    headers: {
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGI2ZTkyNi02NzY3LTRmOTctMzVhZi0wOGRmMGMzZjg1NmQiLCJqdGkiOiI0MDEyNTNiMS03OGNhLTRiZjUtOWQzNS01OTQxMzhlNmVhZmUiLCJlbWFpbCI6ImFiZGVscmFobWFuM2lzbWFlbEBnbWFpbC5jb20iLCJuYW1lIjoiQWJkZWxyYWhtYW4gSXNtYWVpbCIsInJvbGVzIjoiIiwicGljdHVyZSI6IiIsImV4cCI6MTc4OTAwNjcwNywiaXNzIjoiZXNob3AubmV0IiwiYXVkIjoiZXNob3AubmV0In0.pKL-2VcG9RRzWJOYGxvIyx6fgE1dnisKnvNv4D6Qzf4',
+    },
+    ),
+    );
+      reviews.clear();
+    averageRating = (response.data['averageRating'] ?? 0).toDouble();
+    reviewsCount = response.data['reviewsCount'] ?? 0;
+    log(response.data.toString());
+    for (var element in response.data['reviews']['items']) {
+      final ReviewModel model = ReviewModel.fromJson(element);
+      reviews.add(model);
+    }
+
+    setState(() {});
+    log(reviews.toString());
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,8 +98,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                   description: widget.product.description,
                   price: widget.product.price,
                   oldPrice: widget.product.price + 900,
-                  rating: 4.8,
-                  reviews: 124,
+                  rating: averageRating,
+                  reviews: reviewsCount,
                 ),
                 SizedBox(height: 20),
                 Divider(color: Color(0xffE8DDCB)),
@@ -100,9 +136,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                 DescriptionSection(description: widget.product.description),
                 SizedBox(height: 20),
                 //* Reviews Section
-                ReviewsSection(),
+                ReviewsSection(reviews: reviews,),
                 SizedBox(height: 12),
-                WriteReview(),
+                WriteReview(productId: widget.product.id, onReviewAdded: (){
+                  getReviews();
+                },),
                 SizedBox(height: 20),
               ],
             ),
