@@ -22,6 +22,9 @@ class _WriteReviewState extends State<WriteReview> {
   required String comment,
 }) async {
   try {
+    log('REVIEW TOKEN: $token');
+    log('TOKEN EMPTY: ${token.isEmpty}');
+    log('TOKEN LENGTH: ${token.length}');
     final response = await Dio().post(
       'https://accessories-eshop.runasp.net/api/reviews/${widget.productId}',
       data: {
@@ -30,7 +33,7 @@ class _WriteReviewState extends State<WriteReview> {
       },
       options: Options(
         headers: {
-          'Authorization': 'Bearer $token}',
+          'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
         },
       ),
