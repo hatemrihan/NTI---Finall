@@ -6,6 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/material.dart';
 
 import 'package:final_project/main.dart';
 
@@ -14,7 +15,10 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const LAMSA());
 
-    // Verify that Welcome Back text is rendered.
-    expect(find.text('Welcome Back'), findsOneWidget);
+    // Verify that the app starts on the splash screen.
+    expect(find.text('Accessories For Touch You'), findsOneWidget);
+
+    // Dispose the splash before its delayed navigation runs.
+    await tester.pumpWidget(const SizedBox.shrink());
   });
 }

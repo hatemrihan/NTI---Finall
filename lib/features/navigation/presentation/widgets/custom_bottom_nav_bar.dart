@@ -26,12 +26,7 @@ class CustomBottomNavBar extends StatelessWidget {
     Icons.person,
   ];
 
-  static const List<String> _labels = [
-    'Home',
-    'Categories',
-    'Cart',
-    'Profile',
-  ];
+  static const List<String> _labels = ['Home', 'Categories', 'Cart', 'Profile'];
 
   @override
   Widget build(BuildContext context) {
@@ -51,58 +46,53 @@ class CustomBottomNavBar extends StatelessWidget {
         top: false,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(
-            _icons.length,
-            (index) {
-              final bool isSelected = currentIndex == index;
+          children: List.generate(_icons.length, (index) {
+            final bool isSelected = currentIndex == index;
 
-              return GestureDetector(
-                onTap: () => onTap(index),
-                behavior: HitTestBehavior.opaque,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: isSelected ? 16 : 12,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ?const Color.fromARGB(255, 206, 237, 223)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        isSelected ? _activeIcons[index] : _icons[index],
-                        size: 25,
-                        color: isSelected
-                            ? AppColors.primaryClr
-                            : Colors.black54,
-                      ),
-                      AnimatedSize(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                        child: isSelected
-                            ? Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Text(
-                                  _labels[index],
-                                  style: AppStyles.style14SemiBold.copyWith(
-                                    color: AppColors.primaryClr,
-                                  ),
-                                ),
-                              )
-                            : const SizedBox.shrink(),
-                      ),
-                    ],
-                  ),
+            return GestureDetector(
+              onTap: () => onTap(index),
+              behavior: HitTestBehavior.opaque,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                padding: EdgeInsets.symmetric(
+                  horizontal: isSelected ? 16 : 12,
+                  vertical: 8,
                 ),
-              );
-            },
-          ),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? const Color.fromARGB(255, 206, 237, 223)
+                      : Colors.transparent,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      isSelected ? _activeIcons[index] : _icons[index],
+                      size: 25,
+                      color: isSelected ? AppColors.primaryClr : Colors.black54,
+                    ),
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      child: isSelected
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: Text(
+                                _labels[index],
+                                style: AppStyles.style14SemiBold.copyWith(
+                                  color: AppColors.primaryClr,
+                                ),
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
         ),
       ),
     );

@@ -1,10 +1,16 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class CartEmptyScreen extends StatelessWidget {
+class CartEmptyScreen extends StatefulWidget {
   const CartEmptyScreen({super.key});
 
+  @override
+  State<CartEmptyScreen> createState() => _CartEmptyScreenState();
+}
+
+class _CartEmptyScreenState extends State<CartEmptyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +55,14 @@ class CartEmptyScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryClr,
                     minimumSize: const Size(200, 50),

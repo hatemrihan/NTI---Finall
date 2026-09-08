@@ -1,6 +1,8 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/onboarding/presentation/screens/onBoarding1_screen.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,6 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
   late final Animation<double> _logoFadeAnimation;
   late final Animation<double> _textFadeAnimation;
   late final Animation<Offset> _textSlideAnimation;
+  Timer? _navigationTimer;
 
   @override
   void initState() {
@@ -61,23 +64,19 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     // Slogan text slide-up
-    _textSlideAnimation = Tween<Offset>(
-      begin: const Offset(0.0, 0.4),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.55, 0.90, curve: Curves.easeOutCubic),
-      ),
-    );
+    _textSlideAnimation =
+        Tween<Offset>(begin: const Offset(0.0, 0.4), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.55, 0.90, curve: Curves.easeOutCubic),
+          ),
+        );
 
     _controller.forward();
-    _navigateToNext();
+    _navigationTimer = Timer(const Duration(seconds: 3), _navigateToNext);
   }
 
-  Future<void> _navigateToNext() async {
-    await Future.delayed(const Duration(milliseconds: 3000));
-
+  void _navigateToNext() {
     if (!mounted) return;
 
     Navigator.pushReplacement(
@@ -101,6 +100,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
+    _navigationTimer?.cancel();
     _controller.dispose();
     super.dispose();
   }
@@ -144,10 +144,7 @@ class _SplashScreenState extends State<SplashScreen>
                         ),
                       ],
                     ),
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      width: 195,
-                    ),
+                    child: Image.asset('assets/images/logo.png', width: 195),
                   ),
                 ),
               ),

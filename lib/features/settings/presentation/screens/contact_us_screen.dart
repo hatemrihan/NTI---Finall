@@ -32,7 +32,6 @@ class ContactUsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundClr,
       appBar: CustomAppbarWidget(
-        
         title: 'CONTACT US',
         onBackPressed: () => Navigator.pop(context),
       ),
