@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:final_project/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:final_project/features/home/data/models/product_model.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
