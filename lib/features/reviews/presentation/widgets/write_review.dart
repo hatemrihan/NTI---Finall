@@ -79,7 +79,7 @@ class _WriteReviewState extends State<WriteReview> {
                   return StatefulBuilder(
                     builder: (context, setState) {
                       return Scaffold(
-                        backgroundColor: AppColors.cardFillClr,
+                        backgroundColor: Colors.transparent,
                         body: Container(
                           width: double.infinity,
                           height: 1000,
