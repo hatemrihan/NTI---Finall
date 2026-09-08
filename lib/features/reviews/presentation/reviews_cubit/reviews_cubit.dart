@@ -27,4 +27,25 @@ class ReviewCubit extends Cubit<ReviewState> {
       emit(ReviewFailureState());
     }
   }
+
+
+
+  Future<String> addReview({required String productId, required int rating, required String comment}) async {
+    emit(AddReviewLoadingState());
+    final result = await reviewRemoteDataSource.addReview(
+      productId: productId,
+      rating: rating,
+      comment: comment,
+    );
+    if (result == 'success') {
+      emit(AddReviewSuccessState());
+      return 'success';
+    } else if (result == 'alreadyReviewed') {
+      emit(AddReviewAlreadyReviewedState());
+      return 'alreadyReviewed';
+    } else {
+      emit(AddReviewFailureState());
+      return 'failure';
+    }
+  }
 }

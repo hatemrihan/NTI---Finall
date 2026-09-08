@@ -60,7 +60,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -126,13 +126,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                   WriteReview(
                     productId: widget.product.id,
                     onReviewAdded: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: AppColors.primaryClr,
-                        content: Text("Review added successfully"),
-                        duration: Duration(seconds: 3),
-                      ),
-                    );
                     context.read<ReviewCubit>().getReviews(
                       productId: widget.product.id,
                     );

@@ -1,5 +1,6 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/presentation/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class SearchTextField extends StatelessWidget {
@@ -14,6 +15,14 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SearchScreen(),
+          ),
+        );
+      },
       controller: controller,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
