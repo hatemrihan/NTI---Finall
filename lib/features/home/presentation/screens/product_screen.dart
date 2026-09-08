@@ -60,6 +60,16 @@ class _ProductDetailsState extends State<ProductDetails> {
     log(reviews.toString());
   }
 
+  Widget WriteReview({
+    required dynamic productId,
+    required VoidCallback onReviewAdded,
+  }) {
+    return TextButton(
+      onPressed: onReviewAdded,
+      child: const Text('Write a review'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<ProductsCubit, ProductsState>(
