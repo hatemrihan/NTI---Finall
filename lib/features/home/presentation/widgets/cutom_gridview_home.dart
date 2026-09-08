@@ -92,7 +92,10 @@ class CutomGridviewHome extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductDetails(product: product),
+                        builder: (context) => BlocProvider(
+                          create: (context) => ProductsCubit(),
+                          child: ProductDetails(product: product),
+                        ),
                       ),
                     );
                   },
