@@ -3,6 +3,7 @@ import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
 import 'package:final_project/features/home/presentation/screens/product_screen.dart';
+import 'package:final_project/features/reviews/presentation/reviews_cubit/reviews_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,7 +46,6 @@ class CutomGridviewHome extends StatelessWidget {
               current is ProductsInitialState,
           builder: (context, state) {
             final cubit = context.read<ProductsCubit>();
-
             if (cubit.isProductsLoading ||
                 (state is ProductsInitialState && cubit.products.isEmpty) ||
                 (state is GetProductsLoadingState)) {
@@ -53,6 +53,33 @@ class CutomGridviewHome extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(24.0),
                   child: CircularProgressIndicator(),
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: cubit.products.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 0.62,
+          ),
+          itemBuilder: (context, index) {
+            final product = cubit.products[index];
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (context) => ReviewCubit(),
+                      child: ProductDetails(product: product),
+                    ),
+                  ),
+                );
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
                 ),
               );
             }

@@ -1,8 +1,10 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/widgets/custom_search_text_field.dart';
+import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/widgets/cutom_gridview_home.dart';
 import 'package:final_project/features/home/presentation/widgets/filter_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -14,27 +16,31 @@ class SearchScreen extends StatefulWidget {
 class _MyWidgetState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundClr,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomSearchTextField(
-                  hintText: "search products",
-                  prefixIcon: const Icon(Icons.search),
-                  suffixIcon: const Icon(Icons.cancel_outlined),
+    return BlocProvider(
+      create: (context) => ProductsCubit()
+        ..getProducts(),
+      child: Scaffold(
+          backgroundColor: AppColors.backgroundClr,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomSearchTextField(
+                      hintText: "search products",
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: const Icon(Icons.cancel_outlined),
+                    ),
+                    Filter(),
+                    CutomGridviewHome(),
+                  ],
                 ),
-                Filter(),
-                CutomGridviewHome(),
-              ],
+              ),
             ),
           ),
         ),
-      ),
     );
   }
 }

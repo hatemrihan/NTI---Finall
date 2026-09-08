@@ -26,14 +26,9 @@ class ProductInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(image, width: double.infinity, height: 300, fit: BoxFit.cover),),
-          ),
-        ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.network(image, width: double.infinity, height: 300, fit: BoxFit.cover),),
         SizedBox(height: 20),
         Text(
           brand,
