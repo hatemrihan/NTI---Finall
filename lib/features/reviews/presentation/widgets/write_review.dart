@@ -1,53 +1,20 @@
-import 'dart:developer';
-
-import 'package:dio/dio.dart';
-import 'package:final_project/core/Token/token.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/reviews/data/data_source/reviews_remote_data_source.dart';
 import 'package:flutter/material.dart';
 
 class WriteReview extends StatefulWidget {
   const WriteReview({super.key, required this.productId, required this.onReviewAdded,});
-   final String productId;
-   final Function() onReviewAdded;
+  final String productId;
+  final Function() onReviewAdded;
 
   @override
   State<WriteReview> createState() => _WriteReviewState();
 }
 
 class _WriteReviewState extends State<WriteReview> {
-    final TextEditingController commentCTR = TextEditingController();
-    Future<bool> addReview({
-  required int rating,
-  required String comment,
-}) async {
-  try {
-    log('REVIEW TOKEN: $token');
-    log('TOKEN EMPTY: ${token.isEmpty}');
-    log('TOKEN LENGTH: ${token.length}');
-    final response = await Dio().post(
-      'https://accessories-eshop.runasp.net/api/reviews/${widget.productId}',
-      data: {
-        'rating': rating,
-        'comment': comment,
-      },
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Content-Type': 'application/json',
-        },
-      ),
-    );
-  
-    log('STATUS: ${response.statusCode}');
-    log('DATA: ${response.data}');
-    return true;
-  } on DioException catch (e) {
-    log('STATUS: ${e.response?.statusCode}');
-    log('DATA: ${e.response?.data}');
-    return false;
-  }
-}
+  final TextEditingController commentCTR = TextEditingController();
+  final ReviewRemoteDataSource reviewRemoteDataSource = ReviewRemoteDataSource();
   @override
   void dispose() {
     commentCTR.dispose();
@@ -196,13 +163,30 @@ class _WriteReviewState extends State<WriteReview> {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(45),
                               onTap: () async {
-                                  final result =  await addReview(
+                                  final result =  await reviewRemoteDataSource.addReview(
+                                    productId: widget.productId,
                                     rating: selectedStars.toInt(),
                                     comment: commentCTR.text,
                                   );
-                                  if (result && context.mounted) {
+                                  if (result == 'success' && context.mounted) {
                                     Navigator.pop(context);
                                     widget.onReviewAdded();
+                                  }else if (result == 'alreadyReviewed' && context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        backgroundColor: AppColors.redClr,
+                                        content: Text("You have already reviewed this product"),
+                                        duration: Duration(seconds: 3),
+                                      ),
+                                    );
+                                  }else if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        backgroundColor: AppColors.redClr,
+                                        duration: Duration(seconds: 3),
+                                        content: Text("Failed to add review", style: AppStyles.style14Bold),
+                                        )
+                                    );
                                   }
                                 },
                               child: Center(
