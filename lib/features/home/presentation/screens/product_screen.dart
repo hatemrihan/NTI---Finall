@@ -1,18 +1,19 @@
 import 'dart:developer';
-
+import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/data/models/reviews_model.dart';
 import 'package:final_project/features/home/presentation/screens/product_model.dart';
-import 'package:final_project/features/home/presentation/widgets/color_button.dart';
 import 'package:final_project/features/home/presentation/widgets/counter_button.dart';
+import 'package:final_project/features/home/presentation/widgets/description_section.dart';
 import 'package:final_project/features/home/presentation/widgets/product_info.dart';
-import 'package:final_project/features/cart/presentation/widgets/review_cart_details.dart';
-import 'package:final_project/features/home/presentation/widgets/size_button.dart';
+import 'package:final_project/features/home/presentation/widgets/product_options.dart';
+import 'package:final_project/features/home/presentation/widgets/reviews_section.dart';
 import 'package:final_project/features/home/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {
-  const ProductDetails({super.key,required this.product});
+  const ProductDetails({super.key, required this.product});
   final ProductModel product;
 
   @override
@@ -21,6 +22,40 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   String? selectedSize;
+  double averageRating = 0;
+  int reviewsCount = 0;
+    @override
+    void initState() {
+      super.initState();
+      getReviews();
+    }
+    List<ReviewModel> reviews = [];
+    final dio = Dio();
+
+  Future<void> getReviews() async {
+    log('get reviews');
+
+    final Response response = await dio.get(
+      'https://accessories-eshop.runasp.net/api/reviews/${widget.product.id}',
+      options: Options(
+    headers: {
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGI2ZTkyNi02NzY3LTRmOTctMzVhZi0wOGRmMGMzZjg1NmQiLCJqdGkiOiI0MDEyNTNiMS03OGNhLTRiZjUtOWQzNS01OTQxMzhlNmVhZmUiLCJlbWFpbCI6ImFiZGVscmFobWFuM2lzbWFlbEBnbWFpbC5jb20iLCJuYW1lIjoiQWJkZWxyYWhtYW4gSXNtYWVpbCIsInJvbGVzIjoiIiwicGljdHVyZSI6IiIsImV4cCI6MTc4OTAwNjcwNywiaXNzIjoiZXNob3AubmV0IiwiYXVkIjoiZXNob3AubmV0In0.pKL-2VcG9RRzWJOYGxvIyx6fgE1dnisKnvNv4D6Qzf4',
+    },
+    ),
+    );
+      reviews.clear();
+    averageRating = (response.data['averageRating'] ?? 0).toDouble();
+    reviewsCount = response.data['reviewsCount'] ?? 0;
+    log(response.data.toString());
+    for (var element in response.data['reviews']['items']) {
+      final ReviewModel model = ReviewModel.fromJson(element);
+      reviews.add(model);
+    }
+
+    setState(() {});
+    log(reviews.toString());
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,32 +67,20 @@ class _ProductDetailsState extends State<ProductDetails> {
           onPressed: () {
             Navigator.pop(context);
           },
-          style: IconButton.styleFrom(
-            backgroundColor: AppColors.cardFillClr,
-            side: BorderSide(color: AppColors.borderSideClr),
-          ),
+          style: IconButton.styleFrom(backgroundColor: AppColors.cardFillClr, side: BorderSide(color: AppColors.borderSideClr)),
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         actions: [
           IconButton(
             onPressed: () {},
-            style: IconButton.styleFrom(
-              backgroundColor: AppColors.cardFillClr,
-              side: BorderSide(color: AppColors.borderSideClr),
-            ),
+            style: IconButton.styleFrom(backgroundColor: AppColors.cardFillClr, side: BorderSide(color: AppColors.borderSideClr)),
             icon: Icon(Icons.share_outlined),
           ),
           SizedBox(height: 16),
           IconButton(
             onPressed: () {},
-            style: IconButton.styleFrom(
-              backgroundColor: AppColors.cardFillClr,
-              side: BorderSide(color: AppColors.borderSideClr),
-            ),
-            icon: Icon(
-              Icons.favorite_border_outlined,
-              color: Color(0xffB9785B),
-            ),
+            style: IconButton.styleFrom(backgroundColor: AppColors.cardFillClr, side: BorderSide(color: AppColors.borderSideClr)),
+            icon: Icon(Icons.favorite_border_outlined, color: Color(0xffB9785B)),
           ),
           SizedBox(width: 20),
         ],
@@ -75,64 +98,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                   description: widget.product.description,
                   price: widget.product.price,
                   oldPrice: widget.product.price + 900,
-                  rating: 4.8,
-                  reviews: 124,
+                  rating: averageRating,
+                  reviews: reviewsCount,
                 ),
                 SizedBox(height: 20),
                 Divider(color: Color(0xffE8DDCB)),
                 SizedBox(height: 20),
-                Text('Select Color', style: AppStyles.style13Bold),
-                SizedBox(height: 8),
-                Row(
-                  spacing: 10,
-                  children: [
-                    ColorButton(color: AppColors.primaryClr, text: "green"),
-                    ColorButton(color: Color(0xffB9785B), text: "color"),
-                    ColorButton(color: AppColors.blackClr, text: "black"),
-                    ColorButton(color: Color(0xffE8DDCB), text: "color"),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Text("Select Size", style: AppStyles.style13Bold),
-                SizedBox(height: 8),
-                Row(
-                  spacing: 6,
-                  children: [
-                    SizeButton(
-                      size: "S",
-                      width: 20,
-                      height: 50,
-                      isSelected: selectedSize == "S",
-                      onPressed: () {
-                        setState(() {
-                          selectedSize = "S";
-                        });
-                      },
-                    ),
-                    SizeButton(
-                      size: "M",
-                      width: 20,
-                      height: 50,
-                      isSelected: selectedSize == "M",
-                      onPressed: () {
-                        setState(() {
-                          selectedSize = "M";
-                        });
-                      },
-                    ),
-                    SizeButton(
-                      size: "L",
-                      width: 20,
-                      height: 50,
-                      isSelected: selectedSize == "L",
-                      onPressed: () {
-                        setState(() {
-                          selectedSize = "L";
-                        });
-                      },
-                    ),
-                  ],
-                ),
+                ProductOptions(),
                 SizedBox(height: 20),
                 Row(
                   children: [
@@ -145,24 +117,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                         },
                         child: Container(
                           height: 52,
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryClr,
-                            borderRadius: BorderRadius.circular(26),
-                          ),
+                          decoration: BoxDecoration(color: AppColors.primaryClr, borderRadius: BorderRadius.circular(26)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.shopping_bag_outlined,
-                                color: Colors.white,
-                              ),
+                              Icon(Icons.shopping_bag_outlined, color: Colors.white),
                               SizedBox(width: 8),
-                              Text(
-                                "Add to Cart",
-                                style: AppStyles.style16Bold.copyWith(
-                                  color: AppColors.whiteClr,
-                                ),
-                              ),
+                              Text("Add to Cart", style: AppStyles.style16Bold.copyWith(color: AppColors.whiteClr)),
                             ],
                           ),
                         ),
@@ -172,86 +133,21 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
                 SizedBox(height: 20),
                 //* Description Section
-                Card(
-                  color: AppColors.cardFillClr,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: BorderSide(color: AppColors.borderSideClr),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 9, 16, 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("Description", style: AppStyles.style16Bold),
-                            Spacer(),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.keyboard_arrow_up),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          widget.product.description,
-                          style: AppStyles.style13Regular.copyWith(
-                            color: AppColors.hintClr,
-                          ),
-                          maxLines: 5,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                DescriptionSection(description: widget.product.description),
                 SizedBox(height: 20),
                 //* Reviews Section
-                Row(
-                  children: [
-                    Text("Reviews (124)", style: AppStyles.style16Bold),
-                    Spacer(),
-                    InkWell(
-                      onTap: () {
-                        log("view All pressed");
-                      },
-                      child: Text(
-                        "View all",
-                        style: AppStyles.style13SemiBold.copyWith(
-                          color: AppColors.primaryClr,
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.primaryClr,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                ReviewCartDetails(
-                  reviewerFirstLetter: "S",
-                  name: "Sophia K.",
-                  date: "Oct 24, 2023",
-                  rating: 5.0,
-                  review:
-                      "Stunning craft. The leather strap is extremely supple, and the chronograph movement is reliable. Truly luxury for an everyday routine.",
-                ),
-                SizedBox(height: 5),
-                ReviewCartDetails(
-                  reviewerFirstLetter: "D",
-                  name: "David L.",
-                  date: "Oct 18, 2023",
-                  rating: 4.0,
-                  review:
-                      "Minimalist layout with outstanding weight. A true compliment earner. Packaging was elegant and delivery prompt.",
-                ),
+                ReviewsSection(reviews: reviews,),
                 SizedBox(height: 12),
-                WriteReview(),
+                WriteReview(productId: widget.product.id,
+                onReviewAdded: (){
+                  getReviews();
+                },),
                 SizedBox(height: 20),
               ],
             ),
           ),
         ),
       ),
-      // bottomNavigationBar: BottomNavBar(),
     );
   }
 }
