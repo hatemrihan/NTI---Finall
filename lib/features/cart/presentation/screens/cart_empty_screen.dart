@@ -3,9 +3,14 @@ import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class CartEmptyScreen extends StatelessWidget {
+class CartEmptyScreen extends StatefulWidget {
   const CartEmptyScreen({super.key});
 
+  @override
+  State<CartEmptyScreen> createState() => _CartEmptyScreenState();
+}
+
+class _CartEmptyScreenState extends State<CartEmptyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

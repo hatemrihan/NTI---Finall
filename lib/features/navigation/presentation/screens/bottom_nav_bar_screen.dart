@@ -1,9 +1,11 @@
+import 'package:final_project/features/cart/presentation/cubits/cart_cubit.dart';
 import 'package:final_project/features/home/presentation/screens/category_products_screen.dart';
 import 'package:final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:final_project/features/profile/presentation/screens/profile_screen.dart';
 import 'package:final_project/features/navigation/presentation/widgets/custom_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
   const BottomNavigationBarScreen({super.key});
@@ -27,7 +29,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
         },
       ),
       const CategoryProductsScreen(),
-      const CartScreen(),
+      BlocProvider(create: (context) => CartCubit(), child: const CartScreen()),
       const ProfileScreen(),
     ];
 
