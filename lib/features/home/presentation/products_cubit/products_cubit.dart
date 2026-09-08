@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:final_project/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:final_project/features/home/data/models/product_model.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
@@ -38,5 +40,19 @@ class ProductsCubit extends Cubit<ProductsState> {
       isCategoriesLoading = false;
       emit(GetCategoriesFailureState(error: error.toString()));
     }
+  }
+
+  Future<void> addToCart(productId) async {
+    emit(addToCartloding());
+    await homeRemoteDataSource
+        .addToCart(productId)
+        .then(
+          onError: (error) {
+            emit(addToCartFailure());
+          },
+          (val) {
+            emit(addToCartSuccess());
+          },
+        );
   }
 }

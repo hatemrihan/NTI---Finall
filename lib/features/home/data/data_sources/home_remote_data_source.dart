@@ -43,4 +43,22 @@ class HomeRemoteDataSource {
       throw Exception(e.response?.data?.toString() ?? e.message);
     }
   }
+
+  Future<void> addToCart(productId) async {
+    try {
+      final Response response = await dio.post(
+        'https://accessories-eshop.runasp.net/api/cart/items',
+        data: {'productId': productId, 'quantity': 1},
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMDY5MmE4NS00OGQyLTQ2NzUtY2MwMC0wOGRmMDY5Y2ExNDMiLCJqdGkiOiI4ZjczZmQ0My0zOGE2LTRkYWUtODdjMi1lZjIwOWY1OGZjNWIiLCJlbWFpbCI6ImFsc2FpZGE5NThAZ21haWwuY29tIiwibmFtZSI6IkFobWVkIEVsaGFkZGFkIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg5MDA0NjEzLCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.Or2dv76lMZylvgHVre71vebdKctRwka917K3OrWpMVs',
+          },
+        ),
+      );
+    } on DioException catch (e) {
+      log('Error in addToCart: $e');
+      throw Exception(e.response?.data?.toString() ?? e.message);
+    }
+  }
 }
