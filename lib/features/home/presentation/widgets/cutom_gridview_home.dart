@@ -17,47 +17,76 @@ class CutomGridviewHome extends StatelessWidget {
         if (state is addToCartloding) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('loading.....'),
+              content: const Text('loading.....'),
               backgroundColor: AppColors.bron2Clr,
             ),
           );
         } else if (state is addToCartFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Erorr......'),
+              content: const Text('Error......'),
               backgroundColor: AppColors.redClr,
             ),
           );
         } else if (state is addToCartSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('success......'),
+              content: const Text('Success......'),
               backgroundColor: AppColors.primaryClr,
             ),
           );
         }
       },
+      buildWhen: (previous, current) =>
+          current is GetProductsLoadingState ||
+          current is GetProductsSuccessState ||
+          current is GetProductsFailureState ||
+          current is ProductsInitialState,
       builder: (context, state) {
-        return BlocBuilder<ProductsCubit, ProductsState>(
-          buildWhen: (previous, current) =>
-              current is GetProductsLoadingState ||
-              current is GetProductsSuccessState ||
-              current is GetProductsFailureState ||
-              current is ProductsInitialState,
-          builder: (context, state) {
-            final cubit = context.read<ProductsCubit>();
-            if (cubit.isProductsLoading ||
-                (state is ProductsInitialState && cubit.products.isEmpty) ||
-                (state is GetProductsLoadingState)) {
-              return const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(24.0),
-                  child: CircularProgressIndicator(),
+        final cubit = context.read<ProductsCubit>();
+
+        // Loading
+        if (cubit.isProductsLoading ||
+            (state is ProductsInitialState && cubit.products.isEmpty) ||
+            state is GetProductsLoadingState) {
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(24.0),
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
+        // Error
+        if (state is GetProductsFailureState &&
+            cubit.products.isEmpty) {
+          return Center(
+            child: Text(
+              state.error ?? "Failed to load products",
+              style: AppStyles.style14SemiBold.copyWith(
+                color: Colors.red,
+              ),
+            ),
+          );
+        }
+
+        // Empty
+        if (cubit.products.isEmpty) {
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Text("No products available"),
+            ),
+          );
+        }
+
+        // Products
         return GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: cubit.products.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
@@ -65,6 +94,7 @@ class CutomGridviewHome extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             final product = cubit.products[index];
+
             return InkWell(
               onTap: () {
                 Navigator.push(
@@ -81,122 +111,84 @@ class CutomGridviewHome extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-              );
-            }
-
-            if (state is GetProductsFailureState && cubit.products.isEmpty) {
-              return Center(
-                child: Text(
-                  state.error ?? "Failed to load products",
-                  style: AppStyles.style14SemiBold.copyWith(color: Colors.red),
-                ),
-              );
-            }
-
-            if (cubit.products.isEmpty) {
-              return const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(24.0),
-                  child: Text("No products available"),
-                ),
-              );
-            }
-
-            return GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: cubit.products.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 0.62,
-              ),
-              itemBuilder: (context, index) {
-                final product = cubit.products[index];
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductDetails(product: product),
+                color: AppColors.bottomBackgroundClr,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                        ),
+                        child: Image.network(
+                          product.coverPictureUrl,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                          errorBuilder:
+                              (context, error, stackTrace) {
+                            return const Center(
+                              child: Icon(
+                                Icons.image_not_supported_outlined,
+                                size: 35,
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    );
-                  },
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
                     ),
-                    color: AppColors.bottomBackgroundClr,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              topRight: Radius.circular(16),
-                            ),
-                            child: Image.network(
-                              product.coverPictureUrl,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Center(
-                                  child: Icon(
-                                    Icons.image_not_supported_outlined,
-                                    size: 35,
-                                  ),
-                                );
-                              },
+
+                    Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(10, 8, 2, 8),
+                      child: Column(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            product.name,
+                            style:
+                                AppStyles.style11Bold.copyWith(
+                              color: AppColors.grayClr,
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 8, 2, 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                          Text(
+                            product.description,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style:
+                                AppStyles.style14SemiBold.copyWith(
+                              color: AppColors.textClr,
+                            ),
+                          ),
+
+                          Row(
                             children: [
                               Text(
-                                product.name,
-                                style: AppStyles.style11Bold.copyWith(
-                                  color: AppColors.grayClr,
-                                ),
+                                "\$${product.price}",
+                                style: AppStyles.style14Bold,
                               ),
-                              Text(
-                                product.description,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppStyles.style14SemiBold.copyWith(
-                                  color: AppColors.textClr,
+                              const Spacer(),
+                              IconButton(
+                                color: AppColors.primaryClr,
+                                onPressed: () {
+                                  context
+                                      .read<ProductsCubit>()
+                                      .addToCart(product.id);
+                                },
+                                icon: const Icon(
+                                  Icons.add_circle_outlined,
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "\$${product.price.toString()}",
-                                    style: AppStyles.style14Bold,
-                                  ),
-                                  const Spacer(),
-                                  IconButton(
-                                    color: AppColors.primaryClr,
-                                    onPressed: () {
-                                      BlocProvider.of<ProductsCubit>(
-                                        context,
-                                      ).addToCart(product.id);
-                                    },
-                                    icon: const Icon(Icons.add_circle_outlined),
-                                  ),
-                                ],
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  ],
+                ),
+              ),
             );
           },
         );
