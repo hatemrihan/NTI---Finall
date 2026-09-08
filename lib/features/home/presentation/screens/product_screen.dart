@@ -11,6 +11,7 @@ import 'package:final_project/features/home/presentation/widgets/description_sec
 import 'package:final_project/features/home/presentation/widgets/product_info.dart';
 import 'package:final_project/features/home/presentation/widgets/product_options.dart';
 import 'package:final_project/features/home/presentation/widgets/reviews_section.dart';
+import 'package:final_project/features/reviews/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

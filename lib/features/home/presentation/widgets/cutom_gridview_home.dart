@@ -3,6 +3,7 @@ import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
 import 'package:final_project/features/home/presentation/screens/product_screen.dart';
+import 'package:final_project/features/reviews/presentation/reviews_cubit/reviews_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -92,8 +93,15 @@ class CutomGridviewHome extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BlocProvider(
-                          create: (context) => ProductsCubit(),
+                        builder: (context) => MultiBlocProvider(
+                          providers: [
+                            BlocProvider(
+                              create: (context) => ProductsCubit(),
+                            ),
+                            BlocProvider(
+                              create: (context) => ReviewCubit(),
+                            ),
+                          ],
                           child: ProductDetails(product: product),
                         ),
                       ),
