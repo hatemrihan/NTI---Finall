@@ -3,15 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/home/data/models/reviews_model.dart';
+import 'package:final_project/features/home/data/models/product_model.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
-import 'package:final_project/features/home/presentation/screens/product_model.dart';
 import 'package:final_project/features/home/presentation/widgets/counter_button.dart';
 import 'package:final_project/features/home/presentation/widgets/description_section.dart';
 import 'package:final_project/features/home/presentation/widgets/product_info.dart';
 import 'package:final_project/features/home/presentation/widgets/product_options.dart';
 import 'package:final_project/features/home/presentation/widgets/reviews_section.dart';
-import 'package:final_project/features/home/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
