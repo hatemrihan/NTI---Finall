@@ -29,7 +29,9 @@ class ProductInfo extends StatelessWidget {
         Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(image),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(image, width: double.infinity, height: 300, fit: BoxFit.cover),),
           ),
         ),
         SizedBox(height: 20),
@@ -42,7 +44,7 @@ class ProductInfo extends StatelessWidget {
         Row(
           spacing: 10,
           children: [
-            Text("\$$price", style: AppStyles.style22Bold),
+            Text("\$$price", style: AppStyles.style16Bold),
             Text("\$$oldPrice".toString(), style: AppStyles.style14w300),
             Container(
               width: 45,
@@ -67,11 +69,11 @@ class ProductInfo extends StatelessWidget {
             ),
             Text(
               "$rating",
-              style: AppStyles.style14Bold.copyWith(color: Colors.black),
+              style: AppStyles.style13Bold.copyWith(color: Colors.black),
             ),
             Text(
               "($reviews reviews)",
-              style: AppStyles.style14Bold.copyWith(color: Colors.black),
+              style: AppStyles.style13Bold.copyWith(color: Colors.black),
             ),
           ],
         ),

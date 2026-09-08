@@ -18,16 +18,15 @@ class _MyWidgetState extends State<SearchScreen> {
       backgroundColor: AppColors.backgroundClr,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(24),
-
+          padding: const EdgeInsets.all(24),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomSearchTextField(
                   hintText: "search products",
-                  prefixIcon: Icon(Icons.search),
-                  suffixIcon: Icon(Icons.cancel_outlined),
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: const Icon(Icons.cancel_outlined),
                 ),
                 Filter(),
                 CutomGridviewHome(),
@@ -36,8 +35,6 @@ class _MyWidgetState extends State<SearchScreen> {
           ),
         ),
       ),
-
-      // bottomNavigationBar:BottomNavBar(),
     );
   }
 }

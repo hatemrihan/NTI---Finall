@@ -1,12 +1,8 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-<<<<<<< HEAD
-=======
 import 'package:final_project/features/home/presentation/widgets/custom_container_row.dart';
->>>>>>> 67fb84748509bcc16682626d07e12c07125e4501
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/core/widgets/custom_text_field.dart';
-import 'package:final_project/features/product/presentation/widgets/custom_container_row.dart';
 import 'package:final_project/features/settings/presentation/widgets/custom_appBar_widget.dart';
 import 'package:flutter/material.dart';
 
