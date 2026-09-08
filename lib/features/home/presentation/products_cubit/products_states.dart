@@ -21,3 +21,9 @@ class GetCategoriesFailureState extends ProductsState {
   final String? error;
   GetCategoriesFailureState({this.error});
 }
+
+class addToCartloding extends ProductsState {}
+
+class addToCartSuccess extends ProductsState {}
+
+class addToCartFailure extends ProductsState {}
