@@ -15,7 +15,7 @@ class AddProductScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.backgroundClr,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios, color: AppColors.textClr),
         ),
         centerTitle: true,

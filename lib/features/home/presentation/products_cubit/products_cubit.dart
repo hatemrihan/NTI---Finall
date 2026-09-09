@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:final_project/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:final_project/features/home/data/models/product_model.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
@@ -18,40 +16,43 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   Future<void> getProducts() async {
     isProductsLoading = true;
+    if (isClosed) return;
     emit(GetProductsLoadingState());
     try {
       products = await homeRemoteDataSource.getProducts();
       isProductsLoading = false;
-      emit(GetProductsSuccessState());
+      if (!isClosed) emit(GetProductsSuccessState());
     } catch (error) {
       isProductsLoading = false;
-      emit(GetProductsFailureState(error: error.toString()));
+      if (!isClosed) emit(GetProductsFailureState(error: error.toString()));
     }
   }
 
   Future<void> getCategories() async {
     isCategoriesLoading = true;
+    if (isClosed) return;
     emit(GetCategoriesLoadingState());
     try {
       categories = await homeRemoteDataSource.getCategories();
       isCategoriesLoading = false;
-      emit(GetCategoriesSuccessState());
+      if (!isClosed) emit(GetCategoriesSuccessState());
     } catch (error) {
       isCategoriesLoading = false;
-      emit(GetCategoriesFailureState(error: error.toString()));
+      if (!isClosed) emit(GetCategoriesFailureState(error: error.toString()));
     }
   }
 
   Future<void> addToCart(productId) async {
+    if (isClosed) return;
     emit(addToCartloding());
     await homeRemoteDataSource
         .addToCart(productId)
         .then(
           onError: (error) {
-            emit(addToCartFailure());
+            if (!isClosed) emit(addToCartFailure());
           },
           (val) {
-            emit(addToCartSuccess());
+            if (!isClosed) emit(addToCartSuccess());
           },
         );
   }

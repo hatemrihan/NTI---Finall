@@ -55,7 +55,7 @@ class _CartScreenState extends State<CartScreen> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('error.....'),
-                    backgroundColor: AppColors.primaryClr,
+                    backgroundColor: AppColors.redClr,
                   ),
                 );
               } else if (state is removeCartsuccess) {
@@ -86,7 +86,6 @@ class _CartScreenState extends State<CartScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 10),
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,

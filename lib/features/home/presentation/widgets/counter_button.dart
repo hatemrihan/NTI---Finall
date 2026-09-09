@@ -10,49 +10,86 @@ class CounterButton extends StatefulWidget {
 }
 
 class _CounterButtonState extends State<CounterButton> {
-  int counter = 0;
+  int counter = 1;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 92,
-        height: 52,
-        decoration: BoxDecoration(
-          color: AppColors.cardFillClr,
-          borderRadius: BorderRadius.circular(45),
-          border: Border.all(
-            color: AppColors.borderSideClr,
-          ),
+      width: 120,
+      height: 52,
+      decoration: BoxDecoration(
+        color: AppColors.cardFillClr,
+        borderRadius: BorderRadius.circular(45),
+        border: Border.all(
+          color: AppColors.borderSideClr,
+          width: 1.5,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            InkWell(
-              onTap: () {
-                if (counter > 0) {
-                  setState(() {
-                    counter--;
-                  });
-                }
-              },
-              child: const Icon(
-                Icons.remove,
-                size: 20,
-              ),
-            ),
-            Text("$counter",style: AppStyles.style16SemiBold,),
-            InkWell(
-              onTap: () {
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          // Minus button
+          GestureDetector(
+            onTap: () {
+              if (counter > 1) {
                 setState(() {
-                  counter++;
+                  counter--;
                 });
-              },
-              child: const Icon(
-                Icons.add,
-                size: 20,
+              }
+            },
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: counter > 1
+                    ? AppColors.primaryClr
+                    : AppColors.borderSideClr,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.remove_rounded,
+                size: 18,
+                color: counter > 1
+                    ? AppColors.whiteClr
+                    : AppColors.grayClr,
               ),
             ),
-          ],
-        ),
-      );
+          ),
+          // Counter text
+          SizedBox(
+            width: 28,
+            child: Center(
+              child: Text(
+                "$counter",
+                style: AppStyles.style16SemiBold.copyWith(
+                  color: AppColors.textClr,
+                ),
+              ),
+            ),
+          ),
+          // Plus button
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                counter++;
+              });
+            },
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: AppColors.primaryClr,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.add_rounded,
+                size: 18,
+                color: AppColors.whiteClr,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:final_project/features/cart/presentation/cubits/cart_cubit.dart';
+import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/screens/category_products_screen.dart';
+import 'package:final_project/features/home/presentation/screens/add_product_screen.dart';
 import 'package:final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:final_project/features/profile/presentation/screens/profile_screen.dart';
@@ -48,6 +50,17 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                 setState(() {
                   currentIndex = index;
                 });
+              },
+              onAddProduct: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (context) => ProductsCubit(),
+                      child: const AddProductScreen(),
+                    ),
+                  ),
+                );
               },
             ),
           ),

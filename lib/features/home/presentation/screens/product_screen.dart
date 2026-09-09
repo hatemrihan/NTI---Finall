@@ -1,14 +1,16 @@
 import 'dart:developer';
+import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/data/models/reviews_model.dart';
 import 'package:final_project/features/home/data/models/product_model.dart';
+import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
+import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
 import 'package:final_project/features/home/presentation/widgets/counter_button.dart';
 import 'package:final_project/features/home/presentation/widgets/description_section.dart';
 import 'package:final_project/features/home/presentation/widgets/product_info.dart';
 import 'package:final_project/features/home/presentation/widgets/product_options.dart';
 import 'package:final_project/features/home/presentation/widgets/reviews_section.dart';
-import 'package:final_project/features/reviews/presentation/reviews_cubit/reviews_cubit.dart';
-import 'package:final_project/features/reviews/presentation/reviews_cubit/reviews_states.dart';
 import 'package:final_project/features/reviews/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,14 +25,82 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   String? selectedSize;
+  double averageRating = 0;
+  int reviewsCount = 0;
   @override
   void initState() {
     super.initState();
-    context.read<ReviewCubit>().getReviews( productId: widget.product.id,);
+    getReviews();
   }
+
+  List<ReviewModel> reviews = [];
+  final dio = Dio();
+
+  Future<void> getReviews() async {
+    try {
+      log('get reviews');
+
+      final Response response = await dio.get(
+        'https://accessories-eshop.runasp.net/api/reviews/${widget.product.id}',
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGI2ZTkyNi02NzY3LTRmOTctMzVhZi0wOGRmMGMzZjg1NmQiLCJqdGkiOiI0MDEyNTNiMS03OGNhLTRiZjUtOWQzNS01OTQxMzhlNmVhZmUiLCJlbWFpbCI6ImFiZGVscmFobWFuM2lzbWFlbEBnbWFpbC5jb20iLCJuYW1lIjoiQWJkZWxyYWhtYW4gSXNtYWVpbCIsInJvbGVzIjoiIiwicGljdHVyZSI6IiIsImV4cCI6MTc4OTAwNjcwNywiaXNzIjoiZXNob3AubmV0IiwiYXVkIjoiZXNob3AubmV0In0.pKL-2VcG9RRzWJOYGxvIyx6fgE1dnisKnvNv4D6Qzf4',
+          },
+        ),
+      );
+      reviews.clear();
+      averageRating = (response.data['averageRating'] ?? 0).toDouble();
+      reviewsCount = response.data['reviewsCount'] ?? 0;
+      log(response.data.toString());
+      final items = response.data['reviews']?['items'];
+      if (items != null) {
+        for (var element in items) {
+          final ReviewModel model = ReviewModel.fromJson(element);
+          reviews.add(model);
+        }
+      }
+
+      if (mounted) {
+        setState(() {});
+      }
+      log(reviews.toString());
+    } catch (e) {
+      log('Error in getReviews: $e');
+      if (mounted) {
+        setState(() {});
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocListener<ProductsCubit, ProductsState>(
+      listener: (context, state) {
+        if (state is addToCartloding) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('loading.....'),
+              backgroundColor: AppColors.bron2Clr,
+            ),
+          );
+        } else if (state is addToCartFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Erorr......'),
+              backgroundColor: AppColors.redClr,
+            ),
+          );
+        } else if (state is addToCartSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('success......'),
+              backgroundColor: AppColors.primaryClr,
+            ),
+          );
+        }
+      },
+      child: Scaffold(
         backgroundColor: AppColors.backgroundClr,
         appBar: AppBar(
           backgroundColor: AppColors.backgroundClr,
@@ -39,20 +109,32 @@ class _ProductDetailsState extends State<ProductDetails> {
             onPressed: () {
               Navigator.pop(context);
             },
-            style: IconButton.styleFrom(backgroundColor: AppColors.cardFillClr, side: BorderSide(color: AppColors.borderSideClr)),
+            style: IconButton.styleFrom(
+              backgroundColor: AppColors.cardFillClr,
+              side: BorderSide(color: AppColors.borderSideClr),
+            ),
             icon: Icon(Icons.arrow_back_ios_new),
           ),
           actions: [
             IconButton(
               onPressed: () {},
-              style: IconButton.styleFrom(backgroundColor: AppColors.cardFillClr, side: BorderSide(color: AppColors.borderSideClr)),
+              style: IconButton.styleFrom(
+                backgroundColor: AppColors.cardFillClr,
+                side: BorderSide(color: AppColors.borderSideClr),
+              ),
               icon: Icon(Icons.share_outlined),
             ),
             SizedBox(height: 16),
             IconButton(
               onPressed: () {},
-              style: IconButton.styleFrom(backgroundColor: AppColors.cardFillClr, side: BorderSide(color: AppColors.borderSideClr)),
-              icon: Icon(Icons.favorite_border_outlined, color: Color(0xffB9785B)),
+              style: IconButton.styleFrom(
+                backgroundColor: AppColors.cardFillClr,
+                side: BorderSide(color: AppColors.borderSideClr),
+              ),
+              icon: Icon(
+                Icons.favorite_border_outlined,
+                color: Color(0xffB9785B),
+              ),
             ),
             SizedBox(width: 20),
           ],
@@ -60,20 +142,18 @@ class _ProductDetailsState extends State<ProductDetails> {
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              padding: const EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BlocBuilder<ReviewCubit, ReviewState>(
-                    builder: (context, state) {
-                      return ProductInfo(
-                        image: widget.product.coverPictureUrl,
-                        brand: widget.product.name,
-                        description: widget.product.description,
-                        price: widget.product.price,
-                        oldPrice: widget.product.price + 900, rating: context.read<ReviewCubit>().averageRating, reviews: context.read<ReviewCubit>().reviewsCount,
-                      );
-                    },
+                  ProductInfo(
+                    image: widget.product.coverPictureUrl,
+                    brand: widget.product.name,
+                    description: widget.product.description,
+                    price: widget.product.price,
+                    oldPrice: widget.product.price + 900,
+                    rating: averageRating,
+                    reviews: reviewsCount,
                   ),
                   SizedBox(height: 20),
                   Divider(color: Color(0xffE8DDCB)),
@@ -88,16 +168,30 @@ class _ProductDetailsState extends State<ProductDetails> {
                         child: InkWell(
                           onTap: () {
                             log("add to cart pressed ${widget.product.name}");
+                            BlocProvider.of<ProductsCubit>(
+                              context,
+                            ).addToCart(widget.product.id);
                           },
                           child: Container(
                             height: 52,
-                            decoration: BoxDecoration(color: AppColors.primaryClr, borderRadius: BorderRadius.circular(26)),
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryClr,
+                              borderRadius: BorderRadius.circular(26),
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.shopping_bag_outlined, color: Colors.white),
+                                Icon(
+                                  Icons.shopping_bag_outlined,
+                                  color: Colors.white,
+                                ),
                                 SizedBox(width: 8),
-                                Text("Add to Cart", style: AppStyles.style16Bold.copyWith(color: AppColors.whiteClr)),
+                                Text(
+                                  "Add to Cart",
+                                  style: AppStyles.style16Bold.copyWith(
+                                    color: AppColors.whiteClr,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -110,26 +204,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                   DescriptionSection(description: widget.product.description),
                   SizedBox(height: 20),
                   //* Reviews Section
-                  BlocBuilder<ReviewCubit, ReviewState>(
-                    builder: (context, state) {
-                      if(state is ReviewLoadingState){
-                        return Center(child: CircularProgressIndicator());
-                      } else if(state is ReviewFailureState){
-                        return Center(child: Text("Failed to load reviews"));
-                      }else if(state is ReviewSuccessState){
-                        return ReviewsSection(reviews: context.read<ReviewCubit>().reviews,);
-                      }
-                      return ReviewsSection(reviews: [],);
-                    },
-                  ),
+                  ReviewsSection(reviews: reviews),
                   SizedBox(height: 12),
                   WriteReview(
                     productId: widget.product.id,
                     onReviewAdded: () {
-                    context.read<ReviewCubit>().getReviews(
-                      productId: widget.product.id,
-                    );
-                  },
+                      getReviews();
+                    },
                   ),
                   SizedBox(height: 20),
                 ],
@@ -137,6 +218,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 }

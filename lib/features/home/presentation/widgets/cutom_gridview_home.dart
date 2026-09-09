@@ -13,25 +13,29 @@ class CutomGridviewHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProductsCubit, ProductsState>(
+      listenWhen: (previous, current) =>
+          current is addToCartloding ||
+          current is addToCartSuccess ||
+          current is addToCartFailure,
       listener: (context, state) {
         if (state is addToCartloding) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text('loading.....'),
+              content: Text('loading.....'),
               backgroundColor: AppColors.bron2Clr,
             ),
           );
         } else if (state is addToCartFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text('Error......'),
+              content: Text('Erorr......'),
               backgroundColor: AppColors.redClr,
             ),
           );
         } else if (state is addToCartSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text('Success......'),
+              content: Text('success......'),
               backgroundColor: AppColors.primaryClr,
             ),
           );
@@ -45,10 +49,9 @@ class CutomGridviewHome extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<ProductsCubit>();
 
-        // Loading
         if (cubit.isProductsLoading ||
             (state is ProductsInitialState && cubit.products.isEmpty) ||
-            state is GetProductsLoadingState) {
+            (state is GetProductsLoadingState)) {
           return const Center(
             child: Padding(
               padding: EdgeInsets.all(24.0),
@@ -57,20 +60,15 @@ class CutomGridviewHome extends StatelessWidget {
           );
         }
 
-        // Error
-        if (state is GetProductsFailureState &&
-            cubit.products.isEmpty) {
+        if (state is GetProductsFailureState && cubit.products.isEmpty) {
           return Center(
             child: Text(
               state.error ?? "Failed to load products",
-              style: AppStyles.style14SemiBold.copyWith(
-                color: Colors.red,
-              ),
+              style: AppStyles.style14SemiBold.copyWith(color: Colors.red),
             ),
           );
         }
 
-        // Empty
         if (cubit.products.isEmpty) {
           return const Center(
             child: Padding(
@@ -80,13 +78,11 @@ class CutomGridviewHome extends StatelessWidget {
           );
         }
 
-        // Products
         return GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: cubit.products.length,
-          gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
@@ -94,14 +90,20 @@ class CutomGridviewHome extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             final product = cubit.products[index];
-
             return InkWell(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BlocProvider(
-                      create: (context) => ReviewCubit(),
+                    builder: (context) => MultiBlocProvider(
+                      providers: [
+                        BlocProvider(
+                          create: (context) => ProductsCubit(),
+                        ),
+                        BlocProvider(
+                          create: (context) => ReviewCubit(),
+                        ),
+                      ],
                       child: ProductDetails(product: product),
                     ),
                   ),
@@ -125,8 +127,7 @@ class CutomGridviewHome extends StatelessWidget {
                           product.coverPictureUrl,
                           width: double.infinity,
                           fit: BoxFit.cover,
-                          errorBuilder:
-                              (context, error, stackTrace) {
+                          errorBuilder: (context, error, stackTrace) {
                             return const Center(
                               child: Icon(
                                 Icons.image_not_supported_outlined,
@@ -137,49 +138,40 @@ class CutomGridviewHome extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     Padding(
-                      padding:
-                          const EdgeInsets.fromLTRB(10, 8, 2, 8),
+                      padding: const EdgeInsets.fromLTRB(10, 8, 2, 8),
                       child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             product.name,
-                            style:
-                                AppStyles.style11Bold.copyWith(
+                            style: AppStyles.style11Bold.copyWith(
                               color: AppColors.grayClr,
                             ),
                           ),
-
                           Text(
                             product.description,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style:
-                                AppStyles.style14SemiBold.copyWith(
+                            style: AppStyles.style14SemiBold.copyWith(
                               color: AppColors.textClr,
                             ),
                           ),
-
                           Row(
                             children: [
                               Text(
-                                "\$${product.price}",
+                                "\$${product.price.toString()}",
                                 style: AppStyles.style14Bold,
                               ),
                               const Spacer(),
                               IconButton(
                                 color: AppColors.primaryClr,
                                 onPressed: () {
-                                  context
-                                      .read<ProductsCubit>()
-                                      .addToCart(product.id);
+                                  BlocProvider.of<ProductsCubit>(
+                                    context,
+                                  ).addToCart(product.id);
                                 },
-                                icon: const Icon(
-                                  Icons.add_circle_outlined,
-                                ),
+                                icon: const Icon(Icons.add_circle_outlined),
                               ),
                             ],
                           ),
