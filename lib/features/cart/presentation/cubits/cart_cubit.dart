@@ -10,30 +10,30 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(getcartIntionslate());
 
   Future<void> getcart() async {
+    if (isClosed) return;
     emit(getcartloding());
     await cartRemoteDataSource.getcart().then(
       onError: (error) {
         log('Error:$error');
-        emit(getcartempty());
+        if (!isClosed) emit(getcartempty());
       },
       (val) {
         log(val.toString());
-        emit(getcartscusses(productscart: val));
+        if (!isClosed) emit(getcartscusses(productscart: val));
       },
     );
   }
 
   Future<dynamic> removeCart(cartId) async {
+    if (isClosed) return;
     emit(removeCartloading());
     try {
       final val = await cartRemoteDataSource.removeCart(cartId);
-
-      emit(removeCartsuccess(removeProductcart: []));
-
+      if (!isClosed) emit(removeCartsuccess(removeProductcart: []));
       getcart();
     } catch (error) {
       log('Error: $error');
-      emit(removeCartfialure());
+      if (!isClosed) emit(removeCartfialure());
       getcart();
     }
   }

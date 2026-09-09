@@ -37,38 +37,40 @@ class _ProductDetailsState extends State<ProductDetails> {
   final dio = Dio();
 
   Future<void> getReviews() async {
-    log('get reviews');
+    try {
+      log('get reviews');
 
-    final Response response = await dio.get(
-      'https://accessories-eshop.runasp.net/api/reviews/${widget.product.id}',
-      options: Options(
-        headers: {
-          'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGI2ZTkyNi02NzY3LTRmOTctMzVhZi0wOGRmMGMzZjg1NmQiLCJqdGkiOiI0MDEyNTNiMS03OGNhLTRiZjUtOWQzNS01OTQxMzhlNmVhZmUiLCJlbWFpbCI6ImFiZGVscmFobWFuM2lzbWFlbEBnbWFpbC5jb20iLCJuYW1lIjoiQWJkZWxyYWhtYW4gSXNtYWVpbCIsInJvbGVzIjoiIiwicGljdHVyZSI6IiIsImV4cCI6MTc4OTAwNjcwNywiaXNzIjoiZXNob3AubmV0IiwiYXVkIjoiZXNob3AubmV0In0.pKL-2VcG9RRzWJOYGxvIyx6fgE1dnisKnvNv4D6Qzf4',
-        },
-      ),
-    );
-    reviews.clear();
-    averageRating = (response.data['averageRating'] ?? 0).toDouble();
-    reviewsCount = response.data['reviewsCount'] ?? 0;
-    log(response.data.toString());
-    for (var element in response.data['reviews']['items']) {
-      final ReviewModel model = ReviewModel.fromJson(element);
-      reviews.add(model);
+      final Response response = await dio.get(
+        'https://accessories-eshop.runasp.net/api/reviews/${widget.product.id}',
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGI2ZTkyNi02NzY3LTRmOTctMzVhZi0wOGRmMGMzZjg1NmQiLCJqdGkiOiI0MDEyNTNiMS03OGNhLTRiZjUtOWQzNS01OTQxMzhlNmVhZmUiLCJlbWFpbCI6ImFiZGVscmFobWFuM2lzbWFlbEBnbWFpbC5jb20iLCJuYW1lIjoiQWJkZWxyYWhtYW4gSXNtYWVpbCIsInJvbGVzIjoiIiwicGljdHVyZSI6IiIsImV4cCI6MTc4OTAwNjcwNywiaXNzIjoiZXNob3AubmV0IiwiYXVkIjoiZXNob3AubmV0In0.pKL-2VcG9RRzWJOYGxvIyx6fgE1dnisKnvNv4D6Qzf4',
+          },
+        ),
+      );
+      reviews.clear();
+      averageRating = (response.data['averageRating'] ?? 0).toDouble();
+      reviewsCount = response.data['reviewsCount'] ?? 0;
+      log(response.data.toString());
+      final items = response.data['reviews']?['items'];
+      if (items != null) {
+        for (var element in items) {
+          final ReviewModel model = ReviewModel.fromJson(element);
+          reviews.add(model);
+        }
+      }
+
+      if (mounted) {
+        setState(() {});
+      }
+      log(reviews.toString());
+    } catch (e) {
+      log('Error in getReviews: $e');
+      if (mounted) {
+        setState(() {});
+      }
     }
-
-    setState(() {});
-    log(reviews.toString());
-  }
-
-  Widget WriteReview({
-    required dynamic productId,
-    required VoidCallback onReviewAdded,
-  }) {
-    return TextButton(
-      onPressed: onReviewAdded,
-      child: const Text('Write a review'),
-    );
   }
 
   @override
