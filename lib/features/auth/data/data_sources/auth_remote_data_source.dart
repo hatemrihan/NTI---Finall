@@ -42,4 +42,53 @@ class AuthRemoteDataSource {
       throw Exception(e.response?.data.toString());
     }
   }
+
+  Future<void> changePassword({
+    required String oldPassword,
+    required String newPassword,
+    required String confirmNewPassword,
+  }) async {
+    try {
+      final response = await dio.post(
+        'https://accessories-eshop.runasp.net/api/auth/change-password',
+        data: {
+          'currentPassword': oldPassword,
+          'newPassword': newPassword,
+          'confirmNewPassword': confirmNewPassword,
+        },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+    } on DioException catch (e) {
+      log("Status Code: ${e.response?.statusCode}");
+      log("Error Data: ${e.response?.data}");
+      throw Exception(e.response?.data.toString());
+    }
+  }
+
+  Future<void> verifyEmail({
+    required String otpCode,
+    required String email,
+  }) async {
+    try {
+      final response = await dio.post(
+        'https://accessories-eshop.runasp.net/api/auth/verify-email',
+        data: {'otp': otpCode, "email": email},
+      );
+    } on DioException catch (e) {
+      throw Exception(e.response?.data.toString());
+    }
+  }
+
+  Future<Response> resendOtp({required String email}) async {
+    final response = await dio.post(
+      'https://accessories-eshop.runasp.net/api/auth/resend-otp',
+      data: {'email': email},
+    );
+    return response;
+  }
 }

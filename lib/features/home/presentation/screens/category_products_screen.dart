@@ -3,6 +3,7 @@ import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/widgets/cutom_gridview_home.dart';
 import 'package:final_project/features/home/presentation/widgets/custom_container_row.dart';
+// import 'package:final_project/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -64,6 +65,7 @@ class CategoryProductsScreen extends StatelessWidget {
           ),
         ),
       ),
+      // bottomNavigationBar: BottomNavBar(),
     );
   }
 }

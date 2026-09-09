@@ -250,7 +250,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => VerifyEmailScreen(),
+                            builder: (context) =>
+                                VerifyEmailScreen(email: emailCtl.text.trim()),
                           ),
                         );
                       } else if (state is SignUpFailureState) {

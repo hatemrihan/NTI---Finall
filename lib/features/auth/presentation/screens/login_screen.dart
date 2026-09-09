@@ -6,6 +6,7 @@ import 'package:final_project/features/auth/presentation/auth_cubit/auth_states.
 import 'package:final_project/features/auth/presentation/screens/signup_screen.dart';
 import 'package:final_project/core/widgets/custom_text_button.dart';
 import 'package:final_project/core/widgets/custom_text_field.dart';
+import 'package:final_project/features/auth/presentation/screens/verify_email_screen.dart';
 import 'package:final_project/features/auth/presentation/widgets/login_header_section.dart';
 import 'package:final_project/features/auth/presentation/widgets/login_social_section.dart';
 import 'package:final_project/features/auth/presentation/widgets/or_divider.dart';
@@ -128,6 +129,27 @@ class _LoginScreenState extends State<LoginScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => BottomNavigationBarScreen(),
+                          ),
+                        );
+                      } else if (state is UnverifiedAccountState) {
+                        context.read<AuthCubit>().resendOtp(email: state.email);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Your account is not verified yet. A new code has been sent!',
+                            ),
+                            backgroundColor: Colors.orange,
+                          ),
+                        );
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value: context.read<AuthCubit>(),
+                              child: VerifyEmailScreen(email: state.email),
+                            ),
                           ),
                         );
                       } else if (state is LoginFailureState) {
