@@ -7,8 +7,8 @@ import 'package:final_project/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class WriteReview extends StatefulWidget {
-  const WriteReview({super.key, required this.productId, required this.onReviewAdded,});
-   final String productId;
+  const WriteReview({super.key,  this.productId, required this.onReviewAdded,});
+   final String? productId;
    final Function() onReviewAdded;
 
   @override

@@ -20,7 +20,9 @@ class ProductsCubit extends Cubit<ProductsState> {
     try {
       products = await homeRemoteDataSource.getProducts();
       isProductsLoading = false;
-      emit(GetProductsSuccessState());
+      emit(GetProductsSuccessState(
+        products: products,
+      ));
     } catch (error) {
       isProductsLoading = false;
       emit(GetProductsFailureState(error: error.toString()));
