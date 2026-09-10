@@ -40,6 +40,19 @@ class HomeRemoteDataSource {
     }
   }
 
+  Future<void> addToCart(productId) async {
+    try {
+      await dio.post(
+        'https://accessories-eshop.runasp.net/api/cart/items',
+        data: {'productId': productId, 'quantity': 1},
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+    } on DioException catch (e) {
+      log('Error in addToCart: $e');
+      throw Exception(e.response?.data?.toString() ?? e.message);
+    }
+  }
+
   Future<void> addProduct(ProductModel product) async {
     try {
       await dio.post(

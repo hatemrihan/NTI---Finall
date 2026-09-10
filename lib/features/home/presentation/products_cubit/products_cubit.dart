@@ -43,4 +43,15 @@ class ProductsCubit extends Cubit<ProductsState> {
       if (!isClosed) emit(GetCategoriesFailureState(error: error.toString()));
     }
   }
+
+  Future<void> addToCart(productId) async {
+    if (isClosed) return;
+    emit(addToCartloding());
+    try {
+      await homeRemoteDataSource.addToCart(productId);
+      if (!isClosed) emit(addToCartSuccess());
+    } catch (error) {
+      if (!isClosed) emit(addToCartFailure());
+    }
+  }
 }

@@ -207,7 +207,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ReviewsSection(reviews: reviews),
                   SizedBox(height: 12),
                   WriteReview(
-                    productId: widget.product.id,
+                    productId: widget.product.id ?? '',
                     onReviewAdded: () {
                       getReviews();
                     },

@@ -35,3 +35,9 @@ class AddProductFailureState extends ProductsState {
   final String? error;
   AddProductFailureState({this.error});
 }
+
+class addToCartloding extends ProductsState {}
+
+class addToCartSuccess extends ProductsState {}
+
+class addToCartFailure extends ProductsState {}
