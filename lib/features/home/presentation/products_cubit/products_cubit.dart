@@ -21,7 +21,9 @@ class ProductsCubit extends Cubit<ProductsState> {
     try {
       products = await homeRemoteDataSource.getProducts();
       isProductsLoading = false;
-      if (!isClosed) emit(GetProductsSuccessState());
+      emit(GetProductsSuccessState(
+        products: products,
+      ));
     } catch (error) {
       isProductsLoading = false;
       if (!isClosed) emit(GetProductsFailureState(error: error.toString()));
@@ -40,20 +42,5 @@ class ProductsCubit extends Cubit<ProductsState> {
       isCategoriesLoading = false;
       if (!isClosed) emit(GetCategoriesFailureState(error: error.toString()));
     }
-  }
-
-  Future<void> addToCart(productId) async {
-    if (isClosed) return;
-    emit(addToCartloding());
-    await homeRemoteDataSource
-        .addToCart(productId)
-        .then(
-          onError: (error) {
-            if (!isClosed) emit(addToCartFailure());
-          },
-          (val) {
-            if (!isClosed) emit(addToCartSuccess());
-          },
-        );
   }
 }
