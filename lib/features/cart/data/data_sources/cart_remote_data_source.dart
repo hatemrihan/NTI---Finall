@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:final_project/core/Token/token.dart';
 
 class CartRemoteDataSource {
   final Dio dio = Dio();
@@ -9,12 +10,7 @@ class CartRemoteDataSource {
     try {
       final Response response = await dio.get(
         'https://accessories-eshop.runasp.net/api/cart',
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMDY5MmE4NS00OGQyLTQ2NzUtY2MwMC0wOGRmMDY5Y2ExNDMiLCJqdGkiOiI4ZjczZmQ0My0zOGE2LTRkYWUtODdjMi1lZjIwOWY1OGZjNWIiLCJlbWFpbCI6ImFsc2FpZGE5NThAZ21haWwuY29tIiwibmFtZSI6IkFobWVkIEVsaGFkZGFkIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg5MDA0NjEzLCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.Or2dv76lMZylvgHVre71vebdKctRwka917K3OrWpMVs',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
       return response.data['cartItems'];
     } on DioException catch (e) {
@@ -29,12 +25,7 @@ class CartRemoteDataSource {
         'https://accessories-eshop.runasp.net/api/cart/items/decrement',
         data: {"itemId": cartId, "quantity": 1},
 
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMDY5MmE4NS00OGQyLTQ2NzUtY2MwMC0wOGRmMDY5Y2ExNDMiLCJqdGkiOiI4ZjczZmQ0My0zOGE2LTRkYWUtODdjMi1lZjIwOWY1OGZjNWIiLCJlbWFpbCI6ImFsc2FpZGE5NThAZ21haWwuY29tIiwibmFtZSI6IkFobWVkIEVsaGFkZGFkIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg5MDA0NjEzLCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.Or2dv76lMZylvgHVre71vebdKctRwka917K3OrWpMVs',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
     } on DioException catch (e) {
       log('response: ${e.response?.data ?? 'error'}');
