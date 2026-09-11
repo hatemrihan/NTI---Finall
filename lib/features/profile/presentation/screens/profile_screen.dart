@@ -1,5 +1,6 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/presentation/screens/manage_product_screen.dart';
 import 'package:final_project/features/settings/presentation/screens/settings_screen.dart';
 import 'package:final_project/features/profile/presentation/widgets/custom_profile_item.dart';
 import 'package:final_project/features/profile/presentation/widgets/custom_profile_item_model.dart';
@@ -51,9 +52,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
       ),
       ProfileItemModel2(
+        title: 'Manage Products',
+        icon: Icons.inventory_2,
+        rightIcon: Icons.arrow_forward_ios,
+      ),
+      ProfileItemModel2(
         title: 'Help and Support',
         icon: Icons.help_outline_rounded,
         rightIcon: Icons.arrow_forward_ios,
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ManageProductScreen()),
+          );
+        }
       ),
     ];
 

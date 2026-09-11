@@ -39,7 +39,7 @@ class _WriteReviewState extends State<WriteReview> {
         ScaffoldMessenger.of(parentContext).showSnackBar(
           const SnackBar(
             backgroundColor: AppColors.primaryClr,
-            content: Text("Thanks for sharing your feedback 🫡", style: AppStyles.style14Bold),
+            content: Text("Thanks for sharing your feedback", style: AppStyles.style14Bold),
             duration: Duration(seconds: 3),
           ),
         );
@@ -55,7 +55,7 @@ class _WriteReviewState extends State<WriteReview> {
         ScaffoldMessenger.of(parentContext).showSnackBar(
           SnackBar(
             backgroundColor: AppColors.redClr,
-            content: Text( "Something went wrong. Please try again 🙈",style: AppStyles.style14Bold,
+            content: Text( "Something went wrong. Please try again",style: AppStyles.style14Bold,
             ),
             duration: const Duration(seconds: 3),
           ),
