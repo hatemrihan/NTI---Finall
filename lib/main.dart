@@ -28,8 +28,7 @@ class LAMSA extends StatelessWidget {
         title: 'LAMSA',
         theme: ThemeData(fontFamily: "Manrope"),
         debugShowCheckedModeBanner: false,
-        // home: SplashScreen(),
-        home: HomeScreen(),
+        home: SplashScreen(),
       ),
     );
   }
