@@ -12,8 +12,8 @@ class AppColors {
   static const hintClr = Color(0xFF7B827A);
   static const textClr = Color(0xFF1E2521);
   static const redClr = Color(0xFFDC2626);
-  static const bronClr = Color(0xFFB9785B);
-  static const bron2Clr = Color(0xFFB9785B);
+  static const brownClr = Color(0xFFB9785B);
+  static const brown2Clr = Color(0xFFB9785B);
   static const cardFillClr = Color(0xFFF5F5F5);
   static const borderSideClr = Color(0xFFE8DDCB);
   static const appBarComponentsColor = Color(0xFF1E2521);

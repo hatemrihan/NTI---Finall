@@ -39,7 +39,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('loading.....'),
-              backgroundColor: AppColors.bron2Clr,
+              backgroundColor: AppColors.brown2Clr,
             ),
           );
         } else if (state is addToCartFailure) {
@@ -71,7 +71,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               backgroundColor: AppColors.cardFillClr,
               side: BorderSide(color: AppColors.borderSideClr),
             ),
-            icon: Icon(Icons.arrow_back_ios_new),
+            icon: Icon(Icons.arrow_back_outlined, size: 20, fontWeight: FontWeight.w900,),
           ),
           actions: [
             IconButton(
@@ -118,7 +118,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     },
                   ),
                   SizedBox(height: 20),
-                  Divider(color: Color(0xffE8DDCB)),
+                  Divider(color: AppColors.borderSideClr, height:4 ,),
                   SizedBox(height: 20),
                   ProductOptions(),
                   SizedBox(height: 20),
