@@ -42,7 +42,7 @@ class ProductInfo extends StatelessWidget {
             Text("\$$price", style: AppStyles.style18ExtraBold),
             SizedBox(width: 8,),
             Text("\$$oldPrice".toString(), style: AppStyles.style14Regular.copyWith(color: AppColors.hintClr, decoration: TextDecoration.lineThrough,)),
-            SizedBox(width: 20,),
+            SizedBox(width: 10,),
             Container(
               width: 45,
               height: 21,

@@ -67,6 +67,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
       return;
     }
 
+    // NOTE: id / categoryIds / sellerId / nameArabic / color /
+    // descriptionArabic / productPictureUrls kept static as requested.
     ProductModel product = ProductModel(
       id: "153cdea7-c2d7-4fa7-8dfb-d64feb7a88a0",
       name: _nameController.text,
@@ -95,6 +97,17 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Uses the AdminCubit AND ProductsCubit already provided by whoever
+    // pushed this screen (ManageProductScreen passes both via
+    // MultiBlocProvider.value). If you ever open AddProductScreen as the
+    // very first screen with no ancestor cubits, wrap that navigation in:
+    //   MultiBlocProvider(
+    //     providers: [
+    //       BlocProvider(create: (_) => AdminCubit()),
+    //       BlocProvider(create: (_) => ProductsCubit()),
+    //     ],
+    //     child: const AddProductScreen(),
+    //   )
     return Builder(
       builder: (context) {
         return Scaffold(
@@ -129,8 +142,16 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     );
 
                     if (_isEditing) {
+                      // Came from ManageProductScreen's edit button — that
+                      // screen is still underneath us on the stack and is
+                      // already listening to this same AdminCubit, so its
+                      // own listener will call ProductsCubit.getProducts()
+                      // automatically. Just go back to it.
                       Navigator.pop(context);
                     } else {
+                      // Opened fresh (e.g. an "Add Product" button on Home)
+                      // with no Manage Products screen underneath yet —
+                      // create one and hand it the same cubits.
                       final adminCubit = context.read<AdminCubit>();
                       final productsCubit = context.read<ProductsCubit>();
                       Navigator.pushReplacement(

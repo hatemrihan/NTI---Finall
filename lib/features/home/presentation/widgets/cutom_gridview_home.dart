@@ -22,7 +22,7 @@ class CutomGridviewHome extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('loading.....'),
-              backgroundColor: AppColors.bron2Clr,
+              backgroundColor: AppColors.brown2Clr,
             ),
           );
         } else if (state is addToCartFailure) {
