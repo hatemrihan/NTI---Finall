@@ -14,12 +14,21 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<SearchScreen> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ProductsCubit()
         ..getProducts(),
-      child: Scaffold(
+      child: Builder(
+        builder: (context) => Scaffold(
           backgroundColor: AppColors.backgroundClr,
           body: SafeArea(
             child: Padding(
@@ -30,8 +39,18 @@ class _MyWidgetState extends State<SearchScreen> {
                   children: [
                     CustomSearchTextField(
                       hintText: "search products",
+                      controller: _searchController,
+                      onChanged: (query) {
+                        context.read<ProductsCubit>().searchProducts(query);
+                      },
                       prefixIcon: const Icon(Icons.search),
-                      suffixIcon: const Icon(Icons.cancel_outlined),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          _searchController.clear();
+                          context.read<ProductsCubit>().searchProducts('');
+                        },
+                        icon: const Icon(Icons.cancel_outlined),
+                      ),
                     ),
                     Filter(),
                     CutomGridviewHome(),
@@ -41,6 +60,7 @@ class _MyWidgetState extends State<SearchScreen> {
             ),
           ),
         ),
+      ),
     );
   }
 }

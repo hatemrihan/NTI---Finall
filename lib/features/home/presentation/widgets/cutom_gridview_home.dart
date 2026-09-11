@@ -45,6 +45,9 @@ class CutomGridviewHome extends StatelessWidget {
           current is GetProductsLoadingState ||
           current is GetProductsSuccessState ||
           current is GetProductsFailureState ||
+          current is SearchProductsLoadingState ||
+          current is SearchProductsSuccessState ||
+          current is SearchProductsFailureState ||
           current is ProductsInitialState,
       builder: (context, state) {
         final cubit = context.read<ProductsCubit>();
