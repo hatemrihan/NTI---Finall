@@ -21,10 +21,36 @@ class ProductsCubit extends Cubit<ProductsState> {
     try {
       products = await homeRemoteDataSource.getProducts();
       isProductsLoading = false;
-      if (!isClosed) emit(GetProductsSuccessState());
+      emit(GetProductsSuccessState(
+        products: products,
+      ));
     } catch (error) {
       isProductsLoading = false;
       if (!isClosed) emit(GetProductsFailureState(error: error.toString()));
+    }
+  }
+
+  Future<void> searchProducts(String query) async {
+    final normalizedQuery = query.trim();
+    if (normalizedQuery.isEmpty) {
+      await getProducts();
+      return;
+    }
+
+    isProductsLoading = true;
+    if (isClosed) return;
+    emit(SearchProductsLoadingState());
+    try {
+      products = await homeRemoteDataSource.searchProducts(normalizedQuery);
+      isProductsLoading = false;
+      if (!isClosed) {
+        emit(SearchProductsSuccessState(products: products));
+      }
+    } catch (error) {
+      isProductsLoading = false;
+      if (!isClosed) {
+        emit(SearchProductsFailureState(error: error.toString()));
+      }
     }
   }
 
@@ -45,15 +71,11 @@ class ProductsCubit extends Cubit<ProductsState> {
   Future<void> addToCart(productId) async {
     if (isClosed) return;
     emit(addToCartloding());
-    await homeRemoteDataSource
-        .addToCart(productId)
-        .then(
-          onError: (error) {
-            if (!isClosed) emit(addToCartFailure());
-          },
-          (val) {
-            if (!isClosed) emit(addToCartSuccess());
-          },
-        );
+    try {
+      await homeRemoteDataSource.addToCart(productId);
+      if (!isClosed) emit(addToCartSuccess());
+    } catch (error) {
+      if (!isClosed) emit(addToCartFailure());
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/core/utils/validators.dart';
 import 'package:final_project/core/widgets/custom_elevated_buttom.dart';
 import 'package:final_project/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,13 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final GlobalKey<FormState> myKey = GlobalKey();
+  final TextEditingController emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +67,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   const SizedBox(height: 32),
 
-                  const CustomTextField(
+                  CustomTextField(
+                    controller: emailController,
                     title: "Email Address",
                     hintText: "Enter your email",
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (email) => Validator.validateEmail(email ?? ''),
                     prefixIcon: Icon(
                       Icons.email_outlined,
                       color: AppColors.grayClr,
@@ -72,12 +83,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                   CustomElevatedButton(
                     text: "Send Reset Link",
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ResetPasswordScreen(),
-                      ),
-                    ),
+                    onPressed: () {
+                      if (!myKey.currentState!.validate()) return;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ResetPasswordScreen(),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 32),
 
@@ -97,9 +111,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ],
               ),
             ),
-          ),
         ),
       ),
+    ),
     );
   }
 }

@@ -32,7 +32,7 @@ class DeleteConfirmation extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: AppColors.bronClr.withValues(alpha: 0.15),
+                        color: AppColors.brownClr.withValues(alpha: 0.15),
                         shape: BoxShape.circle,
                       ),
                       height: 70,
@@ -40,7 +40,7 @@ class DeleteConfirmation extends StatelessWidget {
                       child: const Icon(
                         Icons.warning_amber_rounded,
                         size: 30,
-                        color: AppColors.bron2Clr,
+                        color: AppColors.brown2Clr,
                       ),
                     ),
                     SizedBox(height: 24),

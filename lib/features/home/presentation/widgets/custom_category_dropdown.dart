@@ -15,7 +15,7 @@ String? _selectedCategory;
 class _BuildCategoryDropdownState extends State<BuildCategoryDropdown> {
   @override
   Widget build(BuildContext context) {
-    final List<String> _categories = [
+    final List<String> categories = [
       'Jewelry',
       'Clothing',
       'Accessories',
@@ -40,10 +40,10 @@ class _BuildCategoryDropdownState extends State<BuildCategoryDropdown> {
           ),
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
-              value: _selectedCategory ?? _categories.first,
+              value: _selectedCategory ?? categories.first,
               isExpanded: true,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: _categories
+              items: categories
                   .map(
                     (category) => DropdownMenuItem(
                       value: category,

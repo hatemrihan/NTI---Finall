@@ -12,6 +12,7 @@ class ProductOptions extends StatefulWidget {
 }
 
 class _ProductOptionsState extends State<ProductOptions> {
+  String? selectedColor;
   String? selectedSize;
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,10 @@ class _ProductOptionsState extends State<ProductOptions> {
         Row(
           spacing: 10,
           children: [
-            ColorButton(color: AppColors.primaryClr, text: "green"),
-            ColorButton(color: Color(0xffB9785B), text: "color"),
-            ColorButton(color: AppColors.blackClr, text: "black"),
-            ColorButton(color: Color(0xffE8DDCB), text: "color"),
+            ColorButton(color: AppColors.primaryClr, isSelected: selectedColor == "green", onPressed: (){ setState(() { selectedColor = "green";});}),
+            ColorButton(color: AppColors.brownClr, isSelected: selectedColor == "brown", onPressed: (){ setState(() { selectedColor = "brown";});}),
+            ColorButton(color: Color(0xffDCD9D2), isSelected: selectedColor == "Tan", onPressed: (){ setState(() { selectedColor = "Tan";});}),
+            ColorButton(color: Color(0xffE8DDCB), isSelected: selectedColor == "beige", onPressed: (){ setState(() { selectedColor = "beige";});}),
           ],
         ),
         SizedBox(height: 20),

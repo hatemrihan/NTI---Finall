@@ -1,8 +1,6 @@
 import 'dart:developer';
-import 'package:dio/dio.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/features/home/data/models/reviews_model.dart';
 import 'package:final_project/features/home/data/models/product_model.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
@@ -11,6 +9,8 @@ import 'package:final_project/features/home/presentation/widgets/description_sec
 import 'package:final_project/features/home/presentation/widgets/product_info.dart';
 import 'package:final_project/features/home/presentation/widgets/product_options.dart';
 import 'package:final_project/features/home/presentation/widgets/reviews_section.dart';
+import 'package:final_project/features/reviews/presentation/reviews_cubit/reviews_cubit.dart';
+import 'package:final_project/features/reviews/presentation/reviews_cubit/reviews_states.dart';
 import 'package:final_project/features/reviews/presentation/widgets/write_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,53 +25,11 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   String? selectedSize;
-  double averageRating = 0;
-  int reviewsCount = 0;
   @override
   void initState() {
     super.initState();
-    getReviews();
-  }
-
-  List<ReviewModel> reviews = [];
-  final dio = Dio();
-
-  Future<void> getReviews() async {
-    try {
-      log('get reviews');
-
-      final Response response = await dio.get(
-        'https://accessories-eshop.runasp.net/api/reviews/${widget.product.id}',
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGI2ZTkyNi02NzY3LTRmOTctMzVhZi0wOGRmMGMzZjg1NmQiLCJqdGkiOiI0MDEyNTNiMS03OGNhLTRiZjUtOWQzNS01OTQxMzhlNmVhZmUiLCJlbWFpbCI6ImFiZGVscmFobWFuM2lzbWFlbEBnbWFpbC5jb20iLCJuYW1lIjoiQWJkZWxyYWhtYW4gSXNtYWVpbCIsInJvbGVzIjoiIiwicGljdHVyZSI6IiIsImV4cCI6MTc4OTAwNjcwNywiaXNzIjoiZXNob3AubmV0IiwiYXVkIjoiZXNob3AubmV0In0.pKL-2VcG9RRzWJOYGxvIyx6fgE1dnisKnvNv4D6Qzf4',
-          },
-        ),
-      );
-      reviews.clear();
-      averageRating = (response.data['averageRating'] ?? 0).toDouble();
-      reviewsCount = response.data['reviewsCount'] ?? 0;
-      log(response.data.toString());
-      final items = response.data['reviews']?['items'];
-      if (items != null) {
-        for (var element in items) {
-          final ReviewModel model = ReviewModel.fromJson(element);
-          reviews.add(model);
-        }
-      }
-
-      if (mounted) {
-        setState(() {});
-      }
-      log(reviews.toString());
-    } catch (e) {
-      log('Error in getReviews: $e');
-      if (mounted) {
-        setState(() {});
-      }
+    context.read<ReviewCubit>().getReviews(productId: (widget.product.id ?? ''));
     }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +39,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('loading.....'),
-              backgroundColor: AppColors.bron2Clr,
+              backgroundColor: AppColors.brown2Clr,
             ),
           );
         } else if (state is addToCartFailure) {
@@ -113,7 +71,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               backgroundColor: AppColors.cardFillClr,
               side: BorderSide(color: AppColors.borderSideClr),
             ),
-            icon: Icon(Icons.arrow_back_ios_new),
+            icon: Icon(Icons.arrow_back_outlined, size: 20, fontWeight: FontWeight.w900,),
           ),
           actions: [
             IconButton(
@@ -146,17 +104,21 @@ class _ProductDetailsState extends State<ProductDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ProductInfo(
-                    image: widget.product.coverPictureUrl,
-                    brand: widget.product.name,
-                    description: widget.product.description,
-                    price: widget.product.price,
-                    oldPrice: widget.product.price + 900,
-                    rating: averageRating,
-                    reviews: reviewsCount,
+                  BlocBuilder<ReviewCubit, ReviewState>(
+                    builder: (context, state) {
+                      return ProductInfo(
+                        image: widget.product.coverPictureUrl,
+                        brand: widget.product.name,
+                        description: widget.product.description,
+                        price: widget.product.price,
+                        oldPrice: widget.product.price * 1.3,
+                        rating: context.read<ReviewCubit>().averageRating,
+                        reviews: context.read<ReviewCubit>().reviewsCount,
+                      );
+                    },
                   ),
                   SizedBox(height: 20),
-                  Divider(color: Color(0xffE8DDCB)),
+                  Divider(color: AppColors.borderSideClr, height:4 ,),
                   SizedBox(height: 20),
                   ProductOptions(),
                   SizedBox(height: 20),
@@ -204,12 +166,34 @@ class _ProductDetailsState extends State<ProductDetails> {
                   DescriptionSection(description: widget.product.description),
                   SizedBox(height: 20),
                   //* Reviews Section
-                  ReviewsSection(reviews: reviews),
+                  BlocBuilder<ReviewCubit, ReviewState>(
+                    builder: (context, state) {
+                      if (state is ReviewLoadingState) {
+                        return Center(
+                          child: CircularProgressIndicator(color: AppColors.primaryClr,),
+                        );
+                      } else if (state is ReviewFailureState) {
+                        return Center(
+                          child: Text('Failed to load reviews', style: AppStyles.style16Regular.copyWith(color: AppColors.hintClr),),
+                        );
+                      } else if (context.read<ReviewCubit>().reviews.isEmpty) {
+                        return Center(
+                          child: Text('No reviews yet', style: AppStyles.style16Regular.copyWith(color: AppColors.hintClr),),
+                        );
+                      } else {
+                        return ReviewsSection(
+                          reviews: context.read<ReviewCubit>().reviews,
+                        );
+                      }
+                    },
+                  ),
                   SizedBox(height: 12),
                   WriteReview(
-                    productId: widget.product.id,
+                    productId: widget.product.id ?? '',
                     onReviewAdded: () {
-                      getReviews();
+                      context.read<ReviewCubit>().getReviews(
+                        productId: widget.product.id ?? '',
+                      );
                     },
                   ),
                   SizedBox(height: 20),

@@ -16,7 +16,7 @@ class ReviewCubit extends Cubit<ReviewState> {
     try {
       final data = await reviewRemoteDataSource.getReviews( productId: productId,
       );
-      averageRating = (data['averageRating'] ?? 0).toDouble();
+      averageRating = double.parse((data['averageRating'] ?? 0).toDouble().toStringAsFixed(1),);
       reviewsCount = data['reviewsCount'] ?? 0;
       reviews.clear();
       for (var element in data['reviews']['items']) {

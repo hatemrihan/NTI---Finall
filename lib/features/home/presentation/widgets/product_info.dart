@@ -36,11 +36,13 @@ class ProductInfo extends StatelessWidget {
         ),
         SizedBox(height: 6),
         Text(description, style: AppStyles.style24ExtraBold),
+        SizedBox(height: 8,),
         Row(
-          spacing: 10,
           children: [
-            Text("\$$price", style: AppStyles.style16Bold),
-            Text("\$$oldPrice".toString(), style: AppStyles.style14w300),
+            Text("\$$price", style: AppStyles.style18ExtraBold),
+            SizedBox(width: 8,),
+            Text("\$$oldPrice".toString(), style: AppStyles.style14Regular.copyWith(color: AppColors.hintClr, decoration: TextDecoration.lineThrough,)),
+            SizedBox(width: 10,),
             Container(
               width: 45,
               height: 21,
@@ -56,19 +58,22 @@ class ProductInfo extends StatelessWidget {
                 ),
               ),
             ),
+            Spacer(),
             Icon(
               Icons.star_border_rounded,
               color: AppColors.primaryClr,
-              size: 20,
+              size: 30,
               fontWeight: FontWeight.w900,
             ),
+            SizedBox(width: 6,),
             Text(
               "$rating",
-              style: AppStyles.style13Bold.copyWith(color: Colors.black),
+              style: AppStyles.style14Bold.copyWith(color: Colors.black),
             ),
+            SizedBox(width: 5,),
             Text(
               "($reviews reviews)",
-              style: AppStyles.style13Bold.copyWith(color: Colors.black),
+              style: AppStyles.style14Bold.copyWith(color: Colors.black),
             ),
           ],
         ),

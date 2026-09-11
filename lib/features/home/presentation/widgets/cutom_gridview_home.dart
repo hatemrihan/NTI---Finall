@@ -22,7 +22,7 @@ class CutomGridviewHome extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('loading.....'),
-              backgroundColor: AppColors.bron2Clr,
+              backgroundColor: AppColors.brown2Clr,
             ),
           );
         } else if (state is addToCartFailure) {
@@ -45,6 +45,9 @@ class CutomGridviewHome extends StatelessWidget {
           current is GetProductsLoadingState ||
           current is GetProductsSuccessState ||
           current is GetProductsFailureState ||
+          current is SearchProductsLoadingState ||
+          current is SearchProductsSuccessState ||
+          current is SearchProductsFailureState ||
           current is ProductsInitialState,
       builder: (context, state) {
         final cubit = context.read<ProductsCubit>();

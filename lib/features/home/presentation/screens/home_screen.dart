@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   const CutomGridviewHome(),
-                  const SizedBox(height: 79),
+                  SizedBox(height: 80,),
                 ],
               ),
             ),

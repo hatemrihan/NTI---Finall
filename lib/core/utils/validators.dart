@@ -34,7 +34,7 @@ class Validator {
     if (!RegExp(r'\d').hasMatch(password)) {
       return AppStrings.passwordAtLeast1Number;
     }
-    if (!RegExp(r'[@$!%*?&]').hasMatch(password)) {
+    if (!RegExp(r'[@$!%*?&#]').hasMatch(password)) {
       return AppStrings.passwordAtLeast1SpecialChar;
     }
     // if (passwordController.text != confirmPassController.text) {
@@ -85,6 +85,7 @@ class Validator {
     }
     return null;
   }
+
   static String? validateConfirmPassword(
     String? password,
     String? confirmPassword,

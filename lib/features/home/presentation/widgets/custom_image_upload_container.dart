@@ -4,7 +4,8 @@ import 'package:final_project/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class BuildImageUploadContainer extends StatefulWidget {
-  const BuildImageUploadContainer({super.key});
+  final Function(String) onImageSelected;
+  const BuildImageUploadContainer({super.key, required this.onImageSelected });
 
   @override
   State<BuildImageUploadContainer> createState() =>
@@ -15,7 +16,10 @@ class BuildImageUploadContainerState extends State<BuildImageUploadContainer> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        String imageUrl = "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&auto=format&fit=crop&q=60";
+        widget.onImageSelected(imageUrl);
+      },
       child: Container(
         width: double.infinity,
         height: 160,
