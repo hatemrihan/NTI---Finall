@@ -55,17 +55,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: 'Manage Products',
         icon: Icons.inventory_2,
         rightIcon: Icons.arrow_forward_ios,
-      ),
-      ProfileItemModel2(
-        title: 'Help and Support',
-        icon: Icons.help_outline_rounded,
-        rightIcon: Icons.arrow_forward_ios,
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const ManageProductScreen()),
           );
         }
+      ),
+      ProfileItemModel2(
+        title: 'Help and Support',
+        icon: Icons.help_outline_rounded,
+        rightIcon: Icons.arrow_forward_ios,
       ),
     ];
 
