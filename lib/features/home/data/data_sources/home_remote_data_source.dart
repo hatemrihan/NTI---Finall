@@ -25,6 +25,26 @@ class HomeRemoteDataSource {
     }
   }
 
+  Future<List<ProductModel>> searchProducts(String query) async {
+    try {
+      final normalizedQuery = query.trim();
+      final Response response = await dio.get(
+        "https://accessories-eshop.runasp.net/api/products",
+        queryParameters: {'search': normalizedQuery},
+      );
+      final products = (response.data['items'] as List<dynamic>)
+          .map((element) => ProductModel.fromJson(element as Map<String, dynamic>))
+          .toList();
+
+      return products
+          .where((product) => product.name.toLowerCase().contains(normalizedQuery.toLowerCase()))
+          .toList();
+    } on DioException catch (e) {
+      log('Error in searchProducts: $e');
+      throw Exception(e.response?.data?.toString() ?? e.message);
+    }
+  }
+
   Future<List<dynamic>> getCategories() async {
     try {
       final Response response = await dio.get(

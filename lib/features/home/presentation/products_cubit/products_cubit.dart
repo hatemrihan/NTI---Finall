@@ -30,6 +30,30 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
   }
 
+  Future<void> searchProducts(String query) async {
+    final normalizedQuery = query.trim();
+    if (normalizedQuery.isEmpty) {
+      await getProducts();
+      return;
+    }
+
+    isProductsLoading = true;
+    if (isClosed) return;
+    emit(SearchProductsLoadingState());
+    try {
+      products = await homeRemoteDataSource.searchProducts(normalizedQuery);
+      isProductsLoading = false;
+      if (!isClosed) {
+        emit(SearchProductsSuccessState(products: products));
+      }
+    } catch (error) {
+      isProductsLoading = false;
+      if (!isClosed) {
+        emit(SearchProductsFailureState(error: error.toString()));
+      }
+    }
+  }
+
   Future<void> getCategories() async {
     isCategoriesLoading = true;
     if (isClosed) return;

@@ -8,10 +8,14 @@ class CustomSearchTextField extends StatelessWidget {
     required this.hintText,
     this.suffixIcon,
     this.prefixIcon,
+    this.controller,
+    this.onChanged,
   });
   final String hintText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
+  final TextEditingController? controller;
+  final ValueChanged<String>? onChanged;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,6 +24,8 @@ class CustomSearchTextField extends StatelessWidget {
       children: [
 
         TextField(
+          controller: controller,
+          onChanged: onChanged,
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.bottomBackgroundClr,

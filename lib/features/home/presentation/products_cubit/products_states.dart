@@ -17,6 +17,20 @@ class GetProductsFailureState extends ProductsState {
   GetProductsFailureState({this.error});
 }
 
+class SearchProductsLoadingState extends ProductsState {}
+
+class SearchProductsSuccessState extends ProductsState {
+  final List<ProductModel> products;
+
+  SearchProductsSuccessState({required this.products});
+}
+
+class SearchProductsFailureState extends ProductsState {
+  final String? error;
+
+  SearchProductsFailureState({this.error});
+}
+
 // Categories States
 class GetCategoriesLoadingState extends ProductsState {}
 
