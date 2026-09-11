@@ -68,12 +68,12 @@ class ProductInfo extends StatelessWidget {
             SizedBox(width: 6,),
             Text(
               "$rating",
-              style: AppStyles.style16Bold.copyWith(color: Colors.black),
+              style: AppStyles.style14Bold.copyWith(color: Colors.black),
             ),
             SizedBox(width: 5,),
             Text(
               "($reviews reviews)",
-              style: AppStyles.style16Bold.copyWith(color: Colors.black),
+              style: AppStyles.style14Bold.copyWith(color: Colors.black),
             ),
           ],
         ),
