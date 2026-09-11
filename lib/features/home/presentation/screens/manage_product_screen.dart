@@ -18,22 +18,14 @@ class ManageProductScreen extends StatefulWidget {
 }
 
 class _ManageProductScreenState extends State<ManageProductScreen> {
-  // The list is owned by ProductsCubit. AdminCubit only performs
-  // add/update/delete — after add/update succeed we ask ProductsCubit
-  // to refetch so this screen always shows the real store state.
   List<ProductModel> _products = [];
 
-  // Holds the product + its original position while a delete request is
-  // in flight, so we can put it back if the backend call fails.
   ProductModel? _pendingDeleteProduct;
   int? _pendingDeleteIndex;
 
   @override
   void initState() {
     super.initState();
-    // NOTE: assumes ProductsCubit has getProducts() emitting
-    // ProductsLoadingState / ProductsSuccessState(products) /
-    // ProductsErrorState(error). Rename to match your real files if different.
     context.read<ProductsCubit>().getProducts();
   }
 
@@ -130,9 +122,6 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
                         }
                       },
                     ),
-                    // AdminCubit only triggers side effects (snackbars +
-                    // rollback on delete failure). It doesn't hold the list
-                    // itself — deletion already happened locally in the UI.
                     BlocListener<AdminCubit, AdminProductStates>(
                       listener: (context, state) {
                         if (state is AdminDeleteProductSuccessState) {
