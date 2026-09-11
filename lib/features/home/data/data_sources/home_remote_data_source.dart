@@ -11,6 +11,7 @@ class HomeRemoteDataSource {
       log(" get products");
       final Response response = await dio.get(
         "https://accessories-eshop.runasp.net/api/products",
+        queryParameters: {'pageSize': 230},
       );
       List<ProductModel> products = [];
       for (var element in response.data['items']) {
@@ -33,11 +34,17 @@ class HomeRemoteDataSource {
         queryParameters: {'search': normalizedQuery},
       );
       final products = (response.data['items'] as List<dynamic>)
-          .map((element) => ProductModel.fromJson(element as Map<String, dynamic>))
+          .map(
+            (element) => ProductModel.fromJson(element as Map<String, dynamic>),
+          )
           .toList();
 
       return products
-          .where((product) => product.name.toLowerCase().contains(normalizedQuery.toLowerCase()))
+          .where(
+            (product) => product.name.toLowerCase().contains(
+              normalizedQuery.toLowerCase(),
+            ),
+          )
           .toList();
     } on DioException catch (e) {
       log('Error in searchProducts: $e');
@@ -88,7 +95,7 @@ class HomeRemoteDataSource {
       );
     } on DioException catch (e) {
       log('Error in addProductttttttttt: ${e.response}');
-      
+
       log('Errorrrrrrr: ${e.response?.data}');
 
       log('Error in addProduct: ${e.message}');
@@ -116,18 +123,10 @@ class HomeRemoteDataSource {
     try {
       await dio.delete(
         "https://accessories-eshop.runasp.net/api/products/$productId",
-        
-        options: Options(
-          headers: {
-            'Accept': 'application/json',
-          
-          },
-        ),
-        
+
+        options: Options(headers: {'Accept': 'application/json'}),
       );
       log('Product deleted successfully: $productId');
-
-      
     } on DioException catch (e) {
       log('Error in deleteProduct: $e');
       throw Exception(e.response?.data?.toString() ?? e.message);

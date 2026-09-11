@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
@@ -16,7 +18,10 @@ class CutomGridviewHome extends StatelessWidget {
       listenWhen: (previous, current) =>
           current is addToCartloding ||
           current is addToCartSuccess ||
-          current is addToCartFailure,
+          current is addToCartFailure ||
+          current is DeleteProductLoadingState ||
+          current is DeleteProductSuccessState ||
+          current is DeleteProductFailureState,
       listener: (context, state) {
         if (state is addToCartloding) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -36,6 +41,27 @@ class CutomGridviewHome extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('success......'),
+              backgroundColor: AppColors.primaryClr,
+            ),
+          );
+        } else if (state is DeleteProductLoadingState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Deleting product...'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        } else if (state is DeleteProductFailureState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage),
+              backgroundColor: AppColors.redClr,
+            ),
+          );
+        } else if (state is DeleteProductSuccessState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
               backgroundColor: AppColors.primaryClr,
             ),
           );
@@ -100,89 +126,110 @@ class CutomGridviewHome extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => MultiBlocProvider(
                       providers: [
-                        BlocProvider(
-                          create: (context) => ProductsCubit(),
-                        ),
-                        BlocProvider(
-                          create: (context) => ReviewCubit(),
-                        ),
+                        BlocProvider(create: (context) => ProductsCubit()),
+                        BlocProvider(create: (context) => ReviewCubit()),
                       ],
                       child: ProductDetails(product: product),
                     ),
                   ),
                 );
               },
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                color: AppColors.bottomBackgroundClr,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                        ),
-                        child: Image.network(
-                          product.coverPictureUrl,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const Center(
-                              child: Icon(
-                                Icons.image_not_supported_outlined,
-                                size: 35,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+              child: Stack(
+                children: [
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 8, 2, 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            product.name,
-                            style: AppStyles.style11Bold.copyWith(
-                              color: AppColors.grayClr,
+                    color: AppColors.bottomBackgroundClr,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16),
+                            ),
+                            child: Image.network(
+                              product.coverPictureUrl,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Center(
+                                  child: Icon(
+                                    Icons.image_not_supported_outlined,
+                                    size: 35,
+                                  ),
+                                );
+                              },
                             ),
                           ),
-                          Text(
-                            product.description,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppStyles.style14SemiBold.copyWith(
-                              color: AppColors.textClr,
-                            ),
-                          ),
-                          Row(
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 8, 2, 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "\$${product.price.toString()}",
-                                style: AppStyles.style14Bold,
+                                product.name,
+                                style: AppStyles.style11Bold.copyWith(
+                                  color: AppColors.grayClr,
+                                ),
                               ),
-                              const Spacer(),
-                              IconButton(
-                                color: AppColors.primaryClr,
-                                onPressed: () {
-                                  BlocProvider.of<ProductsCubit>(
-                                    context,
-                                  ).addToCart(product.id);
-                                },
-                                icon: const Icon(Icons.add_circle_outlined),
+                              Text(
+                                product.description,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppStyles.style14SemiBold.copyWith(
+                                  color: AppColors.textClr,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "\$${product.price.toString()}",
+                                    style: AppStyles.style14Bold,
+                                  ),
+                                  const Spacer(),
+                                  IconButton(
+                                    color: AppColors.primaryClr,
+                                    onPressed: () {
+                                      BlocProvider.of<ProductsCubit>(
+                                        context,
+                                      ).addToCart(product.id);
+                                    },
+                                    icon: const Icon(Icons.add_circle_outlined),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 8,
+                    right: 20,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.black.withValues(alpha: 0.2),
+                      radius: 18,
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(
+                          Icons.delete_sweep,
+                          color: Colors.red,
+                          size: 20,
+                        ),
+                        onPressed: () {
+                          context.read<ProductsCubit>().deleteProduct(
+                            productId: product.id.toString(),
+                          );
+                        },
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           },
