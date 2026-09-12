@@ -35,17 +35,19 @@ class SearchProductsFailureState extends ProductsState {
 // Categories States
 class GetCategoriesLoadingState extends ProductsState {}
 
-class GetCategoriesSuccessState extends ProductsState {
-}
+class GetCategoriesSuccessState extends ProductsState {}
 
 class GetCategoriesFailureState extends ProductsState {
   final String? error;
   GetCategoriesFailureState({this.error});
 }
+
 class AddProductLoadingState extends ProductsState {}
+
 class AddProductSuccessState extends ProductsState {
   static const String message = "Product added successfully";
 }
+
 class AddProductFailureState extends ProductsState {
   final String? error;
   AddProductFailureState({this.error});
@@ -57,6 +59,20 @@ class addToCartSuccess extends ProductsState {}
 
 class addToCartFailure extends ProductsState {}
 
+class DeleteProductLoadingState extends ProductsState {
+  final String productId;
+  DeleteProductLoadingState(this.productId);
+}
+
+class DeleteProductSuccessState extends ProductsState {
+  final String message;
+  DeleteProductSuccessState({this.message = 'Product deleted successfully'});
+}
+
+class DeleteProductFailureState extends ProductsState {
+  final String errorMessage;
+  DeleteProductFailureState(this.errorMessage);
+}
 // Offers States
 class GetOffersLoadingState extends ProductsState {}
 

@@ -82,6 +82,18 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
   }
 
+  Future<void> deleteProduct({required String productId}) async {
+    emit(DeleteProductLoadingState(productId));
+
+    try {
+      await homeRemoteDataSource.deleteProduct(productId);
+
+      emit(DeleteProductSuccessState());
+
+      await getProducts();
+    } catch (error) {
+      emit(DeleteProductFailureState(error.toString()));
+      
   Future<void> getOffers() async {
     isOffersLoading = true;
     if (isClosed) return;
