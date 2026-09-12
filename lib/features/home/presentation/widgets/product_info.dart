@@ -41,7 +41,7 @@ class ProductInfo extends StatelessWidget {
           children: [
             Text("\$$price", style: AppStyles.style18ExtraBold),
             SizedBox(width: 8,),
-            Text("\$$oldPrice".toString(), style: AppStyles.style14Regular.copyWith(color: AppColors.hintClr, decoration: TextDecoration.lineThrough,)),
+            Text("\$${oldPrice.toStringAsFixed(1)}", style: AppStyles.style14Regular.copyWith(color: AppColors.hintClr, decoration: TextDecoration.lineThrough,)),
             SizedBox(width: 10,),
             Container(
               width: 45,
