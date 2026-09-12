@@ -148,7 +148,7 @@ class CutomGridviewHome extends StatelessWidget {
                         children: [
                           Text(
                             product.name,
-                            style: AppStyles.style11Bold.copyWith(
+                            style: AppStyles.style12SemiBold.copyWith(
                               color: AppColors.grayClr,
                             ),
                           ),
@@ -156,7 +156,7 @@ class CutomGridviewHome extends StatelessWidget {
                             product.description,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: AppStyles.style14SemiBold.copyWith(
+                            style: AppStyles.style16SemiBold.copyWith(
                               color: AppColors.textClr,
                             ),
                           ),
@@ -164,7 +164,7 @@ class CutomGridviewHome extends StatelessWidget {
                             children: [
                               Text(
                                 "\$${product.price.toString()}",
-                                style: AppStyles.style14Bold,
+                                style: AppStyles.style16Bold,
                               ),
                               const Spacer(),
                               IconButton(
@@ -174,7 +174,10 @@ class CutomGridviewHome extends StatelessWidget {
                                     context,
                                   ).addToCart(product.id);
                                 },
-                                icon: const Icon(Icons.add_circle_outlined),
+                                icon: Icon(Icons.add_circle_outlined,
+                                size: 35,
+                                color: AppColors.primaryClr,
+                                ),
                               ),
                             ],
                           ),

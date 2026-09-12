@@ -116,7 +116,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
               backgroundColor: AppColors.backgroundClr,
               leading: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back_ios,
                   color: AppColors.textClr,
                 ),

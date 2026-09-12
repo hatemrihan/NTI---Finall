@@ -10,9 +10,9 @@ class SettingsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.whiteClr,
+        color: AppColors.profileCard,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color.fromARGB(255, 232, 222, 208)),
+        border: Border.all(color: AppColors.borderSideClr,width: 1.5),
       ),
       child: Column(children: children),
     );

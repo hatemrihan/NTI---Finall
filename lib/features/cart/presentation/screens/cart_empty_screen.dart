@@ -25,9 +25,9 @@ class _CartEmptyScreenState extends State<CartEmptyScreen> {
                 Container(
                   width: 160,
                   height: 160,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.whiteClr,
+                    color: AppColors.cardFillClr,
                   ),
                   child: Center(
                     child: Container(

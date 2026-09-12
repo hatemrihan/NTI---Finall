@@ -50,7 +50,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   const SizedBox(height: 32),
 
-                  const Center(
+                  Center(
                     child: Icon(
                       Icons.lock_outline,
                       size: 50,
