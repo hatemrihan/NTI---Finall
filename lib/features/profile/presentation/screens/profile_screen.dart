@@ -9,6 +9,8 @@ import 'package:final_project/features/profile/presentation/widgets/custom_profi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:final_project/core/theme/theme_cubit.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -42,90 +44,109 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<ProfileItemModel2> mylist2 = [
-      ProfileItemModel2(
-        title: 'Settings',
-        icon: Icons.settings_outlined,
-        rightIcon: Icons.arrow_forward_ios,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const SettingsScreen()),
-          );
-        },
-      ),
-      ProfileItemModel2(
-        title: 'Manage Products',
-        icon: Icons.inventory_2,
-        rightIcon: Icons.arrow_forward_ios,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ManageProductScreen(),
-            ),
-          );
-        },
-      ),
-      ProfileItemModel2(
-        title: 'Help and Support',
-        icon: Icons.help_outline_rounded,
-        rightIcon: Icons.arrow_forward_ios,
-      ),
-    ];
+    return BlocBuilder<ThemeCubit, ThemeMode>(
+      builder: (context, themeMode) {
+        List<ProfileItemModel2> mylist2 = [
+          ProfileItemModel2(
+            title: 'Settings',
+            icon: Icons.settings_outlined,
+            rightIcon: Icons.arrow_forward_ios,
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
+              if (mounted) setState(() {});
+            },
+          ),
+          ProfileItemModel2(
+            title: 'Manage Products',
+            icon: Icons.inventory_2,
+            rightIcon: Icons.arrow_forward_ios,
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ManageProductScreen(),
+                ),
+              );
+              if (mounted) setState(() {});
+            },
+          ),
+          ProfileItemModel2(
+            title: 'Help and Support',
+            icon: Icons.help_outline_rounded,
+            rightIcon: Icons.arrow_forward_ios,
+          ),
+        ];
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundClr,
-        title: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: const Text('MY PROFILE', style: AppStyles.style20ExtraBold),
-        ),
-      ),
-      backgroundColor: AppColors.backgroundClr,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Column(
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: AppColors.backgroundClr,
+            title: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Text(
+                'MY PROFILE',
+                style: AppStyles.style20ExtraBold.copyWith(
+                  color: AppColors.textClr,
+                ),
+              ),
+            ),
+          ),
+          backgroundColor: AppColors.backgroundClr,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Stack(
+                    Column(
                       children: [
-                        CircleAvatar(
-                          radius: 60.5,
-                          backgroundImage: const AssetImage(
-                            'assets/images/logo.png',
+                        Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 60.5,
+                              backgroundImage: const AssetImage(
+                                'assets/images/logo.png',
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                padding: EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryClr,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.photo_camera,
+                                  color: AppColors.bottomBackgroundClr,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Text(
+                          'LAMSA',
+                          style: AppStyles.style20ExtraBold.copyWith(
+                            color: AppColors.textClr,
                           ),
                         ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            padding: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              color: AppColors.primaryClr,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.photo_camera,
-                              color: AppColors.bottomBackgroundClr,
-                              size: 18,
-                            ),
+                        Text(
+                          'lamsa@gmail.com',
+                          style: AppStyles.style14Regular.copyWith(
+                            color: AppColors.grayClr,
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 15),
-                    Text('LAMSA', style: AppStyles.style20ExtraBold),
-                    Text('lamsa@gmail.com', style: AppStyles.style14Regular),
-                  ],
-                ),
-                SizedBox(height: 16),
-                Card(
-                  color: AppColors.profileCard,
+                    SizedBox(height: 16),
+                    Card(
+                      color: AppColors.profileCard,
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -223,5 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  },
+);
   }
 }

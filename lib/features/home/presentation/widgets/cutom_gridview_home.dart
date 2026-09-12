@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
@@ -162,23 +160,6 @@ class CutomGridviewHome extends StatelessWidget {
                                   ),
                                 );
                               },
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 8, 2, 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            product.name,
-                            style: AppStyles.style12SemiBold.copyWith(
-                              color: AppColors.grayClr,
-                            ),
-                          ),
-                          Text(
-                            product.description,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppStyles.style16SemiBold.copyWith(
-                              color: AppColors.textClr,
                             ),
                           ),
                         ),
@@ -205,7 +186,7 @@ class CutomGridviewHome extends StatelessWidget {
                                 children: [
                                   Text(
                                     "\$${product.price.toString()}",
-                                    style: AppStyles.style14Bold,
+                                    style: AppStyles.style16Bold,
                                   ),
                                   const Spacer(),
                                   IconButton(
@@ -215,24 +196,13 @@ class CutomGridviewHome extends StatelessWidget {
                                         context,
                                       ).addToCart(product.id);
                                     },
-                                    icon: const Icon(Icons.add_circle_outlined),
+                                    icon: Icon(
+                                      Icons.add_circle_outlined,
+                                      size: 35,
+                                      color: AppColors.primaryClr,
+                                    ),
                                   ),
                                 ],
-                                "\$${product.price.toString()}",
-                                style: AppStyles.style16Bold,
-                              ),
-                              const Spacer(),
-                              IconButton(
-                                color: AppColors.primaryClr,
-                                onPressed: () {
-                                  BlocProvider.of<ProductsCubit>(
-                                    context,
-                                  ).addToCart(product.id);
-                                },
-                                icon: Icon(Icons.add_circle_outlined,
-                                size: 35,
-                                color: AppColors.primaryClr,
-                                ),
                               ),
                             ],
                           ),
@@ -249,7 +219,7 @@ class CutomGridviewHome extends StatelessWidget {
                       child: IconButton(
                         padding: EdgeInsets.zero,
                         icon: const Icon(
-                          Icons.delete_sweep,
+                          Icons.delete,
                           color: Colors.red,
                           size: 20,
                         ),

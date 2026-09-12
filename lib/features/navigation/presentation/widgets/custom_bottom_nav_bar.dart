@@ -1,6 +1,8 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/core/theme/theme_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -82,42 +84,48 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-      decoration: BoxDecoration(
-        color: AppColors.bottomBackgroundClr,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: AppColors.isDarkMode ? 0.35 : 0.06),
-            blurRadius: 10,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: SafeArea(
-        top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem(0),
-            _buildNavItem(1),
-            GestureDetector(
-              onTap: onAddProduct,
-              child: Container(
-                width: 52,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryClr,
-                  borderRadius: BorderRadius.circular(14),
+    return BlocBuilder<ThemeCubit, ThemeMode>(
+      builder: (context, themeMode) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          decoration: BoxDecoration(
+            color: AppColors.bottomBackgroundClr,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(
+                  alpha: AppColors.isDarkMode ? 0.35 : 0.06,
                 ),
-                child: const Icon(Icons.add, color: Colors.white, size: 30),
+                blurRadius: 10,
+                offset: const Offset(0, -2),
               ),
+            ],
+          ),
+          child: SafeArea(
+            top: false,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildNavItem(0),
+                _buildNavItem(1),
+                GestureDetector(
+                  onTap: onAddProduct,
+                  child: Container(
+                    width: 52,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryClr,
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: const Icon(Icons.add, color: Colors.white, size: 30),
+                  ),
+                ),
+                _buildNavItem(2),
+                _buildNavItem(3),
+              ],
             ),
-            _buildNavItem(2),
-            _buildNavItem(3),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
