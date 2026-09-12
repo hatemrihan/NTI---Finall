@@ -32,7 +32,11 @@ class HomeRemoteDataSource {
       final normalizedQuery = query.trim();
       final Response response = await dio.get(
         "https://accessories-eshop.runasp.net/api/products",
-        queryParameters: {'search': normalizedQuery},
+        queryParameters: {
+          'search': normalizedQuery,
+           'page': 1,
+          'pageSize': 230,
+          },
       );
       final products = (response.data['items'] as List<dynamic>)
           .map(
