@@ -63,6 +63,7 @@ class AuthRemoteDataSource {
           },
         ),
       );
+      log(response.data.toString());
     } on DioException catch (e) {
       log("Status Code: ${e.response?.statusCode}");
       log("Error Data: ${e.response?.data}");
@@ -79,6 +80,7 @@ class AuthRemoteDataSource {
         'https://accessories-eshop.runasp.net/api/auth/verify-email',
         data: {'otp': otpCode, "email": email},
       );
+      log(response.data.toString());
     } on DioException catch (e) {
       throw Exception(e.response?.data.toString());
     }
