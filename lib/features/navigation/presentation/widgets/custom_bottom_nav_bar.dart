@@ -45,7 +45,9 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: isSelected
-              ? const Color.fromARGB(255, 206, 237, 223)
+              ? (AppColors.isDarkMode
+                  ? AppColors.primaryClr.withValues(alpha: 0.25)
+                  : const Color.fromARGB(255, 206, 237, 223))
               : Colors.transparent,
           borderRadius: BorderRadius.circular(24),
         ),
@@ -55,7 +57,7 @@ class CustomBottomNavBar extends StatelessWidget {
             Icon(
               isSelected ? _activeIcons[index] : _icons[index],
               size: 25,
-              color: isSelected ? AppColors.primaryClr : Colors.black54,
+              color: isSelected ? AppColors.primaryClr : AppColors.grayClr,
             ),
             AnimatedSize(
               duration: const Duration(milliseconds: 300),
@@ -83,10 +85,10 @@ class CustomBottomNavBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.bottomBackgroundClr,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
+            color: Colors.black.withValues(alpha: AppColors.isDarkMode ? 0.35 : 0.06),
             blurRadius: 10,
             offset: const Offset(0, -2),
           ),

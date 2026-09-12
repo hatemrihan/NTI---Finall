@@ -24,7 +24,7 @@ class BuildImageUploadContainerState extends State<BuildImageUploadContainer> {
         width: double.infinity,
         height: 160,
         decoration: BoxDecoration(
-          color: AppColors.whiteClr,
+          color: AppColors.cardFillClr,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: AppColors.grayClr,
@@ -35,7 +35,7 @@ class BuildImageUploadContainerState extends State<BuildImageUploadContainer> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.add, size: 32, color: AppColors.grayClr),
+            Icon(Icons.add, size: 32, color: AppColors.grayClr),
             const SizedBox(height: 8),
             const Text(
               'Upload Product Image',

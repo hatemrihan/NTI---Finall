@@ -33,12 +33,12 @@ class Filter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 30,
+            height: 35,
             child: ListView.separated(
               itemCount: filterbutton.length,
               scrollDirection: Axis.horizontal,
@@ -49,26 +49,21 @@ class Filter extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    minimumSize: const Size(40, 40),
+                    minimumSize:  Size(40, 40),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,
-                      vertical: 5,
+                      vertical: 10,
                     ),
                   ),
                   onPressed: () {},
-                  child: Row(
-                    children: [
-                      Text(
-                        filterbutton[index].text,
-                        style: AppStyles.style12Medium.copyWith(
-                          color: filterbutton[index].textcolor,
-                        ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      filterbutton[index].text,
+                      style: AppStyles.style14SemiBold.copyWith(
+                        color: filterbutton[index].textcolor,
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.arrow_downward_outlined),
-                      ),
-                    ],
+                    ),
                   ),
                 );
               },

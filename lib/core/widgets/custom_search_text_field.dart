@@ -26,16 +26,21 @@ class CustomSearchTextField extends StatelessWidget {
         TextField(
           controller: controller,
           onChanged: onChanged,
+          style: TextStyle(color: AppColors.textClr),
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.bottomBackgroundClr,
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             hintText: hintText,
-            hintStyle: AppStyles.style14Regular.copyWith(color: AppColors.grayClr),
+            hintStyle:
+                AppStyles.style14Regular.copyWith(color: AppColors.grayClr),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(width: 0.5),
+              borderSide: BorderSide(
+                color: AppColors.borderSideClr,
+                width: 0.5,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),

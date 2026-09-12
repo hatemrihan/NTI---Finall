@@ -4,9 +4,11 @@ import 'package:final_project/features/settings/presentation/screens/privacy_pol
 import 'package:final_project/features/settings/presentation/screens/about_us_screen.dart';
 import 'package:final_project/features/auth/presentation/screens/change_password_screen.dart';
 import 'package:final_project/features/settings/presentation/screens/contact_us_screen.dart';
+import 'package:final_project/core/theme/theme_cubit.dart';
 import 'package:final_project/features/home/presentation/widgets/custom_container_row.dart';
 import 'package:final_project/features/home/presentation/widgets/custom_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -17,31 +19,25 @@ class SettingsScreen extends StatefulWidget {
 
 class SettingsScreenState extends State<SettingsScreen> {
   bool value1 = true;
-  bool value2 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundClr,
+      appBar: AppBar(
+        backgroundColor: AppColors.backgroundClr,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text('SETTINGS', style: AppStyles.style20ExtraBold),
+      ),
 
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back_ios_new),
-                  ),
-
-                  const Text('SETTINGS', style: AppStyles.style20ExtraBold),
-                ],
-              ),
-
-              const SizedBox(height: 12),
-
               SettingsContainer(
                 children: [
                   SettingsRow(
@@ -56,7 +52,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                       },
                     ),
                   ),
-                  Divider(),
+                  Divider(color: AppColors.borderSideClr),
 
                   InkWell(
                     onTap: () {},
@@ -66,14 +62,14 @@ class SettingsScreenState extends State<SettingsScreen> {
                       trailing: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('English'),
+                          Text('English',style: AppStyles.style16Regular,),
                           SizedBox(width: 10),
-                          Icon(Icons.arrow_forward_ios, size: 14),
+                          Icon(Icons.arrow_forward_ios, size: 18),
                         ],
                       ),
                     ),
                   ),
-                  Divider(),
+                  Divider(color: AppColors.borderSideClr),
                   InkWell(
                     onTap: () {},
                     child: SettingsRow(
@@ -82,14 +78,14 @@ class SettingsScreenState extends State<SettingsScreen> {
                       trailing: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('USD (\$)'),
+                          Text('USD (\$)',style: AppStyles.style16Regular,),
                           SizedBox(width: 10),
-                          Icon(Icons.arrow_forward_ios, size: 14),
+                          Icon(Icons.arrow_forward_ios, size: 18),
                         ],
                       ),
                     ),
                   ),
-                  Divider(),
+                  Divider(color: AppColors.borderSideClr),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -104,22 +100,22 @@ class SettingsScreenState extends State<SettingsScreen> {
                       title: 'Change Password',
                       trailing: const Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: [Icon(Icons.arrow_forward_ios, size: 14)],
+                        children: [Icon(Icons.arrow_forward_ios, size: 18)],
                       ),
                     ),
                   ),
-                  Divider(),
+                  Divider(color: AppColors.borderSideClr),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.read<ThemeCubit>().toggleTheme();
+                    },
                     child: SettingsRow(
                       icon: Icons.dark_mode_outlined,
                       title: 'Dark Theme',
                       trailing: Switch(
-                        value: value2,
+                        value: context.watch<ThemeCubit>().isDark,
                         onChanged: (newvalue2) {
-                          setState(() {
-                            value2 = newvalue2;
-                          });
+                          context.read<ThemeCubit>().setDarkMode(newvalue2);
                         },
                       ),
                     ),
@@ -127,7 +123,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
 
-              const SizedBox(height: 12),
+              const SizedBox(height: 20),
 
               SettingsContainer(
                 children: [
@@ -143,10 +139,10 @@ class SettingsScreenState extends State<SettingsScreen> {
                     child: SettingsRow(
                       icon: Icons.shield_outlined,
                       title: 'Privacy Policy',
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 18),
                     ),
                   ),
-                  Divider(),
+                  Divider(color: AppColors.borderSideClr),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -159,10 +155,10 @@ class SettingsScreenState extends State<SettingsScreen> {
                     child: SettingsRow(
                       icon: Icons.info_outline,
                       title: 'About Us',
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 18),
                     ),
                   ),
-                  Divider(),
+                  Divider(color: AppColors.borderSideClr),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -175,13 +171,13 @@ class SettingsScreenState extends State<SettingsScreen> {
                     child: SettingsRow(
                       icon: Icons.mail_outline,
                       title: 'Contact Us',
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 18),
                     ),
                   ),
                 ],
               ),
 
-              const SizedBox(height: 12),
+              const SizedBox(height: 20),
 
               InkWell(
                 onTap: () {},
@@ -189,29 +185,26 @@ class SettingsScreenState extends State<SettingsScreen> {
                   height: 60,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
-                    color: AppColors.whiteClr,
+                    color: AppColors.profileCard,
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(
-                      color: const Color.fromARGB(255, 232, 222, 208),
+                      color:AppColors.borderSideClr,
+                      width: 1.5,
                     ),
                   ),
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.delete_outline,
                         color: AppColors.redClr,
-                        size: 18,
+                        size: 28,
                       ),
 
                       SizedBox(width: 10),
 
                       Text(
                         'Delete Account',
-                        style: TextStyle(
-                          color: AppColors.redClr,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppStyles.style16Bold.copyWith(color:AppColors.redClr,),
                       ),
                     ],
                   ),

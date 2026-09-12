@@ -6,6 +6,7 @@ import 'package:final_project/features/cart/presentation/screens/cart_empty_scre
 import 'package:flutter/material.dart';
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/home/presentation/widgets/counter_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartScreen extends StatefulWidget {
@@ -60,8 +61,8 @@ class _CartScreenState extends State<CartScreen> {
                 );
               } else if (state is removeCartsuccess) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('success.....'),
+                  SnackBar(
+                    content: const Text('success.....'),
                     backgroundColor: AppColors.primaryClr,
                   ),
                 );
@@ -91,30 +92,55 @@ class _CartScreenState extends State<CartScreen> {
                         shrinkWrap: true,
                         itemCount: productsCart.length,
                         itemBuilder: (context, index) {
-                          log('productsCart:${productsCart[index]['itemId']}');
+                          final item = productsCart[index];
+                          final String name =
+                              item['productName'] ?? item['name'] ?? '';
+                          final String imageUrl = item['productCoverUrl'] ??
+                              item['coverPictureUrl'] ??
+                              '';
+                          final String brand = item['categoryName'] ??
+                              item['brand'] ??
+                              item['category'] ??
+                              'MERIDIAN';
+                          final String description = item['description'] ??
+                              item['productDescription'] ??
+                              item['color'] ??
+                              item['size'] ??
+                              '';
+                          final num rawPrice = item['basePricePerUnit'] ??
+                              item['price'] ??
+                              0;
+                          final double price = rawPrice.toDouble();
+                          final int quantity = (item['quantity'] is int)
+                              ? item['quantity']
+                              : int.tryParse(item['quantity'].toString()) ?? 1;
+
+                          log('productsCart:${item['itemId']}');
                           return Dismissible(
                             key: ValueKey(
-                              productsCart[index]['id'] ?? UniqueKey(),
+                              item['id'] ?? item['itemId'] ?? UniqueKey(),
                             ),
                             direction: DismissDirection.endToStart,
                             background: Container(
-                              color: AppColors.redClr,
+                              margin: const EdgeInsets.only(bottom: 16),
+                              decoration: BoxDecoration(
+                                color: AppColors.redClr,
+                                borderRadius: BorderRadius.circular(24),
+                              ),
                               alignment: Alignment.centerRight,
                               padding: const EdgeInsets.only(right: 20.0),
                               child: const Icon(
-                                Icons.delete,
-                                color: AppColors.borderSideClr,
-                                size: 30,
+                                Icons.delete_outline,
+                                color: Colors.white,
+                                size: 28,
                               ),
                             ),
                             onDismissed: (direction) {
-                              final itemId =
-                                  productsCart[index]['itemId'] ??
-                                  productsCart[index]['id'];
+                              final itemId = item['itemId'] ?? item['id'];
                               if (itemId != null) {
                                 BlocProvider.of<CartCubit>(
                                   context,
-                                ).removeCart(productsCart[index]['itemId']);
+                                ).removeCart(itemId);
                               } else {
                                 log('error');
                               }
@@ -122,85 +148,117 @@ class _CartScreenState extends State<CartScreen> {
                                 productsCart.removeAt(index);
                               });
                             },
-                            child: Card(
-                              color: AppColors.whiteClr,
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.network(
-                                          productsCart[index]['productCoverUrl'],
-                                        ),
-                                      ),
+                            child: Container(
+                              margin: const EdgeInsets.only(bottom: 16),
+                              padding: const EdgeInsets.all(14.0),
+                              decoration: BoxDecoration(
+                                color: AppColors.profileCard,
+                                borderRadius: BorderRadius.circular(24),
+                                border: Border.all(
+                                  color: AppColors.borderSideClr,
+                                  width: 1,
+                                ),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(16),
+                                    child: Container(
+                                      width: 85,
+                                      height: 85,
+                                      color: AppColors.cardFillClr,
+                                      child: imageUrl.isNotEmpty
+                                          ? Image.network(
+                                              imageUrl,
+                                              width: 85,
+                                              height: 85,
+                                              fit: BoxFit.cover,
+                                              errorBuilder: (
+                                                context,
+                                                error,
+                                                stackTrace,
+                                              ) => Center(
+                                                child: Icon(
+                                                  Icons
+                                                      .image_not_supported_outlined,
+                                                  color: AppColors.grayClr,
+                                                  size: 28,
+                                                ),
+                                              ),
+                                            )
+                                          : Center(
+                                              child: Icon(
+                                                Icons.image_outlined,
+                                                color: AppColors.grayClr,
+                                                size: 28,
+                                              ),
+                                            ),
                                     ),
-                                    const SizedBox(width: 15),
-                                    Expanded(
-                                      flex: 3,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            productsCart[index]['productName'],
-                                            style: AppStyles.style20ExtraBold,
+                                  ),
+                                  const SizedBox(width: 14),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          brand.toUpperCase(),
+                                          style: AppStyles.style11Bold.copyWith(
+                                            color: AppColors.grayClr,
+                                            letterSpacing: 0.5,
                                           ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                '\$${productsCart[index]['basePricePerUnit']} ',
-                                                style: AppStyles.style14Bold,
-                                              ),
-                                              const Spacer(),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: AppColors
-                                                      .bottomBackgroundClr,
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
+                                        ),
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          name,
+                                          style: AppStyles.style17Bold.copyWith(
+                                            color: AppColors.textClr,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        if (description.isNotEmpty) ...[
+                                          const SizedBox(height: 3),
+                                          Text(
+                                            description,
+                                            style: AppStyles.style13Regular
+                                                .copyWith(
+                                                  color: AppColors.grayClr,
                                                 ),
-                                                child: Row(
-                                                  children: [
-                                                    IconButton(
-                                                      onPressed: () {
-                                                        if (productsCart[index]['quantity'] >
-                                                            1) {
-                                                          setState(() {
-                                                            productsCart[index]['quantity']--;
-                                                          });
-                                                        }
-                                                      },
-                                                      icon: const Icon(
-                                                        Icons.remove,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      productsCart[index]['quantity']
-                                                          .toString(),
-                                                    ),
-                                                    IconButton(
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          productsCart[index]['quantity']++;
-                                                        });
-                                                      },
-                                                      icon: const Icon(
-                                                        Icons.add,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ],
-                                      ),
+                                        const SizedBox(height: 10),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              '\$${price.toStringAsFixed(2)}',
+                                              style: AppStyles.style18ExtraBold
+                                                  .copyWith(
+                                                    color: AppColors.textClr,
+                                                  ),
+                                            ),
+                                            CounterButton(
+                                              initialValue: quantity,
+                                              width: 110,
+                                              height: 42,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  item['quantity'] = value;
+                                                });
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           );
@@ -210,14 +268,15 @@ class _CartScreenState extends State<CartScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.arrow_back,
                             size: 17,
                             color: AppColors.hintClr,
                           ),
+                          SizedBox(width: 5),
                           Text(
                             'Swipe left to delete item',
-                            style: AppStyles.style11Regular,
+                            style: AppStyles.style12Regular,
                           ),
                         ],
                       ),
@@ -229,7 +288,7 @@ class _CartScreenState extends State<CartScreen> {
                               obscureText: false,
                               decoration: InputDecoration(
                                 filled: true,
-                                fillColor: Colors.white,
+                                fillColor: AppColors.profileCard,
                                 hintText: 'Enter promo code...',
                                 hintStyle: AppStyles.style14Regular.copyWith(
                                   color: AppColors.grayClr,
@@ -240,15 +299,15 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(50),
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: AppColors.primaryClr,
-                                    width: 1.5,
+                                    width: 1,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 10),
                           ElevatedButton(
                             onPressed: () {
                               log('is applied');
@@ -261,7 +320,7 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                             child: Text(
                               'Apply',
-                              style: AppStyles.style14Bold.copyWith(
+                              style: AppStyles.style16Bold.copyWith(
                                 color: Colors.white,
                               ),
                             ),
@@ -270,7 +329,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                       const SizedBox(height: 30),
                       Card(
-                        color: AppColors.whiteClr,
+                        color: AppColors.profileCard,
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
@@ -289,7 +348,7 @@ class _CartScreenState extends State<CartScreen> {
                                 title: 'Shipping',
                                 value: 'free',
                               ),
-                              const Divider(),
+                              Divider(color: AppColors.borderSideClr,),
                               Row(
                                 children: [
                                   Text('Total', style: AppStyles.style16Bold),

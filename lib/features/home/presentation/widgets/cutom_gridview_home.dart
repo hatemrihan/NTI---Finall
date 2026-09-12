@@ -162,6 +162,23 @@ class CutomGridviewHome extends StatelessWidget {
                                   ),
                                 );
                               },
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 8, 2, 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            product.name,
+                            style: AppStyles.style12SemiBold.copyWith(
+                              color: AppColors.grayClr,
+                            ),
+                          ),
+                          Text(
+                            product.description,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppStyles.style16SemiBold.copyWith(
+                              color: AppColors.textClr,
                             ),
                           ),
                         ),
@@ -201,6 +218,21 @@ class CutomGridviewHome extends StatelessWidget {
                                     icon: const Icon(Icons.add_circle_outlined),
                                   ),
                                 ],
+                                "\$${product.price.toString()}",
+                                style: AppStyles.style16Bold,
+                              ),
+                              const Spacer(),
+                              IconButton(
+                                color: AppColors.primaryClr,
+                                onPressed: () {
+                                  BlocProvider.of<ProductsCubit>(
+                                    context,
+                                  ).addToCart(product.id);
+                                },
+                                icon: Icon(Icons.add_circle_outlined,
+                                size: 35,
+                                color: AppColors.primaryClr,
+                                ),
                               ),
                             ],
                           ),

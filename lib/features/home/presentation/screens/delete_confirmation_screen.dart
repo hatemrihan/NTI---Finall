@@ -13,7 +13,7 @@ class DeleteConfirmation extends StatelessWidget {
         backgroundColor: AppColors.backgroundClr,
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon: Icon(Icons.arrow_back_ios, color: AppColors.textClr),
         ),
         centerTitle: true,
         title: Text('DELETE ITEM', style: AppStyles.style18ExtraBold),
@@ -23,7 +23,7 @@ class DeleteConfirmation extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Card(
-              color: AppColors.whiteClr,
+              color: AppColors.profileCard,
               child: Padding(
                 padding: const EdgeInsets.all(30),
                 child: Column(

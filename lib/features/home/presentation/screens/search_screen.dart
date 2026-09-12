@@ -1,4 +1,5 @@
 import 'package:final_project/core/theme/app_colors.dart';
+import 'package:final_project/core/utils/app_styles.dart';
 import 'package:final_project/core/widgets/custom_search_text_field.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/widgets/cutom_gridview_home.dart';
@@ -25,11 +26,20 @@ class _MyWidgetState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductsCubit()
-        ..getProducts(),
+      create: (context) => ProductsCubit()..getProducts(),
       child: Builder(
         builder: (context) => Scaffold(
-          backgroundColor: AppColors.backgroundClr,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text("Search Products", style: AppStyles.style22Bold),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios_new, size: 25),
+            ),
+            backgroundColor: AppColors.backgroundClr,
+          ),
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(24),

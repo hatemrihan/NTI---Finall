@@ -22,7 +22,7 @@ class CustomAppbarWidget extends StatelessWidget
       centerTitle: true,
       leading: IconButton(
         onPressed: onBackPressed,
-        icon: const Icon(
+        icon: Icon(
           Icons.arrow_back_ios_new,
           size: 25,
           color: AppColors.textClr,

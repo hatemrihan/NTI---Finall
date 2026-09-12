@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:final_project/features/home/data/models/product_model.dart';
+import 'package:final_project/features/home/data/models/offer_model.dart';
 import 'package:final_project/core/Token/token.dart';
 
 class HomeRemoteDataSource {
@@ -113,7 +114,7 @@ class HomeRemoteDataSource {
     } on DioException catch (e) {
       log('Error updating product: ${product.id}');
       log('Error in updateProduct: $e');
-      log('Errorrrrrrr: ${e.response?.data}');
+      log('Error: ${e.response?.data}');
       log('Error in updateProduct: ${e.message}');
       throw Exception(e.response?.data?.toString() ?? e.message);
     }
@@ -129,6 +130,36 @@ class HomeRemoteDataSource {
       log('Product deleted successfully: $productId');
     } on DioException catch (e) {
       log('Error in deleteProduct: $e');
+      throw Exception(e.response?.data?.toString() ?? e.message);
+    }
+  }
+
+  Future<List<OfferModel>> getOffers() async {
+    try {
+      log("get offers");
+      final Response response = await dio.get(
+        "https://accessories-eshop.runasp.net/api/offers",
+        options: Options(headers: {"Authorization": "Bearer $token"}),
+        queryParameters: {"page": 3},
+      );
+      log("offers response: ${response.data}");
+      List<dynamic> rawOffers;
+      if (response.data is List) {
+        rawOffers = response.data;
+      } else if (response.data is Map && response.data["offers"] != null) {
+        rawOffers = response.data["offers"]["items"] ?? [];
+      } else {
+        rawOffers = response.data["items"] ?? [];
+      }
+      List<OfferModel> offers = [];
+      for (var offer in rawOffers) {
+        final OfferModel model = OfferModel.fromJson(offer);
+        offers.add(model);
+      }
+      log(offers.toString());
+      return offers;
+    } on DioException catch (e) {
+      log('Error in getOffers: $e');
       throw Exception(e.response?.data?.toString() ?? e.message);
     }
   }

@@ -1,4 +1,6 @@
 import 'package:final_project/core/Token/token.dart';
+import 'package:final_project/core/theme/app_theme.dart';
+import 'package:final_project/core/theme/theme_cubit.dart';
 import 'package:final_project/features/home/Admin/admin_cubit.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/screens/home_screen.dart';
@@ -21,14 +23,21 @@ class LAMSA extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => ThemeCubit()),
         BlocProvider(create: (context) => AdminCubit()),
         BlocProvider(create: (context) => ProductsCubit()..getProducts()),
       ],
-      child: MaterialApp(
-        title: 'LAMSA',
-        theme: ThemeData(fontFamily: "Manrope"),
-        debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, themeMode) {
+          return MaterialApp(
+            title: 'LAMSA',
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: themeMode,
+            debugShowCheckedModeBanner: false,
+            home: const SplashScreen(),
+          );
+        },
       ),
     );
   }

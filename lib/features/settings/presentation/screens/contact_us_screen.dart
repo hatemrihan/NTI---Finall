@@ -54,7 +54,7 @@ class ContactUsScreen extends StatelessWidget {
                     ),
                     color: AppColors.primaryClr.withValues(alpha: 0.06),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.mail_outline_rounded,
                     size: 36,
                     color: AppColors.primaryClr,
@@ -171,7 +171,7 @@ class ContactUsScreen extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(
+              borderSide: BorderSide(
                 color: AppColors.primaryClr,
                 width: 1.5,
               ),

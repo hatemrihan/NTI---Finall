@@ -1,3 +1,4 @@
+import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -15,14 +16,15 @@ class SettingsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
+      height: 50,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
             Icon(
               icon,
-              size: 17,
+              size: 28,
+              color: AppColors.primaryClr,
             ),
 
             const SizedBox(width: 10),
