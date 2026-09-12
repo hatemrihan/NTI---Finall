@@ -1,10 +1,13 @@
 import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
+import 'package:final_project/features/auth/presentation/auth_cubit/auth_cubit.dart';
+import 'package:final_project/features/auth/presentation/screens/login_screen.dart';
 import 'package:final_project/features/home/presentation/screens/manage_product_screen.dart';
 import 'package:final_project/features/settings/presentation/screens/settings_screen.dart';
 import 'package:final_project/features/profile/presentation/widgets/custom_profile_item.dart';
 import 'package:final_project/features/profile/presentation/widgets/custom_profile_item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -58,9 +61,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ManageProductScreen()),
+            MaterialPageRoute(
+              builder: (context) => const ManageProductScreen(),
+            ),
           );
-        }
+        },
       ),
       ProfileItemModel2(
         title: 'Help and Support',
@@ -80,51 +85,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: AppColors.backgroundClr,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                children: [
-                  Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 45.5,
-                        backgroundImage: const AssetImage(
-                          'assets/images/img_profile.png',
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          padding: EdgeInsets.all(6.0),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryClr,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.photo_camera,
-                            color: AppColors.bottomBackgroundClr,
-                            size: 18,
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    Stack(
+                      children: [
+                        CircleAvatar(
+                          radius: 60.5,
+                          backgroundImage: const AssetImage(
+                            'assets/images/logo.png',
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  Text('Sarah Johnson ', style: AppStyles.style20ExtraBold),
-                  Text('sarah@email.com', style: AppStyles.style12),
-                ],
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: Card(
-                  color: AppColors.whiteClr,
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryClr,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.photo_camera,
+                              color: AppColors.bottomBackgroundClr,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    Text('LAMSA', style: AppStyles.style20ExtraBold),
+                    Text('lamsa@gmail.com', style: AppStyles.style14Regular),
+                  ],
+                ),
+                SizedBox(height: 16),
+                Card(
+                  color: AppColors.profileCard,
                   child: ListView.separated(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: mylist1.length,
                     itemBuilder: (context, index) {
                       return CustomProfileItems(
@@ -136,51 +140,85 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {
-                      return const Divider();
+                      return Divider(color: AppColors.borderSideClr);
                     },
                   ),
                 ),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(),
-                child: Card(
-                  color: AppColors.whiteClr,
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: mylist2.length,
-                    itemBuilder: (context, index) {
-                      return CustomProfileItems(
-                        title: mylist2[index].title,
-                        icon: mylist2[index].icon,
-                        rightIcon: mylist2[index].rightIcon,
-                        color: AppColors.primaryClr,
-                        onTap: () {
-                          (mylist2[index].onTap ?? () {})();
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                  ),
+                  child: Card(
+                    color: AppColors.profileCard,
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: mylist2.length,
+                      itemBuilder: (context, index) {
+                        return CustomProfileItems(
+                          title: mylist2[index].title,
+                          icon: mylist2[index].icon,
+                          rightIcon: mylist2[index].rightIcon,
+                          color: AppColors.primaryClr,
+                          onTap: () {
+                            (mylist2[index].onTap ?? () {})();
+                          },
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return Divider(color: AppColors.borderSideClr);
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Card(
+                  color: AppColors.profileCard,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomProfileItems(
+                      title: 'Log Out',
+                      icon: Icons.logout,
+                      color: AppColors.redClr,
+                      onTap: () {
+                                        showDialog(
+                  context: context,
+                  builder: (dialogContext) => AlertDialog(
+                    title: const Text('Logout?'),
+                    content: Text('Are you sure you want to logout?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(dialogContext),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BlocProvider(
+                                create: (context) => AuthCubit(),
+                                child: const LoginScreen(),
+                              ),
+                            ),
+                          );
                         },
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider();
-                    },
+                        child: const Text(
+                          'Logout',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+
+                      },
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 30),
-              Card(
-                color: AppColors.whiteClr,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomProfileItems(
-                    title: 'Log Out',
-                    icon: Icons.logout,
-                    color: AppColors.redClr,
-                    onTap: () {},
-                  ),
-                ),
-              ),
-            ],
+                SizedBox(height: 80),
+              ],
+            ),
           ),
         ),
       ),

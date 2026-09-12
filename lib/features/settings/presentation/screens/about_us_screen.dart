@@ -63,10 +63,10 @@ class AboutUsScreen extends StatelessWidget {
                   width: double.infinity,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: AppColors.whiteClr,
+                    color: AppColors.profileCard,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: const Color.fromARGB(255, 232, 222, 208),
+                      color: AppColors.borderSideClr,
                     ),
                   ),
                   child: Column(

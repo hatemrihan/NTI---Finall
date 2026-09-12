@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:final_project/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:final_project/features/home/data/models/product_model.dart';
+import 'package:final_project/features/home/data/models/offer_model.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,9 +13,11 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   List<ProductModel> products = [];
   List categories = [];
+  List<OfferModel> offers = [];
 
   bool isProductsLoading = false;
   bool isCategoriesLoading = false;
+  bool isOffersLoading = false;
 
   Future<void> getProducts() async {
     isProductsLoading = true;
@@ -21,9 +26,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     try {
       products = await homeRemoteDataSource.getProducts();
       isProductsLoading = false;
-      emit(GetProductsSuccessState(
-        products: products,
-      ));
+      emit(GetProductsSuccessState(products: products));
     } catch (error) {
       isProductsLoading = false;
       if (!isClosed) emit(GetProductsFailureState(error: error.toString()));
@@ -76,6 +79,20 @@ class ProductsCubit extends Cubit<ProductsState> {
       if (!isClosed) emit(addToCartSuccess());
     } catch (error) {
       if (!isClosed) emit(addToCartFailure());
+    }
+  }
+
+  Future<void> getOffers() async {
+    isOffersLoading = true;
+    if (isClosed) return;
+    emit(GetOffersLoadingState());
+    try {
+      offers = await homeRemoteDataSource.getOffers();
+      isOffersLoading = false;
+      if (!isClosed) emit(GetOffersSuccessState(offers: offers));
+    } catch (error) {
+      isOffersLoading = false;
+      if (!isClosed) emit(GetOffersFailureState(error: error.toString()));
     }
   }
 }

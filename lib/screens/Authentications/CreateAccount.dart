@@ -59,7 +59,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         CustomTextField(
           title: "Full Name",
           hintText: "Sophia Loren",
-          prefixIcon: const Icon(
+          prefixIcon: Icon(
             Icons.person_outline,
             color: AppColors.grayClr,
             size: 20,
@@ -71,7 +71,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         CustomTextField(
           title: "Email Address",
           hintText: "name@domain.com",
-          prefixIcon: const Icon(
+          prefixIcon: Icon(
             Icons.email_outlined,
             color: AppColors.grayClr,
             size: 20,
@@ -90,7 +90,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         ),
 
         // Custom file: password_bar.dart
-        const PasswordBar(
+        PasswordBar(
           filledCount: 3,
           label: "Strong password",
           color: AppColors.primaryClr,

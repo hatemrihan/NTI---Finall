@@ -1,4 +1,5 @@
 import 'package:final_project/features/home/data/models/product_model.dart';
+import 'package:final_project/features/home/data/models/offer_model.dart';
 
 abstract class ProductsState {}
 
@@ -55,3 +56,16 @@ class addToCartloding extends ProductsState {}
 class addToCartSuccess extends ProductsState {}
 
 class addToCartFailure extends ProductsState {}
+
+// Offers States
+class GetOffersLoadingState extends ProductsState {}
+
+class GetOffersSuccessState extends ProductsState {
+  final List<OfferModel> offers;
+  GetOffersSuccessState({required this.offers});
+}
+
+class GetOffersFailureState extends ProductsState {
+  final String? error;
+  GetOffersFailureState({this.error});
+}
