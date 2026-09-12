@@ -12,7 +12,7 @@ class HomeRemoteDataSource {
       log(" get products");
       final Response response = await dio.get(
         "https://accessories-eshop.runasp.net/api/products",
-        queryParameters: {'pageSize': 230},
+        queryParameters: {'page':1,'pageSize': 230},
       );
       List<ProductModel> products = [];
       for (var element in response.data['items']) {

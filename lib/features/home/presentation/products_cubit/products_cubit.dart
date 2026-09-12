@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:final_project/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:final_project/features/home/data/models/product_model.dart';
@@ -93,7 +92,9 @@ class ProductsCubit extends Cubit<ProductsState> {
       await getProducts();
     } catch (error) {
       emit(DeleteProductFailureState(error.toString()));
-      
+    }
+  }
+
   Future<void> getOffers() async {
     isOffersLoading = true;
     if (isClosed) return;

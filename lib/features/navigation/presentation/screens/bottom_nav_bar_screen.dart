@@ -1,3 +1,4 @@
+import 'package:final_project/core/theme/theme_cubit.dart';
 import 'package:final_project/features/cart/presentation/cubits/cart_cubit.dart';
 import 'package:final_project/features/home/presentation/products_cubit/products_cubit.dart';
 import 'package:final_project/features/home/presentation/screens/category_products_screen.dart';
@@ -22,50 +23,57 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> pages = [
-      HomeScreen(
-        onTabChange: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-      ),
-      const CategoryProductsScreen(),
-      BlocProvider(create: (context) => CartCubit(), child: const CartScreen()),
-      const ProfileScreen(),
-    ];
-
-    return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(child: pages[currentIndex]),
-
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: CustomBottomNavBar(
-              currentIndex: currentIndex,
-              onTap: (index) {
-                setState(() {
-                  currentIndex = index;
-                });
-              },
-              onAddProduct: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BlocProvider(
-                      create: (context) => ProductsCubit(),
-                      child: const AddProductScreen(),
-                    ),
-                  ),
-                );
-              },
-            ),
+    return BlocBuilder<ThemeCubit, ThemeMode>(
+      builder: (context, themeMode) {
+        final List<Widget> pages = [
+          HomeScreen(
+            onTabChange: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
           ),
-        ],
-      ),
+          const CategoryProductsScreen(),
+          BlocProvider(
+            create: (context) => CartCubit(),
+            child: const CartScreen(),
+          ),
+          const ProfileScreen(),
+        ];
+
+        return Scaffold(
+          body: Stack(
+            children: [
+              Positioned.fill(child: pages[currentIndex]),
+
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: CustomBottomNavBar(
+                  currentIndex: currentIndex,
+                  onTap: (index) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                  onAddProduct: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BlocProvider(
+                          create: (context) => ProductsCubit(),
+                          child: const AddProductScreen(),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

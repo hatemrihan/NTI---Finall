@@ -1,10 +1,6 @@
-import 'dart:developer';
-
+import 'package:final_project/core/theme/app_colors.dart';
 import 'package:final_project/core/theme/app_styles.dart';
-import 'package:final_project/features/auth/presentation/auth_cubit/auth_cubit.dart';
-import 'package:final_project/features/auth/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomProfileItems extends StatelessWidget {
   const CustomProfileItems({
@@ -29,21 +25,21 @@ class CustomProfileItems extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(left: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 12.0),
         child: Row(
           children: [
-            Icon(icon, size: 30, color: color),
-            SizedBox(width: 15),
-            Text(
-              title,
-              style: AppStyles.style16SemiBold.copyWith(color: textColor),
+            Icon(icon, size: 28, color: color ?? AppColors.primaryClr),
+            const SizedBox(width: 15),
+            Expanded(
+              child: Text(
+                title,
+                style: AppStyles.style16SemiBold.copyWith(
+                  color: textColor ?? AppColors.textClr,
+                ),
+              ),
             ),
-            Spacer(),
-            IconButton(
-              onPressed: () {
-              },
-              icon: Icon(rightIcon),
-            ),
+            if (rightIcon != null)
+              Icon(rightIcon, size: 18, color: AppColors.grayClr),
           ],
         ),
       ),

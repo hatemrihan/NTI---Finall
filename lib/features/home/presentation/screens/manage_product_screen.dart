@@ -81,7 +81,7 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.backgroundClr,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_ios_new ,size: 25,),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -93,7 +93,7 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
       body: SafeArea(
         child: Padding(
           padding:
-              const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+              const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
